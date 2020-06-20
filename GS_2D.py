@@ -6,6 +6,8 @@ import numpy as np
 class AstralObject:
     def __init__(self):
         self.Mass = 1
+        self.x = 0
+        self.y = 0
         self.Vx = 0
         self.Vy = 0
         self.IsMoving = True
