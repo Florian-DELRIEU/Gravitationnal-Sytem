@@ -2,6 +2,7 @@
 Programme simulant un sytème gravitationnel a N corps en 2D
 """
 import numpy as np
+import matplotlib.pyplot as plt
 
 # Maillage
 dx, x_range = 0.1, 10
@@ -18,3 +19,5 @@ Pos = [
 ]
 Mass = [1]
 Pot = lambda x,y: -G*Mass[0] / ( np.sqrt((X-Pos[0][0])**2+(Y-Pos[0][1])**2) )**3
+
+plt.contourf(X,Y,Pot(X,Y))
