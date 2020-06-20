@@ -12,8 +12,9 @@ X,Y = np.meshgrid(
     np.arange(-y_range,y_range,dy))
 t = np.arange(0,tf,dt)
 Nt, Nx, Ny = len(t), len(X), len(Y)
-
+G = 1 # Constante Grav (6.7e8)
 Pos = [
-    (0,0,   3), # x,y and mass
-    (10,0,  1)
+    (0,0), # x,y
 ]
+Mass = [1]
+Pot = lambda x,y: -G*Mass[0] / ( np.sqrt((X-Pos[0][0])**2+(Y-Pos[0][1])**2) )**3
