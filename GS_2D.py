@@ -12,3 +12,8 @@ X,Y = np.meshgrid(
     np.arange(-y_range,y_range,dy))
 t = np.arange(0,tf,dt)
 Nt, Nx, Ny = len(t), len(X), len(Y)
+
+Pos = [
+    (0,0,   3), # x,y and mass
+    (10,0,  1)
+]
