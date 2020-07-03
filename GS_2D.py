@@ -16,28 +16,28 @@ class AstralObject:
         self.Dist_x = np.array(0)
         self.Dist_y = np.array(0)
         self.Distance = np.array(0)
-        self.G_x = np.array(0)
-        self.G_y = np.array(0)
+        self.Grav_x = np.array(0)
+        self.Grav_y = np.array(0)
         self.Gravity = np.array(0)
         self.IsMoving = True
-        self.setMass(1)
         self.setPos(0,0)
+        self.setMass(1)
     def getDistance(self):
-        self.Dist_x = np.array(X-self.x)
-        self.Dist_y = np.array(Y-self.y)
-        self.Distance = np.array(np.sqrt(self.Dist_x**2+self.Dist_y**2))
+        self.Dist_x = np.array( X - self.x )
+        self.Dist_y = np.array( Y - self.y )
+        self.Distance = np.sqrt(self.Dist_x**2 + self.Dist_y**2)
+        self.getGravity()
     def getGravity(self):
-        self.G_x = np.array(- G*self.Mass/self.Dist_x**2)
-        self.G_y = np.array(- G*self.Mass/self.Dist_y**2)
-        self.Gravity = np.array( np.sqrt(self.G_x**2 + self.G_y**2))
+        self.Grav_x = np.array(- G * self.Mass / self.Dist_x)
+        self.Grav_y = np.array(- G * self.Mass / self.Dist_y)
+        self.Gravity = np.sqrt(self.Grav_x**2 + self.Grav_y**2)
     def setPos(self,x,y):
         self.x = x
         self.y = y
         self.getDistance()
-        self.getGravity()
     def setMass(self,m):
         self.Mass = m
-        self.getGravity()
+
 # Global Parametres
 G = 1  # Constante Gravitationnelle
 Body = list()
@@ -54,15 +54,14 @@ Nt, Nx, Ny = len(t), len(X), len(Y)
 
 
 # Testing
-for _ in np.arange(2):
-    Body.append(AstralObject())
-Body[0].setPos(3,7)
-Body[0].setMass(10)
-Body[1].setPos(-1,-5)
-Body[1].setMass(1)
+for _ in np.arange(2): Body.append(AstralObject())
+Body[0].setPos(0,0)
+Body[1].setPos(1,0)
 
 GRAVITY = getGRAVITY(Body)
 plt.figure(1)
+Gravity_level = np.logspace(Body[0].Gravity.min(),Body[0].Gravity.max(),10)
+plt.contourf(X,Y,Body[0].Gravity)
 plt.plot(Body[0].x,Body[0].y,"r*")
 plt.plot(Body[1].x,Body[1].y,"r*")
 plt.show()
