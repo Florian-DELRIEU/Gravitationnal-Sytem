@@ -13,9 +13,13 @@ X,Y = np.meshgrid(
 G = 1 # Constante Grav (6.7e8)
 Pos = [
     (0,0), # x,y
+    (1,0),
 ]
-Mass = [1]
-Potential = lambda x,y: G*Mass[0] / ( np.sqrt((x-Pos[0][0])**2+(y-Pos[0][1])**2) )**3
-POTENT = Potential(X,Y)
-POTENT_contour = np.linspace(POTENT.min(),POTENT.max(),10)
-plt.contourf(X,Y,POTENT,[0,.1,2,5,20])
+Mass = [10,1]
+Gravity_func = lambda x,y: G*Mass[0] / ( np.sqrt((x-Pos[0][0])**2+(y-Pos[0][1])**2) )**2
+GRAVITY = Gravity_func(X,Y)
+GRAVITY_contourlevel = np.logspace(GRAVITY.min(),GRAVITY.max(),30) # [0,.1,2,5,20]
+plt.contourf(X,Y,GRAVITY,GRAVITY_contourlevel)
+plt.plot(Pos[0][0],Pos[0][1],"r*")
+plt.plot(Pos[1][0],Pos[1][1],"r*")
+plt.show()
