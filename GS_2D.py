@@ -16,13 +16,13 @@ class AstralObject:
         self.IsMoving = True
         self.setMass(1)
         self.setPos(0,0)
-    def getDistance(self):  return np.sqrt((X-self.x)**2 + (Y-self.y)**2)
-    def getPotential(self): return - G*self.Mass/self.Distance**3
+    def getDistance(self):  self.Distance = np.sqrt((X-self.x)**2 + (Y-self.y)**2)
+    def getPotential(self): self.Potential = - G*self.Mass/self.Distance**3
     def setPos(self,x,y):
         self.x = x
         self.y = y
-        self.Distance = self.getDistance
-        self.Potential = self.getPotential
+        self.getDistance()
+        self.getPotential()
     def setMass(self,m):
         self.Mass = m
 
