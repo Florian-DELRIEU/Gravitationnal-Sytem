@@ -59,8 +59,8 @@ G = 1  # Constante Gravitationnelle
 Body = list()
 
 # Maillage
-dx, x_range = 1, 10
-dy, y_range = 1, 10
+dx, x_range = 0.1, 10
+dy, y_range = 0.1, 10
 dt, tf = 0.1, 10
 X,Y = np.meshgrid(
     np.arange(-x_range,x_range,dx),
@@ -83,8 +83,9 @@ for _ in t:
 
 
 # Plotting
-msk_Grav_x = ma.masked_outside(Body[0].Grav_x,0.08,-0.08)  # Masque les valeurs hors des limites
-msk_Grav_y = ma.masked_outside(Body[0].Grav_y,0.08,-0.08)
+msk_outside_value = 0.1
+msk_Grav_x = ma.masked_outside(Body[0].Grav_x,msk_outside_value,-msk_outside_value)  # Masque les valeurs hors des limites
+msk_Grav_y = ma.masked_outside(Body[0].Grav_y,msk_outside_value,-msk_outside_value)
 plt.figure(1)
 #plt.quiver(X,Y,Body[0].Grav_x,Body[0].Grav_y)
 plt.quiver(X,Y,msk_Grav_x,msk_Grav_y)
