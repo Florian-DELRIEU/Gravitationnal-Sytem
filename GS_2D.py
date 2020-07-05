@@ -25,6 +25,11 @@ class AstralObject:
         self.iy = int()
         self.setPos(0,0)
         self.setMass(1)
+    def __repr__(self):
+        txt = """Astral Body
+            - Pos = ({} , {})
+            - Mass = {}
+        """.format(self.x,self.y,self.Mass)
     def getDistance(self):
         self.Distance = ma.masked_equal(np.sqrt((X-self.x)**2 + (Y-self.y)**2),0)
         self.getGravityfield()
