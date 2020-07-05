@@ -76,19 +76,19 @@ Body[0].setMass(1)
 Body[0].IsMoving = False
 Body[1].setPos(1,0)
 Body[1].setMass(0)
+a,b = Body[0],Body[1]
 
 # Simulation
-for _ in t:
-    GRAV_x , GRAV_y = GRAVITYFIELD(Body)
+GRAV_x , GRAV_y = GRAVITYFIELD(Body)
 
 
 # Plotting
 msk_outside_value = 0.1
-msk_Grav_x = ma.masked_outside(Body[0].Grav_x,msk_outside_value,-msk_outside_value)  # Masque les valeurs hors des limites
-msk_Grav_y = ma.masked_outside(Body[0].Grav_y,msk_outside_value,-msk_outside_value)
+msk_Grav_x = ma.masked_outside(Body[0].Grav_x,msk_outside_value,-msk_outside_value,True)  # Masque les valeurs hors des limites
+msk_Grav_y = ma.masked_outside(Body[0].Grav_y,msk_outside_value,-msk_outside_value,True)
 plt.figure(1)
 #plt.quiver(X,Y,Body[0].Grav_x,Body[0].Grav_y)
 plt.quiver(X,Y,msk_Grav_x,msk_Grav_y)
-#plt.plot(Body[0].x,Body[0].y,"r*")
-#plt.plot(Body[1].x,Body[1].y,"r*")
+plt.plot(Body[0].x,Body[0].y,"r*")
+plt.plot(Body[1].x,Body[1].y,"r*")
 plt.show()
