@@ -5,17 +5,18 @@ import numpy as np
 import numpy.ma as ma  # masque
 import matplotlib.pyplot as plt
 
-def getGRAVITY(body_list): return sum(_.Gravity for _ in body_list)
+def GRAVITYFIELD(body_list):
+    return sum(_.Grav_x for _ in body_list) , sum(_.Grav_y for _ in body_list)
 
 class AstralObject:
     def __init__(self):
         self.Mass = int()
-        self.x = int()
-        self.y = int()
-        self.Vx = int()
-        self.Vy = int()
-        self.Ax = int()
-        self.Ay = int()
+        self.x = int(0)
+        self.y = int(0)
+        self.Vx = int(0)
+        self.Vy = int(0)
+        self.Ax = int(0)
+        self.Ay = int(0)
         self.IsMoving = True
         self.Distance = np.array(0)
         self.Grav_x = np.array(0)
@@ -26,8 +27,9 @@ class AstralObject:
         self.setMass(1)
     def getDistance(self):
         self.Distance = ma.masked_equal(np.sqrt((X-self.x)**2 + (Y-self.y)**2),0)
-        self.getGravity()
-    def getGravity(self):
+        self.getGravityfield()
+    def getGravityfield(self):
+    # Champs de gravite induit de la presence de ce corps
         self.Grav_x = -G*self.Mass/self.Distance**3 * (X-self.x)
         self.Grav_y = -G*self.Mass/self.Distance**3 * (Y-self.y)
     def getPosIndic(self):
@@ -38,9 +40,20 @@ class AstralObject:
         self.y = y
         self.getDistance()
         self.getPosIndic()
+    def setVel(self,Vx,Vy):
+        self.Vx = Vx
+        self.Vy = Vy
+    def getAcc(self):
+        self.Ax = (GRAV_x[self.ix, self.iy] - self.Grav_x[self.ix, self.iy])/self.Mass
+        self.Ay = (GRAV_y[self.ix, self.iy] - self.Grav_y[self.ix, self.iy])/self.Mass
     def setMass(self,m):
         self.Mass = m
-        self.getGravity()
+        self.getGravityfield()
+    def refresh(self,dt):
+        self.getAcc()
+        self.setVel( self.Vx+self.Ax*dt , self.Vy+self.Ay*dt )
+        self.setPos( self.x+self.Vx*dt , self.y+self.Vy*dt )
+
 # Global Parametres
 G = 1  # Constante Gravitationnelle
 Body = list()
@@ -63,6 +76,11 @@ Body[0].setMass(1)
 Body[0].IsMoving = False
 Body[1].setPos(1,0)
 Body[1].setMass(0)
+
+# Simulation
+for _ in t:
+    GRAV_x , GRAV_y = GRAVITYFIELD(Body)
+
 
 # Plotting
 msk_Grav_x = ma.masked_outside(Body[0].Grav_x,0.08,-0.08)  # Masque les valeurs hors des limites
