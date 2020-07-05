@@ -20,6 +20,8 @@ class AstralObject:
         self.Distance = np.array(0)
         self.Grav_x = np.array(0)
         self.Grav_y = np.array(0)
+        self.ix = int()  # Indice de la position
+        self.iy = int()
         self.setPos(0,0)
         self.setMass(1)
     def getDistance(self):
@@ -28,10 +30,14 @@ class AstralObject:
     def getGravity(self):
         self.Grav_x = -G*self.Mass/self.Distance**3 * (X-self.x)
         self.Grav_y = -G*self.Mass/self.Distance**3 * (Y-self.y)
+    def getPosIndic(self):
+        self.ix = np.where( abs(X[0,:]-self.x) == min(abs(X[0,:]-self.x)))
+        self.iy = np.where( abs(Y[:,0]-self.y) == min(abs(Y[:,0]-self.y)))
     def setPos(self,x,y):
         self.x = x
         self.y = y
         self.getDistance()
+        self.getPosIndic()
     def setMass(self,m):
         self.Mass = m
         self.getGravity()
