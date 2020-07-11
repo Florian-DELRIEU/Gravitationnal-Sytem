@@ -33,7 +33,7 @@ class AstralObject:
         """.format(self.x,self.y,self.Mass)
         return txt
     def getDistance(self):
-        self.Distance = np.sqrt((X-self.x)**2 + (Y-self.y)**2),1e-6
+        self.Distance = np.sqrt((X-self.x)**2 + (Y-self.y)**2)
         self.msk_Distance = ma.masked_less(np.sqrt((X-self.x)**2 + (Y-self.y)**2),1e-6)
         self.getGravityfield()
     def getGravityfield(self):
@@ -52,6 +52,7 @@ class AstralObject:
         self.Vx = Vx
         self.Vy = Vy
     def getAcc(self):
+    # Gravité des autres corps - celle de lui meme / par sa masse
         self.Ax = (GRAV_x[self.ix, self.iy] - self.Grav_x[self.ix, self.iy])/self.Mass
         self.Ay = (GRAV_y[self.ix, self.iy] - self.Grav_y[self.ix, self.iy])/self.Mass
     def setMass(self,m):
@@ -62,6 +63,8 @@ class AstralObject:
         self.setVel( self.Vx+self.Ax*dt , self.Vy+self.Ay*dt )
         self.setPos( self.x+self.Vx*dt , self.y+self.Vy*dt )
 
+########################################################################################################################
+########################################################################################################################
 # Global Parametres
 G = 1  # Constante Gravitationnelle
 Body = list()
@@ -78,7 +81,8 @@ Nt, Nx, Ny = len(t), len(X), len(Y)
 
 
 # Testing
-for _ in np.arange(2): Body.append(AstralObject())
+for _ in np.arange(2): Body.append(AstralObject())  # Ajout des corps celestes
+# 2 corps a et b
 Body[0].setPos(0,0)
 Body[0].setMass(1)
 Body[0].IsMoving = False
