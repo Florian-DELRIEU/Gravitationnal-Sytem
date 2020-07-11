@@ -10,20 +10,21 @@ def GRAVITYFIELD(body_list):
 
 class AstralObject:
     def __init__(self):
-        self.Mass = int()
-        self.x = int(0)
-        self.y = int(0)
-        self.Vx = int(0)
-        self.Vy = int(0)
-        self.Ax = int(0)
-        self.Ay = int(0)
+        self.Mass = float()
+        self.x = float(0)
+        self.y = float(0)
+        self.Vx = float(0)
+        self.Vy = float(0)
+        self.Ax = float(0)
+        self.Ay = float(0)
+        self.radius = float(0)
         self.IsMoving = True
         self.Distance = np.array(0)
         self.msk_Distance = np.array(0)
         self.Grav_x = np.array(0)
         self.Grav_y = np.array(0)
-        self.ix = int()  # Indice de la position
-        self.iy = int()
+        self.ix = float()  # Indice de la position
+        self.iy = float()
         self.setPos(0,0)
         self.setMass(1)
     def __repr__(self):
@@ -34,7 +35,9 @@ class AstralObject:
         return txt
     def getDistance(self):
         self.Distance = np.sqrt((X-self.x)**2 + (Y-self.y)**2)
-        self.msk_Distance = ma.masked_less(np.sqrt((X-self.x)**2 + (Y-self.y)**2),1e-6)
+        if self.radius != 0: msk_value = self.radius
+        else:                msk_value = 1e-6
+        self.msk_Distance = ma.masked_less(np.sqrt((X-self.x)**2 + (Y-self.y)**2),msk_value)
         self.getGravityfield()
     def getGravityfield(self):
     # Champs de gravite induit de la presence de ce corps
@@ -48,6 +51,8 @@ class AstralObject:
         self.y = y
         self.getDistance()
         self.getPosIndic()
+    def setRadius(self,r):
+        self.radius = r
     def setVel(self,Vx,Vy):
         self.Vx = Vx
         self.Vy = Vy
@@ -70,8 +75,8 @@ G = 1  # Constante Gravitationnelle
 Body = list()
 
 # Maillage
-dx, x_range = 0.1, 10
-dy, y_range = 0.1, 10
+dx, x_range = 1, 10
+dy, y_range = 1, 10
 dt, tf = 0.1, 10
 X,Y = np.meshgrid(
     np.arange(-x_range,x_range,dx),
@@ -86,9 +91,11 @@ for _ in np.arange(2): Body.append(AstralObject())  # Ajout des corps celestes
 Body[0].setPos(0,0)
 Body[0].setMass(1)
 Body[0].IsMoving = False
+Body[0].radius = 1.5
 Body[1].setPos(1,0)
 Body[1].setMass(0)
 a,b = Body[0],Body[1]
+Body[1].radius = 1.5
 
 # Simulation
 GRAV_x , GRAV_y = GRAVITYFIELD(Body)
@@ -101,8 +108,8 @@ msk_outside_value = 0.1
 msk_Grav_x = ma.masked_outside(Body[0].Grav_x,msk_outside_value,-msk_outside_value,True)  # Masque les valeurs hors des limites
 msk_Grav_y = ma.masked_outside(Body[0].Grav_y,msk_outside_value,-msk_outside_value,True)
 plt.figure(1)
-#plt.quiver(X,Y,Body[0].Grav_x,Body[0].Grav_y)
-plt.quiver(X,Y,msk_Grav_x,msk_Grav_y)
+plt.quiver(X,Y,Body[0].Grav_x,Body[0].Grav_y)
+#plt.quiver(X,Y,msk_Grav_x,msk_Grav_y)
 plt.plot(Body[0].x,Body[0].y,"r*")
 plt.plot(Body[1].x,Body[1].y,"r*")
 plt.show()
