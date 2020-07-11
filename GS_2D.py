@@ -19,6 +19,7 @@ class AstralObject:
         self.Ay = int(0)
         self.IsMoving = True
         self.Distance = np.array(0)
+        self.msk_Distance = np.array(0)
         self.Grav_x = np.array(0)
         self.Grav_y = np.array(0)
         self.ix = int()  # Indice de la position
@@ -30,8 +31,10 @@ class AstralObject:
             - Pos = ({} , {})
             - Mass = {}
         """.format(self.x,self.y,self.Mass)
+        return txt
     def getDistance(self):
-        self.Distance = ma.masked_equal(np.sqrt((X-self.x)**2 + (Y-self.y)**2),0)
+        self.Distance = np.sqrt((X-self.x)**2 + (Y-self.y)**2),1e-6
+        self.msk_Distance = ma.masked_less(np.sqrt((X-self.x)**2 + (Y-self.y)**2),1e-6)
         self.getGravityfield()
     def getGravityfield(self):
     # Champs de gravite induit de la presence de ce corps
@@ -85,6 +88,8 @@ a,b = Body[0],Body[1]
 
 # Simulation
 GRAV_x , GRAV_y = GRAVITYFIELD(Body)
+a.getAcc()
+b.getAcc()
 
 
 # Plotting
