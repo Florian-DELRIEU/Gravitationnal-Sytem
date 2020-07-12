@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # Maillage
 dx, x_range = 0.1, 10
 dy, y_range = 0.1, 10
-dt, t_range = 0.1, 10
+dt, t_range = 1, 100
 X,Y = np.meshgrid(
     np.arange(-x_range,x_range,dx),
     np.arange(-y_range,y_range,dy))
@@ -40,3 +40,5 @@ for _ in t:
 
     # Refresh plot
     plt.plot(x, y, "b+")
+    plt.pause(0.01)
+    plt.show()
