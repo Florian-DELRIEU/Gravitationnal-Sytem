@@ -96,7 +96,6 @@ Body[0].IsMoving = False
 Body[1].setPos(6,3)
 Body[1].setMass(0)
 a,b = Body[0],Body[1]
-Body[1].radius = 1.5
 
 # Simulation
 GRAV_x , GRAV_y = GRAVITYFIELD(Body)
