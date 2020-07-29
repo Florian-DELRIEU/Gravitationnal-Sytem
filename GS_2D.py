@@ -2,16 +2,12 @@
 Programme simulant un sytème gravitationnel a N corps en 2D
 """
 import numpy as np
-import numpy.ma as ma  # masque
 import matplotlib.pyplot as plt
 
-def GRAVITYFIELD(body_list):
-    return sum(_.grav_x for _ in body_list) , sum(_.grav_y for _ in body_list)
+def GRAVITYFIELD(body_list): pass
 
 class AstralBody:
-    def __init__(self,BodyList):
-    # Initial verifications
-        assert type(BodyList) is list() , ":BodyList: must be a list"
+    def __init__(self):
     # Variable definitions
         self.Mass = float()
         self.x = float(0)
@@ -20,10 +16,18 @@ class AstralBody:
         self.vy = float(0)
         self.ax = float(0)
         self.ay = float(0)
-        self.distx_f = lambda x: X - self.x # Distance d'un corps a x,y par rapport a self
-        self.disty_f = lambda y: Y - self.y
+        self.Body_list = list()
         self.IsMoving = True
-        self.BodyList = BodyList # Liste de corps auquel appartient l'objet
+    def refresh(self,dt):
+        self.Body_list = Body.copy() # Body_list.remove(self) ne marche plus après ...
+        self.ax, self.ay = 0,0
+        for this_body in self.Body_list:
+            self.ax += this_body.x
+            self.ay += this_body.y
+            self.vx += self.ax*dt
+            self.vy += self.ay*dt
+            self.x += self.vx*dt
+            self.y += self.vy*dt
     def __repr__(self):
         txt = """Astral Body
             - Pos = ({} , {})
@@ -49,7 +53,12 @@ Nt, Nx, Ny = len(t), len(X), len(Y)
 
 
 # Testing
-for _ in np.arange(2): Body.append(AstralBody())  # Ajout des corps celestes
+for _ in np.arange(2):Body.append(AstralBody())  # Ajout des corps celestes
+a = Body[0]
+b = Body[1]
+for thisbody in Body: thisbody.refresh(0.1)
+
+Body[1].x,Body[1].y = 1,0
 
 # Simulation
 
