@@ -20,6 +20,7 @@ class AstralBody:
         self.IsMoving = True
     def refresh(self,dt):
         self.Body_list = Body.copy() # Body_list.remove(self) ne marche plus après ...
+        self.Body_list.remove(self)
         self.ax, self.ay = 0,0
         for this_body in self.Body_list:
             self.ax += this_body.x
