@@ -19,7 +19,9 @@ class AstralBody:
         self.ay = float(0)
         self.Body_list = list()
         self.IsMoving = True
-        self.Mark = "bo"
+        self.Color = "b"
+        self.Mark = "o"
+        self.Trajectory = list()
     def refresh(self,dt):
         if self.IsMoving:
             self.Body_list = Body.copy() # Body_list.remove(self) ne marche plus après ...
@@ -33,6 +35,7 @@ class AstralBody:
                 self.vy += self.ay*dt
                 self.x += self.vx*dt
                 self.y += self.vy*dt
+            self.Trajectory.append((self.x,self.y))
     def __repr__(self):
         txt = """Astral Body
             - Pos = ({} , {})
@@ -60,7 +63,7 @@ Nt, Nx, Ny = len(t), len(X), len(Y)
 # Creating body
 for _ in np.arange(2):Body.append(AstralBody())  # Ajout des corps celestes
 a = Body[0]
-a.Mark = "ro"
+a.Color,a.Mark = "r","o"
 b = Body[1]
 a.Mass,b.Mass = 10,1
 a.IsMoving = True
@@ -81,6 +84,9 @@ for _ in t:
     plt.clf()
     for this_body in Body:
         this_body.refresh(dt)
-        plt.plot(this_body.x,this_body.y,this_body.Mark)
+        plt.plot(this_body.x,this_body.y,this_body.Color+this_body.Mark)
         plt.xlim(-3,3)
         plt.ylim(-3,3)
+for this_body in Body:
+    this_body.Trajectory = np.array(this_body.Trajectory)
+    plt.plot(this_body.Trajectory[:,0],this_body.Trajectory[:,1],this_body.Color+"-")
