@@ -3,6 +3,7 @@ Programme simulant un sytème gravitationnel a N corps en 2D
 """
 import numpy as np
 import matplotlib.pyplot as plt
+plt.ion()
 
 def GRAVITYFIELD(body_list): pass
 
@@ -18,6 +19,7 @@ class AstralBody:
         self.ay = float(0)
         self.Body_list = list()
         self.IsMoving = True
+        self.Mark = "bo"
     def refresh(self,dt):
         if self.IsMoving:
             self.Body_list = Body.copy() # Body_list.remove(self) ne marche plus après ...
@@ -47,7 +49,7 @@ Body = list()
 # Maillage
 dx, x_range = .1, 10
 dy, y_range = .1, 10
-dt, tf = 0.1, 10
+dt, tf = 0.01, 1
 X,Y = np.meshgrid(
     np.arange(-x_range,x_range,dx),
     np.arange(-y_range,y_range,dy))
@@ -58,20 +60,27 @@ Nt, Nx, Ny = len(t), len(X), len(Y)
 # Creating body
 for _ in np.arange(2):Body.append(AstralBody())  # Ajout des corps celestes
 a = Body[0]
+a.Mark = "ro"
 b = Body[1]
-a.Mass,b.Mass = 1,1
-a.IsMoving = False
+a.Mass,b.Mass = 10,1
+a.IsMoving = True
+a.x,a.y = 0,0
 b.x,b.y = 1,0
-b.vx,b.vy = 0,1
+a.vx,a.vy = 0,0
+b.vx,b.vy = 0,2.5
 
 plt.figure(1)
-#plt.clf()
+plt.clf()
 for this_body in Body:
     plt.plot(this_body.x,this_body.y,"r*")
 plt.show()
 
 # Simulation
 for _ in t:
-    for this_body in Body: this_body.refresh(dt)
     plt.pause(dt)
-    plt.plot(b.x,b.y,'b+')
+    plt.clf()
+    for this_body in Body:
+        this_body.refresh(dt)
+        plt.plot(this_body.x,this_body.y,this_body.Mark)
+        plt.xlim(-3,3)
+        plt.ylim(-3,3)
