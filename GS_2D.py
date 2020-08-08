@@ -2,73 +2,46 @@
 Programme simulant un sytème gravitationnel a N corps en 2D
 """
 import numpy as np
-import numpy.ma as ma  # masque
 import matplotlib.pyplot as plt
+plt.ion()
 
-def GRAVITYFIELD(body_list):
-    return sum(_.Grav_x for _ in body_list) , sum(_.Grav_y for _ in body_list)
+def GRAVITYFIELD(body_list): pass
 
-class AstralObject:
+class AstralBody:
     def __init__(self):
-        self.Mass = float()
+    # Variable definitions
+        self.Mass = float(0)
         self.x = float(0)
         self.y = float(0)
-        self.Vx = float(0)
-        self.Vy = float(0)
-        self.Ax = float(0)
-        self.Ay = float(0)
-        self.radius = float(0)
+        self.vx = float(0)
+        self.vy = float(0)
+        self.ax = float(0)
+        self.ay = float(0)
+        self.Body_list = list()
         self.IsMoving = True
-        self.Distance = np.array(0)
-        self.msk_Distance = np.array(0)
-        self.Grav_x = np.array(0)
-        self.Grav_y = np.array(0)
-        self.ix = float()  # Indice de la position
-        self.iy = float()
-        self.setRadius(2.3)
-        self.setPos(0,0)
-        self.setMass(1)
+        self.Color = "b"
+        self.Mark = "o"
+        self.Trajectory = list()
+    def refresh(self,dt):
+        if self.IsMoving:
+            self.Body_list = Body.copy() # Body_list.remove(self) ne marche plus après ...
+            self.Body_list.remove(self)
+            self.ax, self.ay = 0,0
+            for this_body in self.Body_list:
+                cur_distance = np.sqrt((this_body.x - self.x)**2 + (this_body.y - self.y)**2)
+                self.ax += - G * this_body.Mass / cur_distance**3 * (self.x - this_body.x)
+                self.ay += - G * this_body.Mass / cur_distance**3 * (self.y - this_body.y)
+                self.vx += self.ax*dt
+                self.vy += self.ay*dt
+                self.x += self.vx*dt
+                self.y += self.vy*dt
+            self.Trajectory.append((self.x,self.y))
     def __repr__(self):
         txt = """Astral Body
             - Pos = ({} , {})
             - Mass = {}
         """.format(self.x,self.y,self.Mass)
         return txt
-    def getDistance(self):
-        self.Distance = np.sqrt((X-self.x)**2 + (Y-self.y)**2)
-        if self.radius != 0: msk_value = self.radius
-        else:                msk_value = 1e-6
-        self.msk_Distance = ma.masked_less(np.sqrt((X-self.x)**2 + (Y-self.y)**2),msk_value)
-        self.getGravityfield()
-    def getGravityfield(self):
-    # Champs de gravite induit de la presence de ce corps
-        self.Grav_x = -G*self.Mass/self.msk_Distance**3 * (X-self.x)
-        self.Grav_y = -G*self.Mass/self.msk_Distance**3 * (Y-self.y)
-    def getPosIndic(self):
-        self.ix = np.where( abs(X[0,:]-self.x) == min(abs(X[0,:]-self.x)))
-        self.iy = np.where( abs(Y[:,0]-self.y) == min(abs(Y[:,0]-self.y)))
-    def setPos(self,x,y):
-        self.x = x
-        self.y = y
-        self.getDistance()
-        self.getPosIndic()
-    def setRadius(self,r):
-        self.radius = r
-        self.getDistance()
-    def setVel(self,Vx,Vy):
-        self.Vx = Vx
-        self.Vy = Vy
-    def getAcc(self):
-    # Gravité des autres corps - celle de lui meme / par sa masse
-        self.Ax = (GRAV_x[self.ix, self.iy] - self.Grav_x[self.ix, self.iy])/self.Mass
-        self.Ay = (GRAV_y[self.ix, self.iy] - self.Grav_y[self.ix, self.iy])/self.Mass
-    def setMass(self,m):
-        self.Mass = m
-        self.getGravityfield()
-    def refresh(self,dt):
-        self.getAcc()
-        self.setVel( self.Vx+self.Ax*dt , self.Vy+self.Ay*dt )
-        self.setPos( self.x+self.Vx*dt , self.y+self.Vy*dt )
 
 ########################################################################################################################
 ########################################################################################################################
@@ -79,7 +52,7 @@ Body = list()
 # Maillage
 dx, x_range = .1, 10
 dy, y_range = .1, 10
-dt, tf = 0.1, 10
+dt, tf = 0.01, 1
 X,Y = np.meshgrid(
     np.arange(-x_range,x_range,dx),
     np.arange(-y_range,y_range,dy))
@@ -87,30 +60,33 @@ t = np.arange(0,tf,dt)
 Nt, Nx, Ny = len(t), len(X), len(Y)
 
 
-# Testing
-for _ in np.arange(2): Body.append(AstralObject())  # Ajout des corps celestes
-# 2 corps a et b
-Body[0].setPos(0,0)
-Body[0].setMass(1)
-Body[0].IsMoving = False
-Body[1].setPos(6,3)
-Body[1].setMass(0)
-a,b = Body[0],Body[1]
+# Creating body
+for _ in np.arange(2):Body.append(AstralBody())  # Ajout des corps celestes
+a = Body[0]
+a.Color,a.Mark = "r","o"
+b = Body[1]
+a.Mass,b.Mass = 10,1
+a.IsMoving = True
+a.x,a.y = 0,0
+b.x,b.y = 1,0
+a.vx,a.vy = 0,0
+b.vx,b.vy = 0,2.5
+
+plt.figure(1)
+plt.clf()
+for this_body in Body:
+    plt.plot(this_body.x,this_body.y,"r*")
+plt.show()
 
 # Simulation
-GRAV_x , GRAV_y = GRAVITYFIELD(Body)
-a.getAcc()
-b.getAcc()
-
-
-# Plotting
-msk_outside_value = 0.1
-msk_Grav_x = ma.masked_outside(Body[0].Grav_x,msk_outside_value,-msk_outside_value,True)  # Masque les valeurs hors des limites
-msk_Grav_y = ma.masked_outside(Body[0].Grav_y,msk_outside_value,-msk_outside_value,True)
-plt.figure(1)
-#plt.quiver(X,Y,Body[0].Grav_x,Body[0].Grav_y)
-plt.quiver(X,Y,GRAV_x,GRAV_y)
-#plt.quiver(X,Y,msk_Grav_x,msk_Grav_y)
-plt.plot(Body[0].x,Body[0].y,"r*")
-plt.plot(Body[1].x,Body[1].y,"r*")
-plt.show()
+for _ in t:
+    plt.pause(dt)
+    plt.clf()
+    for this_body in Body:
+        this_body.refresh(dt)
+        plt.plot(this_body.x,this_body.y,this_body.Color+this_body.Mark)
+        plt.xlim(-3,3)
+        plt.ylim(-3,3)
+for this_body in Body:
+    this_body.Trajectory = np.array(this_body.Trajectory)
+    plt.plot(this_body.Trajectory[:,0],this_body.Trajectory[:,1],this_body.Color+"-")
