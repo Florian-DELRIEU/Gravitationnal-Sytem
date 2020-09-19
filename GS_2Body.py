@@ -5,8 +5,8 @@ D = Universe()
 Body = list()
 D.BodyList = Body
 
-D.dt = 0.05
-D.tf = 3
+D.dt = 1
+D.tf = 1
 D.settime()
 # Creating body
 for _ in np.arange(2):Body.append(AstralBody(D))  # Ajout des corps celestes
@@ -23,7 +23,7 @@ plt.figure("Trajectory")
 Bacc = np.array([])
 Bxy = np.array([])
 for _ in D.t:
-    plt.pause(0.1)
+    plt.pause(1)
     plt.clf()
     for this_body in Body:
         plt.arrow(b.x,b.y,b.ax,b.ay)

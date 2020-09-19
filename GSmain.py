@@ -9,6 +9,10 @@ def GRAVITYFIELD(body_list): pass
 
 class AstralBody:
     def __init__(self,Domain):
+        """
+        Comporte toutes les caractérisques et données d'un objet célèste
+        :param Domain: objet :class Universe: nécéssaire comportant les données du domain dans lequel ils évolue
+        """
         self.G = Domain.G
         self.Domain = Domain
     # Variable definitions
