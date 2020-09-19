@@ -21,7 +21,7 @@ b.setvelocity(0,1)
 # Simulation
 plt.figure("Trajectory")
 Bacc = np.array([])
-Bdist = np.array([])
+Bxy = np.array([])
 for _ in D.t:
     plt.pause(0.1)
     plt.clf()
