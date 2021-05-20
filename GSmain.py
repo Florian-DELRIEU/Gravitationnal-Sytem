@@ -52,28 +52,51 @@ class AstralBody:
         # Calcul des nouvelles positions
             self.x += self.vx*dt
             self.y += self.vy*dt
-            self.Trajectory.append((self.x,self.y))
+            self.Trajectory.append((self.x,self.y))  # Ajout du nouveau point
     def setbody(self,x,y,Mass):
+        """
+        Definition rapide d'un astre
+        :param x: Position x initiale
+        :param y: Position y initiale
+        :param Mass: Masse
+        """
         self.x = x
         self.y = y
         self.Mass = Mass
     def setvelocity(self,vx,vy):
+        """
+        Définition rapide d'une vitesse (souvent utilisé pour ajouter une vitesse initiale
+        :param vx: vitesse selon x
+        :param vy: vitesse selon y
+        """
         self.vx = vx
         self.vy = vy
 
 class Universe:
+    """
+    Objet regroupant les constantes de l'univers ainsi que le maillage spatio-temporel
+    """
     def __init__(self):
-        self.G = 1
+        self.G = 1  # Constante gravitationnelle (G = 6.67e-11 SI)
+    # Maillage espace - temps
         self.dx = .1
         self.dy = .1
         self.dt = .1
+    # Taille domaine
         self.x_range = 10
         self.y_range = 10
-        self.tf = 1
+        self.tf = 1  # Temps final
+    # Maillage
         self.X,self.Y = np.meshgrid(np.arange(-self.x_range,self.x_range,self.dx),
                                     np.arange(-self.y_range,self.y_range,self.dy))
+    # Liste des corps appartenant à l'univers (systeme)
         self.BodyList = list()
+    # Creation vecteur temps
         self.t = np.array([])
         self.settime()
     def settime(self):
+        """
+        Creation du array de temps
+        :return: self.t as :array:
+        """
         self.t = np.arange(0,self.tf,self.dt)
