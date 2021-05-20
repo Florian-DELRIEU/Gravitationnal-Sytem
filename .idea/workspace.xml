@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/GSmain.py" beforeDir="false" afterPath="$PROJECT_DIR$/GSmain.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="DomainClass-Editing" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="master" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="Florian-DELRIEU" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="Gravitationnal-Sytem" />
+  </component>
+  <component name="ProjectId" id="1daVpabDrW3AmExsXGuNdWOFEPE" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../StarSystemGenerator" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager" selected="Python.GS_2Body">
+    <configuration name="GS_2Body" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Gravitationnal-Sytem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GS_2Body.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="GS_2D" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Gravitationnal-Sytem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GS_2D.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="GSmain" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Gravitationnal-Sytem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GSmain.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.GS_2Body" />
+        <item itemvalue="Python.GSmain" />
+        <item itemvalue="Python.GS_2D" />
+        <item itemvalue="Python.GS_2D" />
+        <item itemvalue="Python.GS_2D" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="" />
+      <created>1592663374586</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592663374586</updated>
+    </task>
+    <task id="LOCAL-00001" summary="[ADD] v0.1 - GS_2D.py added">
+      <created>1592663668708</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1592663668708</updated>
+    </task>
+    <task id="LOCAL-00002" summary="[Minor Update] v0.2 - Short Description">
+      <created>1592663822584</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1592663822584</updated>
+    </task>
+    <task id="LOCAL-00003" summary="[Minor Update] v0.2.1 - Astral body class">
+      <created>1592664449517</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1592664449517</updated>
+    </task>
+    <task id="LOCAL-00004" summary="[Minor Update] v0.2.2 - Maillage">
+      <created>1592665229098</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1592665229098</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[Minor Update] v0.2.3">
+      <created>1592665309027</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1592665309027</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[Minor Update] v0.3 - Add Maillage in master">
+      <created>1592665734140</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1592665734140</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[Minor Update] v0.3.1">
+      <created>1592673452700</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1592673452700</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[Update] v0.3.2">
+      <created>1592674281602</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1592674281602</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[Update] v0.3.3">
+      <created>1592674523667</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1592674523667</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[Update] v0.3.4 - First Plot">
+      <created>1592676031635</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1592676031635</updated>
+    </task>
+    <task id="LOCAL-00011" summary="[Update] v0.2.4 - Improve AstralObject() class">
+      <created>1593805710846</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1593805710846</updated>
+    </task>
+    <task id="LOCAL-00012" summary="[Fix] v0.2.5 - Potential and Distance">
+      <created>1593806137534</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1593806137534</updated>
+    </task>
+    <task id="LOCAL-00013" summary="[Update] v0.2.6">
+      <created>1593809908170</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1593809908170</updated>
+    </task>
+    <task id="LOCAL-00014" summary="[Update] v0.2.7">
+      <created>1593811361131</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1593811361131</updated>
+    </task>
+    <task id="LOCAL-00015" summary="[Update] v0.2.8 - Remove Potential">
+      <created>1593811657385</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1593811657385</updated>
+    </task>
+    <task id="LOCAL-00016" summary="[Update] v0.2.9">
+      <created>1593814660439</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1593814660439</updated>
+    </task>
+    <task id="LOCAL-00017" summary="[Update] v0.2.10">
+      <created>1593818075771</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1593818075771</updated>
+    </task>
+    <task id="LOCAL-00018" summary="[Update] v0.2.10">
+      <created>1593820947654</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1593820947654</updated>
+    </task>
+    <task id="LOCAL-00019" summary="[Update] v0.2.11 - Quiver and mask">
+      <created>1593823774357</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1593823774357</updated>
+    </task>
+    <task id="LOCAL-00020" summary="[Update] v0.2.12">
+      <created>1593937763730</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1593937763730</updated>
+    </task>
+    <task id="LOCAL-00021" summary="[Update] v0.2.13">
+      <created>1593940537404</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1593940537404</updated>
+    </task>
+    <task id="LOCAL-00022" summary="[Update] v0.2.14 - mask modification">
+      <created>1593941264452</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1593941264452</updated>
+    </task>
+    <task id="LOCAL-00023" summary="[Minor Update] v0.2.15">
+      <created>1593942039036</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1593942039036</updated>
+    </task>
+    <task id="LOCAL-00024" summary="[Minor Update] v0.2.15 - AstralBody.__repr__ edited">
+      <created>1593942461710</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1593942461710</updated>
+    </task>
+    <task id="LOCAL-00025" summary="[Minor Update] v0.2.17">
+      <created>1594507960886</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1594507960886</updated>
+    </task>
+    <task id="LOCAL-00026" summary="[Fix] v0.2.18 - Distance is tuple fixed and minor comments">
+      <created>1594510869624</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1594510869624</updated>
+    </task>
+    <task id="LOCAL-00027" summary="[Minor Update] v0.2.19 - add self.Radius">
+      <created>1594511836417</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1594511836417</updated>
+    </task>
+    <task id="LOCAL-00028" summary="[Minor Update] v0.2.20 - radius is mask">
+      <created>1594514510769</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1594514510769</updated>
+    </task>
+    <task id="LOCAL-00029" summary="[Minor Update] v0.2.21">
+      <created>1594543517474</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1594543517474</updated>
+    </task>
+    <task id="LOCAL-00030" summary="[Update] v0.3.5">
+      <created>1594543926357</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1594543926357</updated>
+    </task>
+    <task id="LOCAL-00031" summary="[Fix] v0.3.7 - bugs fixed and plot">
+      <created>1594544984235</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1594544984235</updated>
+    </task>
+    <task id="LOCAL-00032" summary="[Update] v1.0">
+      <created>1594568675333</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1594568675333</updated>
+    </task>
+    <task id="LOCAL-00033" summary="[Update] v0.2.21.1 - File cleared">
+      <created>1594571797613</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1594571797613</updated>
+    </task>
+    <task id="LOCAL-00034" summary="[Update] v0.2b.2 - File cleared">
+      <created>1594574856737</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1594574856737</updated>
+    </task>
+    <task id="LOCAL-00035" summary="[Update] v0.2b.3 - AstralBody.refresh added&#10;&#10;Il faut que je trouve un moyen de supprimer&#10;a,b = AstralBody(), AstralBody()&#10;Body = [a , b]&#10;&#10;a.Body_list = Body.copy()&#10;a.Body_list.remove(self) # Ne marche pas&#10;&#10;b.Body_list = Body&#10;b.Body_list.remove(self) # marche mais supprime aussi dans Body">
+      <created>1596063289297</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1596063289297</updated>
+    </task>
+    <task id="LOCAL-00036" summary="[v0.2b.4] Minor fix - 0.2b.3 bug fixed">
+      <created>1596126821276</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1596126821276</updated>
+    </task>
+    <task id="LOCAL-00037" summary="[v0.2b.5] Update - Now working">
+      <created>1596129196260</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1596129196260</updated>
+    </task>
+    <task id="LOCAL-00038" summary="[v0.2b.6] Update">
+      <created>1596927626475</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1596927626475</updated>
+    </task>
+    <task id="LOCAL-00039" summary="[v0.2b.7] Update - add trajectory">
+      <created>1596928720558</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1596928720558</updated>
+    </task>
+    <task id="LOCAL-00040" summary="[v2.0] Major Update - Astral Object Classs">
+      <created>1596929785337</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1596929785337</updated>
+    </task>
+    <task id="LOCAL-00041" summary="[v2.1.1] Update - Universe Class&#10;&#10;Classe possédant les constantes, le maillage, la liste des corps et tout le reste">
+      <created>1596931523277</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1596931523277</updated>
+    </task>
+    <task id="LOCAL-00042" summary="[v2.1.2] Update - Rename and update">
+      <created>1596966991444</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1596966991444</updated>
+    </task>
+    <task id="LOCAL-00043" summary="[v2.2b] Update">
+      <created>1597482542065</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1597482542065</updated>
+    </task>
+    <task id="LOCAL-00044" summary="[v2.2.1] Update - Adding GS_2Body">
+      <created>1597483388956</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1597483388956</updated>
+    </task>
+    <task id="LOCAL-00045" summary="[v2.2.2] Update">
+      <created>1597486551175</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1597486551175</updated>
+    </task>
+    <task id="LOCAL-00046" summary="[v2.2.3] Minor add - Pictures">
+      <created>1597487029860</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1597487029860</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="AstralObject-Class2" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="AstralObject-Class" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[Update] v0.2.14 - mask modification" />
+    <MESSAGE value="[Minor Update] v0.2.15" />
+    <MESSAGE value="[Minor Update] v0.2.16 - AstralBody.__repr__ edited" />
+    <MESSAGE value="[Update] v0.2.17" />
+    <MESSAGE value="[Fix] v0.2.18 - Distance is tuple fixed and minor comments" />
+    <MESSAGE value="[Minor Update] v0.2.19 - add self.Radius" />
+    <MESSAGE value="[Minor Update] v0.2.20 - radius is mask" />
+    <MESSAGE value="[Minor Update] v0.2.21" />
+    <MESSAGE value="[Update] v0.3.6" />
+    <MESSAGE value="[Fix] v0.3.7 - bugs fixed and plot" />
+    <MESSAGE value="[Update] v1.0" />
+    <MESSAGE value="[Update] v0.2b.1 - File cleared" />
+    <MESSAGE value="[Update] v0.2b.2 - File cleared" />
+    <MESSAGE value="[Update] v0.2b.3 - AstralBody.refresh added&#10;&#10;Il faut que je trouve un moyen de supprimer&#10;a,b = AstralBody(), AstralBody()&#10;Body = [a , b]&#10;&#10;a.Body_list = Body.copy()&#10;a.Body_list.remove(self) # Ne marche pas&#10;&#10;b.Body_list = Body&#10;b.Body_list.remove(self) # marche mais supprime aussi dans Body" />
+    <MESSAGE value="[v0.2b.4] Minor fix - 0.2b.3 bug fixed" />
+    <MESSAGE value="[v0.2b.5] Update - Now working" />
+    <MESSAGE value="[v0.2b.6] Update" />
+    <MESSAGE value="[v0.2b.7] Update - add trajectory" />
+    <MESSAGE value="[v2.0] Major Update - Astral Object Classs" />
+    <MESSAGE value="[v2.1.1] Update - Universe Class&#10;&#10;Classe possédant les constantes, le maillage, la liste des corps et tout le reste" />
+    <MESSAGE value="[v2.1.2] Update - Rename and update" />
+    <MESSAGE value="[v2.2b] Update" />
+    <MESSAGE value="[v2.2.1] Update - Adding GS_2Body" />
+    <MESSAGE value="[v2.2.2] Update" />
+    <MESSAGE value="[v2.2.3] Minor add - Pictures" />
+    <option name="LAST_COMMIT_MESSAGE" value="[v2.2.3] Minor add - Pictures" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="369" y="61" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596968554261">
+      <screen x="0" y="0" width="1440" height="831" />
+    </state>
+    <state x="369" y="61" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.831@0.0.1440.831" timestamp="1596968554261" />
+    <state x="369" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.844@0.0.1440.844" timestamp="1593814801677" />
+    <state x="369" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.845@0.0.1440.845" timestamp="1592674387769" />
+    <state x="0" y="160" key="#xdebugger.XInspectDialog" timestamp="1592674906812">
+      <screen x="0" y="0" width="1440" height="846" />
+    </state>
+    <state x="0" y="160" key="#xdebugger.XInspectDialog/0.0.1440.846@0.0.1440.846" timestamp="1592674906812" />
+    <state x="174" y="53" width="825" height="829" key="CommitChangelistDialog2" timestamp="1597487029679">
+      <screen x="0" y="0" width="1440" height="831" />
+    </state>
+    <state x="174" y="0" width="825" height="829" key="CommitChangelistDialog2/0.0.1440.829@0.0.1440.829" timestamp="1597482541612" />
+    <state x="174" y="53" key="CommitChangelistDialog2/0.0.1440.831@0.0.1440.831" timestamp="1597487029679" />
+    <state x="174" y="53" key="CommitChangelistDialog2/0.0.1440.835@0.0.1440.835" timestamp="1594514510606" />
+    <state x="480" y="111" key="CommitChangelistDialog2/0.0.1440.837@0.0.1440.837" timestamp="1594574856582" />
+    <state x="506" y="85" key="CommitChangelistDialog2/0.0.1440.839@0.0.1440.839" timestamp="1596129195932" />
+    <state x="506" y="0" width="825" height="844" key="CommitChangelistDialog2/0.0.1440.844@0.0.1440.844" timestamp="1596126821081" />
+    <state x="506" y="86" key="CommitChangelistDialog2/0.0.1440.846@0.0.1440.846" timestamp="1592674999344" />
+    <state x="506" y="86" key="CommitChangelistDialog2/0.0.1440.848@0.0.1440.848" timestamp="1592676031451" />
+    <state x="506" y="86" key="CommitChangelistDialog2/0.0.1440.849@0.0.1440.849" timestamp="1592665733988" />
+    <state x="506" y="106" key="CommitChangelistDialog2/0.23.1440.816@0.23.1440.816" timestamp="1593942461545" />
+    <state x="100" y="78" width="1240" height="622" key="DiffContextDialog" timestamp="1597482407223">
+      <screen x="0" y="0" width="1440" height="829" />
+    </state>
+    <state x="100" y="78" key="DiffContextDialog/0.0.1440.829@0.0.1440.829" timestamp="1597482407223" />
+    <state x="100" y="100" width="1240" height="601" key="DiffContextDialog/0.0.1440.835@0.0.1440.835" timestamp="1596058184051" />
+    <state x="100" y="100" width="1240" height="601" key="DiffContextDialog/0.0.1440.837@0.0.1440.837" timestamp="1596058350854" />
+    <state x="100" y="79" width="1240" height="622" key="DiffContextDialog/0.0.1440.839@0.0.1440.839" timestamp="1596125784974" />
+    <state x="100" y="101" width="1240" height="608" key="DiffContextDialog/0.0.1440.844@0.0.1440.844" timestamp="1593811410640" />
+    <state x="100" y="100" width="1240" height="603" key="DiffContextDialog/0.23.1440.814@0.23.1440.814" timestamp="1593824024948" />
+    <state x="945" y="201" key="FileChooserDialogImpl" timestamp="1600719037924">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="709" y="162" key="FileChooserDialogImpl/0.0.1440.839@0.0.1440.839" timestamp="1592663404284" />
+    <state x="945" y="201" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1600719037924" />
+    <state x="555" y="311" key="GitRewordDialog" timestamp="1594572993163">
+      <screen x="0" y="0" width="1440" height="837" />
+    </state>
+    <state x="555" y="311" key="GitRewordDialog/0.0.1440.837@0.0.1440.837" timestamp="1594572993163" />
+    <state x="555" y="326" key="GitRewordDialog/0.23.1440.816@0.23.1440.816" timestamp="1593942476020" />
+    <state x="341" y="288" key="Github.CreatePullRequestDialog" timestamp="1596967242820">
+      <screen x="0" y="0" width="1440" height="831" />
+    </state>
+    <state x="341" y="288" key="Github.CreatePullRequestDialog/0.0.1440.831@0.0.1440.831" timestamp="1596967242820" />
+    <state x="412" y="436" key="Github.Dialog.Accounts.Choose" timestamp="1597146231577">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="412" y="436" key="Github.Dialog.Accounts.Choose/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1597146231577" />
+    <state width="601" height="213" key="GridCell.Tab.0.bottom" timestamp="1597487106817">
+      <screen x="0" y="23" width="1440" height="808" />
+    </state>
+    <state width="1203" height="213" key="GridCell.Tab.0.bottom/0.0.1440.829@0.0.1440.829" timestamp="1597145113058" />
+    <state width="601" height="213" key="GridCell.Tab.0.bottom/0.0.1440.831@0.0.1440.831" timestamp="1597483422471" />
+    <state width="1017" height="205" key="GridCell.Tab.0.bottom/0.0.1440.834@0.0.1440.834" timestamp="1593804074400" />
+    <state width="1419" height="269" key="GridCell.Tab.0.bottom/0.0.1440.835@0.0.1440.835" timestamp="1594513812795" />
+    <state width="1419" height="215" key="GridCell.Tab.0.bottom/0.0.1440.837@0.0.1440.837" timestamp="1594543565787" />
+    <state width="1203" height="269" key="GridCell.Tab.0.bottom/0.0.1440.839@0.0.1440.839" timestamp="1596128992379" />
+    <state width="1419" height="205" key="GridCell.Tab.0.bottom/0.0.1440.844@0.0.1440.844" timestamp="1593815021241" />
+    <state width="1017" height="205" key="GridCell.Tab.0.bottom/0.0.1440.845@0.0.1440.845" timestamp="1592811110401" />
+    <state width="1419" height="269" key="GridCell.Tab.0.bottom/0.0.1440.849@0.0.1440.849" timestamp="1594811062342" />
+    <state width="601" height="213" key="GridCell.Tab.0.bottom/0.23.1440.808@0.23.1440.808" timestamp="1597487106817" />
+    <state width="1419" height="204" key="GridCell.Tab.0.bottom/0.23.1440.816@0.23.1440.816" timestamp="1593942004355" />
+    <state width="601" height="213" key="GridCell.Tab.0.center" timestamp="1597487106816">
+      <screen x="0" y="23" width="1440" height="808" />
+    </state>
+    <state width="1203" height="213" key="GridCell.Tab.0.center/0.0.1440.829@0.0.1440.829" timestamp="1597145113057" />
+    <state width="601" height="213" key="GridCell.Tab.0.center/0.0.1440.831@0.0.1440.831" timestamp="1597483422469" />
+    <state width="1017" height="205" key="GridCell.Tab.0.center/0.0.1440.834@0.0.1440.834" timestamp="1593804074399" />
+    <state width="1419" height="269" key="GridCell.Tab.0.center/0.0.1440.835@0.0.1440.835" timestamp="1594513812794" />
+    <state width="1419" height="215" key="GridCell.Tab.0.center/0.0.1440.837@0.0.1440.837" timestamp="1594543565784" />
+    <state width="1203" height="269" key="GridCell.Tab.0.center/0.0.1440.839@0.0.1440.839" timestamp="1596128992378" />
+    <state width="1419" height="205" key="GridCell.Tab.0.center/0.0.1440.844@0.0.1440.844" timestamp="1593815021240" />
+    <state width="1017" height="205" key="GridCell.Tab.0.center/0.0.1440.845@0.0.1440.845" timestamp="1592811110396" />
+    <state width="1419" height="269" key="GridCell.Tab.0.center/0.0.1440.849@0.0.1440.849" timestamp="1594811062341" />
+    <state width="601" height="213" key="GridCell.Tab.0.center/0.23.1440.808@0.23.1440.808" timestamp="1597487106816" />
+    <state width="1419" height="204" key="GridCell.Tab.0.center/0.23.1440.816@0.23.1440.816" timestamp="1593942004354" />
+    <state width="601" height="213" key="GridCell.Tab.0.left" timestamp="1597487106815">
+      <screen x="0" y="23" width="1440" height="808" />
+    </state>
+    <state width="1203" height="213" key="GridCell.Tab.0.left/0.0.1440.829@0.0.1440.829" timestamp="1597145113057" />
+    <state width="601" height="213" key="GridCell.Tab.0.left/0.0.1440.831@0.0.1440.831" timestamp="1597483422468" />
+    <state width="1017" height="205" key="GridCell.Tab.0.left/0.0.1440.834@0.0.1440.834" timestamp="1593804074399" />
+    <state width="1419" height="269" key="GridCell.Tab.0.left/0.0.1440.835@0.0.1440.835" timestamp="1594513812793" />
+    <state width="1419" height="215" key="GridCell.Tab.0.left/0.0.1440.837@0.0.1440.837" timestamp="1594543565783" />
+    <state width="1203" height="269" key="GridCell.Tab.0.left/0.0.1440.839@0.0.1440.839" timestamp="1596128992378" />
+    <state width="1419" height="205" key="GridCell.Tab.0.left/0.0.1440.844@0.0.1440.844" timestamp="1593815021239" />
+    <state width="1017" height="205" key="GridCell.Tab.0.left/0.0.1440.845@0.0.1440.845" timestamp="1592811110395" />
+    <state width="1419" height="269" key="GridCell.Tab.0.left/0.0.1440.849@0.0.1440.849" timestamp="1594811062340" />
+    <state width="601" height="213" key="GridCell.Tab.0.left/0.23.1440.808@0.23.1440.808" timestamp="1597487106815" />
+    <state width="1419" height="204" key="GridCell.Tab.0.left/0.23.1440.816@0.23.1440.816" timestamp="1593942004353" />
+    <state width="601" height="213" key="GridCell.Tab.0.right" timestamp="1597487106816">
+      <screen x="0" y="23" width="1440" height="808" />
+    </state>
+    <state width="1203" height="213" key="GridCell.Tab.0.right/0.0.1440.829@0.0.1440.829" timestamp="1597145113058" />
+    <state width="601" height="213" key="GridCell.Tab.0.right/0.0.1440.831@0.0.1440.831" timestamp="1597483422470" />
+    <state width="1017" height="205" key="GridCell.Tab.0.right/0.0.1440.834@0.0.1440.834" timestamp="1593804074400" />
+    <state width="1419" height="269" key="GridCell.Tab.0.right/0.0.1440.835@0.0.1440.835" timestamp="1594513812794" />
+    <state width="1419" height="215" key="GridCell.Tab.0.right/0.0.1440.837@0.0.1440.837" timestamp="1594543565786" />
+    <state width="1203" height="269" key="GridCell.Tab.0.right/0.0.1440.839@0.0.1440.839" timestamp="1596128992379" />
+    <state width="1419" height="205" key="GridCell.Tab.0.right/0.0.1440.844@0.0.1440.844" timestamp="1593815021241" />
+    <state width="1017" height="205" key="GridCell.Tab.0.right/0.0.1440.845@0.0.1440.845" timestamp="1592811110397" />
+    <state width="1419" height="269" key="GridCell.Tab.0.right/0.0.1440.849@0.0.1440.849" timestamp="1594811062342" />
+    <state width="601" height="213" key="GridCell.Tab.0.right/0.23.1440.808@0.23.1440.808" timestamp="1597487106816" />
+    <state width="1419" height="204" key="GridCell.Tab.0.right/0.23.1440.816@0.23.1440.816" timestamp="1593942004354" />
+    <state width="1203" height="269" key="GridCell.Tab.1.bottom" timestamp="1596128992381">
+      <screen x="0" y="0" width="1440" height="839" />
+    </state>
+    <state width="1419" height="269" key="GridCell.Tab.1.bottom/0.0.1440.835@0.0.1440.835" timestamp="1594513812796" />
+    <state width="1419" height="269" key="GridCell.Tab.1.bottom/0.0.1440.837@0.0.1440.837" timestamp="1594513454047" />
+    <state width="1203" height="269" key="GridCell.Tab.1.bottom/0.0.1440.839@0.0.1440.839" timestamp="1596128992381" />
+    <state width="1419" height="269" key="GridCell.Tab.1.bottom/0.0.1440.849@0.0.1440.849" timestamp="1594811062343" />
+    <state width="1203" height="269" key="GridCell.Tab.1.center" timestamp="1596128992380">
+      <screen x="0" y="0" width="1440" height="839" />
+    </state>
+    <state width="1419" height="269" key="GridCell.Tab.1.center/0.0.1440.835@0.0.1440.835" timestamp="1594513812795" />
+    <state width="1419" height="269" key="GridCell.Tab.1.center/0.0.1440.837@0.0.1440.837" timestamp="1594513454044" />
+    <state width="1203" height="269" key="GridCell.Tab.1.center/0.0.1440.839@0.0.1440.839" timestamp="1596128992380" />
+    <state width="1419" height="269" key="GridCell.Tab.1.center/0.0.1440.849@0.0.1440.849" timestamp="1594811062343" />
+    <state width="1203" height="269" key="GridCell.Tab.1.left" timestamp="1596128992380">
+      <screen x="0" y="0" width="1440" height="839" />
+    </state>
+    <state width="1419" height="269" key="GridCell.Tab.1.left/0.0.1440.835@0.0.1440.835" timestamp="1594513812795" />
+    <state width="1419" height="269" key="GridCell.Tab.1.left/0.0.1440.837@0.0.1440.837" timestamp="1594513454044" />
+    <state width="1203" height="269" key="GridCell.Tab.1.left/0.0.1440.839@0.0.1440.839" timestamp="1596128992380" />
+    <state width="1419" height="269" key="GridCell.Tab.1.left/0.0.1440.849@0.0.1440.849" timestamp="1594811062342" />
+    <state width="1203" height="269" key="GridCell.Tab.1.right" timestamp="1596128992380">
+      <screen x="0" y="0" width="1440" height="839" />
+    </state>
+    <state width="1419" height="269" key="GridCell.Tab.1.right/0.0.1440.835@0.0.1440.835" timestamp="1594513812795" />
+    <state width="1419" height="269" key="GridCell.Tab.1.right/0.0.1440.837@0.0.1440.837" timestamp="1594513454046" />
+    <state width="1203" height="269" key="GridCell.Tab.1.right/0.0.1440.839@0.0.1440.839" timestamp="1596128992380" />
+    <state width="1419" height="269" key="GridCell.Tab.1.right/0.0.1440.849@0.0.1440.849" timestamp="1594811062343" />
+    <state x="261" y="71" key="MergeDialog" timestamp="1596929655475">
+      <screen x="0" y="0" width="1440" height="831" />
+    </state>
+    <state x="261" y="71" key="MergeDialog/0.0.1440.831@0.0.1440.831" timestamp="1596929655475" />
+    <state x="503" y="288" width="667" height="252" key="MultipleFileMergeDialog" timestamp="1596929655502">
+      <screen x="0" y="0" width="1440" height="831" />
+    </state>
+    <state x="503" y="288" width="667" height="252" key="MultipleFileMergeDialog/0.0.1440.831@0.0.1440.831" timestamp="1596929655502" />
+    <state x="629" y="110" key="RollbackChangesDialog" timestamp="1593801723804">
+      <screen x="0" y="0" width="1440" height="831" />
+    </state>
+    <state x="629" y="110" key="RollbackChangesDialog/0.0.1440.831@0.0.1440.831" timestamp="1593801723804" />
+    <state x="430" y="39" key="SettingsEditor" timestamp="1597482267010">
+      <screen x="0" y="0" width="1440" height="829" />
+    </state>
+    <state x="430" y="39" key="SettingsEditor/0.0.1440.829@0.0.1440.829" timestamp="1597482267010" />
+    <state x="430" y="39" key="SettingsEditor/0.0.1440.831@0.0.1440.831" timestamp="1596932462816" />
+    <state x="430" y="39" key="SettingsEditor/0.0.1440.835@0.0.1440.835" timestamp="1596058089012" />
+    <state x="430" y="39" key="SettingsEditor/0.0.1440.839@0.0.1440.839" timestamp="1592663420007" />
+    <state x="430" y="40" key="SettingsEditor/0.0.1440.848@0.0.1440.848" timestamp="1594650424136" />
+    <state x="573" y="49" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1597146080050" />
+    <state width="500" height="445" key="SwitcherDM" timestamp="1593808722162">
+      <screen x="0" y="0" width="1440" height="835" />
+    </state>
+    <state width="500" height="445" key="SwitcherDM/0.0.1440.835@0.0.1440.835" timestamp="1593808722162" />
+    <state x="320" y="157" key="Vcs.Push.Dialog.v2" timestamp="1596967995711">
+      <screen x="0" y="0" width="1440" height="834" />
+    </state>
+    <state x="320" y="156" key="Vcs.Push.Dialog.v2/0.0.1440.831@0.0.1440.831" timestamp="1596928770171" />
+    <state x="320" y="157" key="Vcs.Push.Dialog.v2/0.0.1440.834@0.0.1440.834" timestamp="1596967995711" />
+    <state x="320" y="157" key="Vcs.Push.Dialog.v2/0.0.1440.835@0.0.1440.835" timestamp="1594514652499" />
+    <state x="320" y="157" key="Vcs.Push.Dialog.v2/0.0.1440.837@0.0.1440.837" timestamp="1594569010184" />
+    <state x="454" y="137" key="git4idea.branch.GitSmartOperationDialog" timestamp="1596058660444">
+      <screen x="0" y="0" width="1440" height="839" />
+    </state>
+    <state x="454" y="137" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.837@0.0.1440.837" timestamp="1594543479495" />
+    <state x="454" y="137" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.839@0.0.1440.839" timestamp="1596058660444" />
+    <state x="300" y="210" key="git4idea.merge.GitMergeDialog" timestamp="1596967114814">
+      <screen x="0" y="0" width="1440" height="831" />
+    </state>
+    <state x="300" y="210" key="git4idea.merge.GitMergeDialog/0.0.1440.831@0.0.1440.831" timestamp="1596967114814" />
+    <state x="505" y="264" key="git4idea.merge.GitPullDialog" timestamp="1597146290672">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="379" y="211" key="git4idea.merge.GitPullDialog/0.0.1440.831@0.0.1440.831" timestamp="1596929338034" />
+    <state x="379" y="213" key="git4idea.merge.GitPullDialog/0.0.1440.837@0.0.1440.837" timestamp="1594545182142" />
+    <state x="505" y="264" key="git4idea.merge.GitPullDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1597146290672" />
+    <state x="370" y="124" width="700" height="530" key="recent.locations.popup" timestamp="1593808729268">
+      <screen x="0" y="0" width="1440" height="835" />
+    </state>
+    <state x="370" y="124" width="700" height="530" key="recent.locations.popup/0.0.1440.835@0.0.1440.835" timestamp="1593808729268" />
+    <state x="685" y="171" width="670" height="661" key="search.everywhere.popup" timestamp="1596931982556">
+      <screen x="0" y="0" width="1440" height="831" />
+    </state>
+    <state x="685" y="171" width="670" height="661" key="search.everywhere.popup/0.0.1440.831@0.0.1440.831" timestamp="1596931982556" />
+    <state x="685" y="173" width="670" height="667" key="search.everywhere.popup/0.0.1440.839@0.0.1440.839" timestamp="1596059502819" />
+    <state x="685" y="175" width="670" height="676" key="search.everywhere.popup/0.0.1440.851@0.0.1440.851" timestamp="1594804726817" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

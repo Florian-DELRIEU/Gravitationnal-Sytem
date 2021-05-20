@@ -11,10 +11,10 @@ class AstralBody:
     def __init__(self,Domain):
         """
         Comporte toutes les caractérisques et données d'un objet célèste
-        :param Domain: objet :class Universe: nécéssaire comportant les données du domain dans lequel ils évolue
+        :param Domain: objet :class Universe: nécéssaire comportant les données du domain dans lequel il évolue
         """
-        self.G = Domain.G
-        self.Domain = Domain
+        self.Domain = Domain  # Liaison avex l'objet :Univere:
+        self.G = Domain.G  # Recupere G de l'objet :Universe:
     # Variable definitions
         self.Mass = float(0)
         self.x = float(0)
@@ -23,11 +23,12 @@ class AstralBody:
         self.vy = float(0)
         self.ax = float(0)
         self.ay = float(0)
-        self.Body_list = Domain.BodyList.copy()
-        self.IsMoving = True
+        self.Body_list = Domain.BodyList.copy()  # Listes des autres corps dans :Universe:
+        self.IsMoving = True  # Si :False: l'objet ne peut pas bouger
+    # Paramètres garphiques
         self.Color = ""
         self.Mark = "o"
-        self.Trajectory = list()
+        self.Trajectory = list()  # Suite des points parcourues
     def __repr__(self):
         txt = """Astral Body
             - Pos = ({} , {})
@@ -35,18 +36,22 @@ class AstralBody:
         """.format(self.x,self.y,self.Mass)
         return txt
     def refresh(self,dt):
-        if self.IsMoving:
-            self.Body_list = self.Domain.BodyList.copy() # Body_list.remove(self) ne marche plus après ...
-            self.Body_list.remove(self)
-            self.ax, self.ay = 0,0
+        if self.IsMoving:  # si il peut bouger
+            self.Body_list = self.Domain.BodyList.copy() # Obliger de faire une copy de la liste
+            self.Body_list.remove(self)  # se supprime lui meme pour eviter auto-influence
+            self.ax, self.ay = 0,0  # refresh pour eviter cumuls des acc avec itération précédente
+        # Calcul de l'accéleration due à la présence de chaque corps
             for this_body in self.Body_list:
-                cur_distance = np.sqrt((this_body.x - self.x)**2 + (this_body.y - self.y)**2)
+                cur_distance = np.sqrt((this_body.x - self.x)**2 + (this_body.y - self.y)**2)  # distance
+            # Calcul des accélérations
                 self.ax += - self.G * this_body.Mass / cur_distance**3 * (self.x - this_body.x)
                 self.ay += - self.G * this_body.Mass / cur_distance**3 * (self.y - this_body.y)
-                self.vx += self.ax*dt
-                self.vy += self.ay*dt
-                self.x += self.vx*dt
-                self.y += self.vy*dt
+        # Calcul des vitesses
+            self.vx += self.ax*dt
+            self.vy += self.ay*dt
+        # Calcul des nouvelles positions
+            self.x += self.vx*dt
+            self.y += self.vy*dt
             self.Trajectory.append((self.x,self.y))
     def setbody(self,x,y,Mass):
         self.x = x
