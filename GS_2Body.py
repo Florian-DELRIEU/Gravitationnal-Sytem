@@ -23,7 +23,7 @@ Bxy = np.array([])  # for record
 for _ in D.t:
     plt.pause(1)
     plt.clf()
-    for this_body in Body:
+    for this_body in D.BodyList:
         plt.arrow(b.x,b.y,b.ax,b.ay)
         this_body.refresh(D.dt)
         plt.plot(this_body.x,this_body.y,this_body.Color+this_body.Mark)
@@ -32,7 +32,7 @@ for _ in D.t:
         plt.ylim(-5,5)
     Bacc = np.append(Bacc,np.sqrt(b.ax**2 + b.ay**2))
     Bxy = np.append(Bxy,np.sqrt(b.x**2 + b.y**2))
-for this_body in Body:
+for this_body in D.BodyList:
     if this_body.IsMoving:
         this_body.Trajectory = np.array(this_body.Trajectory)
         plt.plot(this_body.Trajectory[:,0],this_body.Trajectory[:,1],this_body.Color+"-")
