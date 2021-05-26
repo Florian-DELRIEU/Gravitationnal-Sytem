@@ -4,7 +4,7 @@ Programme visant à simuler un system orbital avec 2 corps en utilisant GSmain.
 from GSmain import *
 
 # Global Parametres
-D = Universe()
+D = Domain()
 Body = list()
 D.BodyList = Body
 

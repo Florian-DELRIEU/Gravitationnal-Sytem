@@ -12,6 +12,7 @@ class AstralBody:
         """
         Comporte toutes les caractérisques et données d'un objet célèste
         :param Domain: objet :class Universe: nécéssaire comportant les données du domain dans lequel il évolue
+            -
         """
         self.Domain = Domain  # Liaison avex l'objet :Univere:
         self.G = Domain.G  # Recupere G de l'objet :Universe:
@@ -23,6 +24,7 @@ class AstralBody:
         self.vy = float(0)
         self.ax = float(0)
         self.ay = float(0)
+        Domain.BodyList.append(self)  # S'ajoute lui-même dans liste de l'univers
         self.Body_list = Domain.BodyList.copy()  # Listes des autres corps dans :Universe:
         self.IsMoving = True  # Si :False: l'objet ne peut pas bouger
     # Paramètres garphiques
@@ -72,7 +74,7 @@ class AstralBody:
         self.vx = vx
         self.vy = vy
 
-class Universe:
+class Domain:
     """
     Objet regroupant les constantes de l'univers ainsi que le maillage spatio-temporel
     """
@@ -96,7 +98,7 @@ class Universe:
     def settime(self):
         """
         Creation du array de temps
-        :return: self.t as :array:
+        :return: self.t as :array: 0:dt:tf
         """
         self.t = np.array([])
         self.t = np.arange(0,self.tf,self.dt)
