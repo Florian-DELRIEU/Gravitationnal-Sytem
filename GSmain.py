@@ -96,7 +96,7 @@ class Domain:
     # Creation vecteur temps
         self.settime()
 
-    def settime(self,dt=self.dt,tf=self.tf):
+    def settime(self,dt=float(0),tf=float(0)):
         """
         Creation du array de temps
         :param dt: pas de temps (par défaut si vide)
@@ -104,7 +104,10 @@ class Domain:
 
         :return: self.t as :array: 0:dt:tf
         """
-        self.dt = dt
-        self.tf = tf
+        if dt == float(0): dt = self.dt
+        else: self.dt = dt
+        if tf == float(0): tf = self.tf
+        else: self.tf = tf
+
         self.t = np.array([])
         self.t = np.arange(0,self.tf,self.dt)
