@@ -5,6 +5,7 @@ from GSmain import *
 
 # Global Parametres
 D = Domain()
+D.settime()
 
 # Creating bodies
 a = AstralBody(D)

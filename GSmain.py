@@ -31,12 +31,14 @@ class AstralBody:
         self.Color = ""
         self.Mark = "o"
         self.Trajectory = list()  # Suite des points parcourues
+
     def __repr__(self):
         txt = """Astral Body
             - Pos = ({} , {})
             - Mass = {}
         """.format(self.x,self.y,self.Mass)
         return txt
+
     def refresh(self,dt):
         if self.IsMoving:  # si il peut bouger
             self.Body_list = self.Domain.BodyList.copy() # Obliger de faire une copy de la liste
@@ -55,6 +57,7 @@ class AstralBody:
             self.x += self.vx*dt
             self.y += self.vy*dt
             self.Trajectory.append((self.x,self.y))  # Ajout du nouveau point
+
     def setbody(self,x,y,Mass):
         """
         Definition rapide d'un astre
@@ -65,6 +68,7 @@ class AstralBody:
         self.x = x
         self.y = y
         self.Mass = Mass
+
     def setvelocity(self,vx,vy):
         """
         Définition rapide d'une vitesse (souvent utilisé pour ajouter une vitesse initiale
@@ -105,9 +109,9 @@ class Domain:
         :return: self.t as :array: 0:dt:tf
         """
         if dt == float(0): dt = self.dt
-        else: self.dt = dt
+        else: pass
         if tf == float(0): tf = self.tf
-        else: self.tf = tf
+        else: pass
 
         self.t = np.array([])
-        self.t = np.arange(0,self.tf,self.dt)
+        self.t = np.arange(0,tf,dt)
