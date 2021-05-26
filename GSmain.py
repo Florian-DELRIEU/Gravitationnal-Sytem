@@ -25,7 +25,7 @@ class AstralBody:
         self.ax = float(0)
         self.ay = float(0)
         Domain.BodyList.append(self)  # S'ajoute lui-même dans liste de l'univers
-        self.Body_list = Domain.BodyList.copy()  # Listes des autres corps dans :Universe:
+        self.Bodylist = Domain.BodyList.copy()  # Listes des autres corps dans :Universe:
         self.IsMoving = True  # Si :False: l'objet ne peut pas bouger
     # Paramètres garphiques
         self.Color = ""
