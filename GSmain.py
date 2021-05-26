@@ -95,10 +95,16 @@ class Domain:
         self.BodyList = list()
     # Creation vecteur temps
         self.settime()
-    def settime(self):
+
+    def settime(self,dt=self.dt,tf=self.tf):
         """
         Creation du array de temps
+        :param dt: pas de temps (par défaut si vide)
+        :param tf: temps final (par défaut si vide)
+
         :return: self.t as :array: 0:dt:tf
         """
+        self.dt = dt
+        self.tf = tf
         self.t = np.array([])
         self.t = np.arange(0,self.tf,self.dt)

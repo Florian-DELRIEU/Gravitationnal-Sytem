@@ -5,26 +5,20 @@ from GSmain import *
 
 # Global Parametres
 D = Domain()
-Body = list()
-D.BodyList = Body
 
-D.dt = 1
-D.tf = 1
-D.settime()
-# Creating body
-for _ in np.arange(2):Body.append(AstralBody(D))  # Ajout des corps celestes
-a,b = Body[0],Body[1]  # Assignement des corps
-
+# Creating bodies
+a = AstralBody(D)
 a.setbody(0,0,1)
-b.setbody(1,0,1)
-
 a.IsMoving = False
+
+b = AstralBody(D)
+b.setbody(1,0,1)
 b.setvelocity(0,1)
 
 # Simulation
 plt.figure("Trajectory")
-Bacc = np.array([])
-Bxy = np.array([])
+Bacc = np.array([])  # for record
+Bxy = np.array([])  # for record
 for _ in D.t:
     plt.pause(1)
     plt.clf()
