@@ -92,11 +92,11 @@ class Universe:
     # Liste des corps appartenant à l'univers (systeme)
         self.BodyList = list()
     # Creation vecteur temps
-        self.t = np.array([])
         self.settime()
     def settime(self):
         """
         Creation du array de temps
         :return: self.t as :array:
         """
+        self.t = np.array([])
         self.t = np.arange(0,self.tf,self.dt)

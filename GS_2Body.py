@@ -13,7 +13,7 @@ D.tf = 1
 D.settime()
 # Creating body
 for _ in np.arange(2):Body.append(AstralBody(D))  # Ajout des corps celestes
-a,b = Body[0],Body[1]
+a,b = Body[0],Body[1]  # Assignement des corps
 
 a.setbody(0,0,1)
 b.setbody(1,0,1)
