@@ -1,0 +1,58 @@
+% NOM AUTEUR
+% TITRE
+% TITRE DOCUMENTS
+% SOUS TITRE PARTIE
+% CONTEXTE
+
+\documentclass[9pt,a4paper,titlepage,twoside,twocolumn]{report}
+\input{Commandes/Initialisation_base}
+\input{Commandes/commandes.sty}
+
+
+\begin{document}
+
+\begin{titlepage}
+	\begin{center}
+		\includegraphics[scale=0.3]{Images/logo.jpg} \\[2cm]
+		\Hrule \\[1cm]
+		\begin{Huge}
+		\textbf{ Système gravitationnel à N corps } \\[0.5cm]
+		\end{Huge}
+		Support de programmation \\[0.5cm]
+		\Hrule \\[1.5cm]
+		
+		\includegraphics[scale=0.45]{Images/SolarSystem.jpg} \\[1.5cm]
+		
+		Florian DELRIEU \\[0.5cm]
+		Diplomé en Master Dynamique des Fluides, Énergétique et Transferts \\
+		Université Paul Sabatier
+		
+	\end{center}
+\end{titlepage}
+
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\fancyfoot[L]{ Florian DELRIEU }
+\fancyfoot[C]{}
+\fancyfoot[R]{\textit{ Système Gravitationnel}}
+\dominitoc
+\pagenumbering{Roman}
+\tableofcontents
+
+
+
+
+\newpage
+\pagenumbering{arabic}
+%----------
+\part{ Partie Théorique }
+%\include{Potential}
+\include{RappelsMecaCel}
+\include{Scale}
+\include{Celestal_Mechanics}
+
+%\part{ Partie Théorique }
+
+%\appendix
+%\listoffigures
+\end{document}

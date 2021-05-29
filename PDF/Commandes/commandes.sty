@@ -1,0 +1,170 @@
+%--------------------------------------------------------------------------
+%
+%                   MES COMMANDES		
+%
+%..........................................................................
+
+
+%----- Nombres adimensionnels ------
+\newcommand{\re}{\mathrm{Re}}		% Nombre de Reynolds
+\newcommand{\ri}{\mathrm{Ri}}		% Nombre de Richardson
+\newcommand{\pe}{\mathrm{Pe}}		% Nombre de PÃ©clet
+\newcommand{\ec}{\mathrm{Ec}}
+\newcommand{\pr}{\mathrm{Pr}}		% Nombre de Prandlt
+\newcommand{\nus}{\mathrm{Nu}}		% Nombre de Nusselt
+\newcommand{\na}{\mbox{$\mathcal{N}_A$}}		% Nombre d'Avogadro
+\newcommand{\gr}{\mathrm{Gr}}		% Nombre de Grashof
+\newcommand{\ro}{\mathrm{Ro}}	% Nombre de Rossby
+\newcommand{\ek}{\mathrm{Ek}} 	% Nombre de Ekmann
+%\newcommand{\le}{\mathrm{Le}}	% Nombre de Lewis
+%\newcommand{\sc}{\mathrm{Sc}}	% Nombre de Schmidt
+
+\newcommand{\Pui}{\mathcal{P}} %Puissance
+
+%----- OpÃ©rateurs et Ãªtres mathÃ©matiques -----
+\newcommand{\diff}[2]{\dfrac{\partial #1}{\partial #2}} % Les dÃ©rivÃ©es partielle
+\newcommand{\ddiff}[2]{\dfrac{\partial^2 #1}{\partial #2^2}} % DÃ©rivÃ©es secondes
+\newcommand{\intgr}[2]{\int_{#1}^{#2}}
+\newcommand{\tens}[1]{\overline{\overline{#1}}} % Ecriture d'un tenseur
+\newcommand{\scal}[1]{\langle #1 \rangle}
+\newcommand{\diverg}[1]{\vec{\nabla}\left( #1 \right)}
+\newcommand{\gradscal}[1]{\vec{\nabla}\left(#1\right)}
+\newcommand{\gradvec}[1]{\overline{\overline{\nabla}}(\vec{#1})}
+\newcommand{\op}[2]{\left\langle #1 , #2 \right\rangle}
+\newcommand{\pow}[1]{ 10^{ #1 }}
+\newcommand{\tors}[1]{\left\{ \begin{array}{l} #1 \end{array} \right\}.}
+
+\newcommand{ \DDT }[1]{ \diff{#1}{t} + \left( \vec{u} . \mathrm{grad} \right) #1 }
+
+%----- Ecritures MathÃ©matiques -----
+%\newcommand{\fonc}[1]{\mathrm{(#1)}{\left( #2 \right)}}
+\newcommand{\tr}[1]{\mathrm{tr} \left( #1 \right)}
+\newcommand{\Ker}[1]{\mathrm{Ker} \left( #1 \right)}
+\newcommand{\mes}[1]{\mathrm{mes} \left( #1 \right)}
+\newcommand{\Card}[1]{\mathrm{Card} \left( #1 \right)}
+\newcommand{\diag}[1]{\mathrm{diag} \left( #1 \right)}
+
+\newcommand{\Div}[1]{\mathrm{div} \left( #1 \right)}
+\newcommand{\Rot}[1]{\vec{\mathrm{rot}} \left( #1 \right)}
+\newcommand{\Grad}[1]{\mathrm{grad} \left( #1 \right)}
+
+\newcommand{\Ident}{\bbone}
+\newcommand{\Det}[1]{\mathrm{det} \left( #1 \right)}
+%\newcommand{\det}[1]{\mathrm{det} \left( #1 \right)}
+%\newcommand{\max}[1]{\mathrm{max} \left( #1 \right)}
+%\newcommand{\min}[1]{\mathrm{min} \left( #1 \right)}
+\newcommand{\supp}[1]{\mathrm{supp} \left( #1 \right)}
+%\newcommand{\sup}[1]{\mathrm{sup} \left( #1 \right)}
+%\newcommand{\inf}[1]{\mathrm{inf} \left( #1 \right)}
+\newcommand{\cqfd}{\blacksquare}
+
+
+\newcommand{\LRa}{\Leftrightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+
+\newcommand{\ensR}{\mathbb{R}}
+\newcommand{\ensN}{\mathbb{N}}
+\newcommand{\ensC}{\mathbb{C}}
+\newcommand{\ensQ}{\mathbb{Q}}
+\newcommand{\ensP}{\mathbb{P}}
+\newcommand{\ensDR}{\mathcal{D}(\mathbb{R})}
+\newcommand{\ensD}{\mathcal{D}(\Omega)}
+\newcommand{\ensL}{\mathcal{L}^1(\Omega)}
+\newcommand{\ensH}{\mathcal{H}^1(\Omega)}
+\newcommand{\ensHH}{\mathcal{H}^2(\Omega)}
+\newcommand{\ensHO}{\mathcal{H}^{1}_0(\Omega)}
+\newcommand{\ensLL}{\mathcal{L}^2(\Omega)}
+\newcommand{\ens}[1]{\mathcal{#1}}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand\bbone{\ensuremath{\mathbbm{1}}}  % Identité
+
+\newcommand{\sumK}{\sum_{k=1}^K}
+\newcommand{\sumL}{\sum_{l=1}^L}
+\newcommand{\sumN}{\sum_{n=1}^N}
+\newcommand{\sumM}{\sum_{m=1}^M}
+\newcommand{\sumJ}{\sum_{j=1}^m}
+\newcommand{\sumI}{\sum_{i=1}^n}
+\newcommand{\sumq}{\sum_{i=0}^q}
+
+\newcommand{\prodK}{\prod_{k=1}^K}
+\newcommand{\prodL}{\prod_{l=1}^L}
+\newcommand{\prodN}{\prod_{n=1}^N}
+\newcommand{\prodM}{\prod_{m=1}^M}
+\newcommand{\prodJ}{\prod_{j=1}^m}
+\newcommand{\prodI}{\prod_{i=1}^n}
+
+\newcommand{\veck}[1]{\vec{#1}^{(k)}}
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+
+\newcommand{\lr}[1]{\left( #1 \right)}
+\newcommand{\LR}[1]{\left[ #1 \right]}
+%----- Agencement -----
+%\newcommand{\hypo}[1]{ \underline{ #1 }}
+\newcommand{\exercice}[2]{\floatstyle{ruled}\newfloat{Exercice}{H}{lex}\begin{Exercice}#2\caption{#1}\end{Exercice}}
+\newcommand{\exemple}[2]{\floatstyle{ruled}\newfloat{Exemple}{H}{lex}\begin{Exemple}#2\caption{#1}\end{Exemple}}
+\newcommand{\demo}[2]{\floatstyle{ruled}\newfloat{Demonstrations}{H}{lex}\begin{Demonstrations}#2\caption{#1}\end{Demonstrations}}
+
+\newcommand{\theoreme}[2]{\floatstyle{ruled}\newfloat{Theoreme}{H}{lex}\begin{Theoreme}#2\caption{#1}\end{Theoreme}}
+
+\newcommand{\note}[2]{\Hrule ~\\ \textit{\textbf{Note: }#1 : ~\\ #2  \\} ~ \Hrule \\ \\}
+\newcommand{\propriete}[2]{\Hrule ~\\ \textit{\textbf{PropriÃ©tÃ© }#1 : ~\\ #2 } ~ \Hrule \\ \\}
+\newcommand{\systeme}[1]{\left\{ \begin{array}{l} #1 \end{array} \right.}
+
+
+%----- Theoreme -----
+\newtheoremstyle%
+   {theo}%       %1 Nom
+   {1ex}%          %2 Espace avant
+   {1ex}%          %3 Espace après
+   {\itshape}%      %4 forme des caractères
+   {-1ex}%          %5 indentation
+   {\sffamily\bfseries}   %6 Style de l'entête
+   {.}%             %7
+   {\newline}%      %8 Retour à la ligne après le titre
+   {}%             %9 Comme dans plain ?
+
+%\newtheorem{hypo}{HyphotÃ¨se}[section]
+\newcommand{\ann}[1]{\qquad \bullet \systeme{#1}}
+
+%----- Images et SchÃ©ma -----
+\newcommand{\includepics}[4]{ % Ajoute une image en fonction de la taille de la ligne
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width= #1\linewidth]{Images/#2}
+	\caption{#3}
+	\label{#4}
+	\end{figure}
+	}
+	
+\newcommand{ \includepicsPAGE}[4]{ % Ajoute une image en fonction de la taille de la PAGEs
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width= #1\linewidth]{Images/#2}
+	\caption{#3}
+	\label{#4}
+	\end{figure}
+	}
+	
+\newcommand{ \includeminipage}[4]{ % Ajoute une minipage en fonction de la taille de la ligne doit etre dans figure
+	\begin{minipage}[t]{ #1 \linewidth}
+	\includegraphics[width= 1 \textwidth]{Images/#2}
+	\caption{#3}
+	\label{#4}
+	\end{minipage}
+	}
+	
+\newcommand{\includewrap}[3]{
+\begin{wrapfigure}{#1}{ #2 \linewidth} 
+\vspace{-20pt}
+  \begin{center}
+    \includegraphics[width=1\linewidth]{Images/#3}
+  \end{center}
+  \vspace{-20pt}
+  \vspace{1pt}
+\end{wrapfigure} 
+}

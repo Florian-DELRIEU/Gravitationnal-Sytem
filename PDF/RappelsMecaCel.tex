@@ -1,0 +1,27 @@
+\chapter*{Rappels de Méca}
+\section*{Equation de Newton}
+Les équations de la mécanique céleste sont régis par l'équation différentielle suivante
+\begin{equation}
+    \ddot{r} = F(r,\dot{r},t) \ann{r(t_0) = x_0 \\ \dot{r}(t_0) = v_0 }
+\end{equation}
+Ce système différentiel est parfaitement décris, on peut donc connaître le mouvement complet d'un corps $S$ de masse $m$. La chute libre d'un corps est décrit par la fonction
+\begin{equation}
+    \ddot{r} = - \mu \dfrac{r}{\norm{r}^3}
+\end{equation}
+avec r $\in$ $E^3$ l'ensemble des positions.
+\subsection*{Trajectoire dans un champs de pesanteur central}
+En écrivant le moment cinétique de $S$ au point $O$ dans son mouvement par rapport à $O$ on obtient,
+\begin{equation}
+    \vec H = m . \vect{OS} \wedge \vect{V_{S/R}} + \tens{I(S)}.\vect{\Omega_{S/R}}
+\end{equation}
+Or on ne prends pas en compte la rotation propre de $S$, on peut donc considérer que $\vect{\Omega_{S/R}} = \vec 0$, en dérivant $H$ on obtient alors
+\begin{equation}
+    \diff{\vec H}{t} = \diff{}{t}\left(m . \vect{OS} \wedge \vect{V_{S/R}}\right)= m \diff{\vec r}{t} \wedge \dot{\vec r} + m \vec r \wedge \diff{\dot{\vec r}}{t}
+\end{equation}
+$$
+\diff{\vec H}{t} = m \underbrace{\dot{\vec r} \wedge {\vec r}}_{=\vec 0} + m \vec r \wedge \ddot{\vec r}
+$$
+\begin{equation}
+    \diff{\vec H}{t} = m . \vect{OS} \wedge \vect{F} = \vec 0
+\end{equation}
+Le moment cinétique $\vec H$ est donc constant, le mouvement du corps $S$ est donc plan, le choix des coordonnées polaire est donc tout a fait indiqué

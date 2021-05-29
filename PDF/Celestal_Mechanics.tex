@@ -1,0 +1,24 @@
+\chapter*{Mise en équation}
+\section*{Formalisation}
+On considère des corps $M_i$ de masse $m_i$ dans un repère en 2 dimensions $(O,\vec x,\vec y)$ repérer par le vecteur position $\vec x_i = (x_i,y_i)$, alors:
+\begin{equation}
+    \vect{M_i M_j} = \systeme{ x_2 - x_1 \\ y_2 - y_1}  = - \vect{M_j M_i}
+\end{equation}
+J'introduit le vecteur unitaire $\vec u_{ij}$ tel que:
+\begin{equation}
+    \vec u_{ij} = \dfrac{\vect{M_i M_j}}{\norm{\vect{M_i M_j}}}
+\end{equation}
+ainsi que la quantité $d_{ij} = \norm{\vect{M_i M_j}}$.
+
+\section*{Mécanique céleste a 2 corps}
+Une fois ce formalisme établie on peut alors écrire la force de gravité exercé sur un corps $i$ par un corps $j$
+\begin{equation}
+    \vect{F_{ij}} = G \dfrac{m_1 m_2}{\norm{\vect{M_i M_j}}^2} \vec u_{ij}
+\end{equation}
+\begin{equation}
+    \vect{F_{ij}} = G \dfrac{m_1 m_2}{\norm{\vect{M_i M_j}}^3} \vect{M_i M_j}
+\end{equation}
+A ceci, je pose $\vec a_i$, $\vec v_i$ et $\vec x_i$, respectivement, l'accélération, la vitesse et la position de l'astre $M_i$ les deux corps vont alors subir les forces 
+\begin{equation}
+    \vect{F_{ij}} = m_i \dfrac{d^2 \vec x_i}{dt^2} = G \dfrac{m_1 m_2}{\norm{\vec x_j - \vec x_j}^3} \left( \vec x_j - \vec x_j \right)
+\end{equation}

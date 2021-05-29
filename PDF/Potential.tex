@@ -1,0 +1,52 @@
+\chapter{}
+\section*{Introduction}
+Ce programme a pour volonté de simuler dans un plan 2D, un système composé de $n$ corps soumis à la gravité. La programmation se fait en utilisant le code \textbf{Python} et \textbf{GitHub} (\verb!git@github.com:Florian-DELRIEU/Gravitationnal-Sytem.git!). Les différents corps seront donc en intéractions entres eux et chacun d'entre eux seront positionné de manière arbitraire avec une masse différentes.
+
+\section*{Calcul prémiminaires}
+La simulation prendra lieu dans un domaine 2D ($x$,$y$) centré sur l'origine. Dans un premier temps je vais chercher à définir le potentiel gravitationnel d'un corps dans le repère 2D. On sait que la force gravitationnelle d'un corps de masse $M$ exerce, sur un corps $m$ situé à une distance $d$, une force valant
+\begin{equation}
+    \vect{F_{M/m}} = - G \dfrac{M \cdot m}{d^2} \vec{u}
+\end{equation}
+avec $\vec{u}$ le vecteur unitaire orienté depuis le corps $M$ jusqu'au corps $m$ et $G$ étant la constante gravitationnelle.
+\subsection{Ecriture du potentiel Gravitationnel}
+La gravité est une force dérivant d'un potentiel que l'on va nommé $E_p$,
+\begin{eqnarray}
+    \vect{F_{M/m}} &=& - \Grad{E_p} \\
+    \vect{F_{M/m}} &=& - \diff{E_p}{x} \vec{x} - \diff{E_p}{y} \vec{y}
+\end{eqnarray}
+Pour simplifier les notations je pose 
+$$\vect{F_{M/m}} = \vec{F} = F_x\vec{x} + F_y\vec{y}$$
+et je cherche par la suite l'expression de la composante $F_x$ uniquement car le problème est identique pour la direction $\vec{y}$
+\begin{eqnarray}
+    F_x &= &\diff{E_p}{x} \\
+    E_p &= &\int{F_x} dx \\
+    E_p &= & - G \cdot M \int{\dfrac{1}{x^2}} dx \\
+    E_p &= & - G \dfrac{M}{x^3}
+\end{eqnarray}
+L'énergie potentielle de la force de pesanteur s'écrit alors, en faisant la similitude entre $x$ et la distance $d$ (suivant les deux composantes)
+\begin{equation}
+    \boxed{
+    E_p =  - \dfrac{G \cdot M}{d^3}
+    }
+\end{equation}
+\subsection{Maillage du potentiel}
+Afin de visualiser ce potentiel de force dans un champs 2D, il a fallu créer un maillage rectangulaire uniforme de la forme
+\begin{verbatim}
+import numpy as np
+
+dx, x_range = 0.1, 10
+dy, y_range = 0.1, 10
+X,Y = np.meshgrid(
+    np.arange(-x_range,x_range,dx),
+    np.arange(-y_range,y_range,dy))
+\end{verbatim}
+Une fois le maillage créé, il faut implémenter dans la programme la fonction \verb!lambda! qui représente le champs potentiel d'un objet ainsi que la position et la masse d'un objet. J'ai choisi, pour commencer
+\begin{verbatim}
+G = 1 # Constante Grav (6.7e8)
+Pos = [(0,0)] # x,y
+Mass = [1]
+Potential = lambda x,y: G*Mass[0] / ( np.sqrt((x-Pos[0][0])**2+(y-Pos[0][1])**2) )**3
+POTENT = Potential(X,Y)
+POTENT_contour = np.linspace(POTENT.min(),POTENT.max(),10)
+plt.contourf(X,Y,POTENT,[0,.1,2,5,20])
+\end{verbatim}
