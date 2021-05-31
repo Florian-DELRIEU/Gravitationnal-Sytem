@@ -5,27 +5,30 @@ from GSmain import *
 
 # Global Parametres
 D = Domain()
-D.settime()
+D.dt = 0.01
+D.tf = 10
+D.settime(D.dt,D.tf)
+dt = D.dt
 
 # Creating bodies
 a = AstralBody(D)
-a.setbody(0,0,1)
-a.IsMoving = False
+a.setbody(0,0,10)
+a.IsMoving = True
 
 b = AstralBody(D)
 b.setbody(1,0,1)
-b.setvelocity(0,1)
+b.setvelocity(0,np.sqrt(10))
 
 # Simulation
 plt.figure("Trajectory")
 Bacc = np.array([])  # for record
 Bxy = np.array([])  # for record
 for _ in D.t:
-    plt.pause(1)
+    plt.pause(0.01)
     plt.clf()
     for this_body in D.BodyList:
-        plt.arrow(b.x,b.y,b.ax,b.ay)
-        this_body.refresh(D.dt)
+        this_body.refresh(dt)
+        this_body.Gvector(0.1)
         plt.plot(this_body.x,this_body.y,this_body.Color+this_body.Mark)
         plt.title("{} / {}".format(_,D.tf))
         plt.xlim(-5,5)

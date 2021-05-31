@@ -58,6 +58,22 @@ class AstralBody:
             self.y += self.vy*dt
             self.Trajectory.append((self.x,self.y))  # Ajout du nouveau point
 
+    def Gvector(self,ratio=1):
+        """
+        Affiche le vecteur accélération de :self:
+        """
+        self.Body_list = self.Domain.BodyList.copy()  # Obliger de faire une copy de la liste
+        self.Body_list.remove(self)  # se supprime lui meme pour eviter auto-influence
+        self.ax, self.ay = 0, 0  # refresh pour eviter cumuls des acc avec itération précédente
+        # Calcul de l'accéleration due à la présence de chaque corps
+        for this_body in self.Body_list:
+            cur_distance = np.sqrt((this_body.x - self.x) ** 2 + (this_body.y - self.y) ** 2)  # distance
+            # Calcul des accélérations
+            self.ax += - self.G * this_body.Mass / cur_distance ** 3 * (self.x - this_body.x)
+            self.ay += - self.G * this_body.Mass / cur_distance ** 3 * (self.y - this_body.y)
+        plt.arrow(self.x,self.y,ratio*self.ax,ratio*self.ay)
+        self.ax, self.ay = 0, 0  # refresh pour eviter cumuls des acc avec itération précédente
+
     def setbody(self,x,y,Mass):
         """
         Definition rapide d'un astre
