@@ -31,6 +31,7 @@ class AstralBody:
         self.Color = ""
         self.Mark = "o"
         self.Trajectory = list()  # Suite des points parcourues
+        self.Acceleration = list()
 
     def __repr__(self):
         txt = """Astral Body
@@ -57,6 +58,7 @@ class AstralBody:
             self.x += self.vx*dt
             self.y += self.vy*dt
             self.Trajectory.append((self.x,self.y))  # Ajout du nouveau point
+            self.Acceleration.append((self.ax,self.ay))
 
     def Gvector(self,ratio=1):
         """
