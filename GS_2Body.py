@@ -16,8 +16,8 @@ a.setbody(0,0,10)
 a.IsMoving = True
 
 b = AstralBody(D)
-b.setbody(1,0,1)
-b.setvelocity(0,np.sqrt(10))
+b.setbody(1,0,0)
+b.setvelocity(0,np.sqrt(a.Mass))
 
 # Simulation
 plt.figure("Trajectory")
@@ -42,5 +42,5 @@ for this_body in D.BodyList:
 plt.figure("Acc")
 plt.plot(D.t,b.Acceleration,"b-")
 plt.figure("Dist")
-plt.plot(D.t,Axy,"b-")
+plt.plot(D.t,Bxy,"b-")
 plt.show()
