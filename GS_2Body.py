@@ -7,23 +7,23 @@ from MyPack.Convert import *
 
 # Global Parametres
 D = Domain()
-D.dt = 0.02
-D.tf = 1
+D.dt = 1e-2
+D.tf = 10
 D.settime(D.dt,D.tf)
 dt = D.dt
 
 # Creating bodies
 a = AstralBody(D)
 a.setbody(0,0,10)
-a.IsMoving = True
+a.setvelocity(0,0)
 
 b = AstralBody(D)
-b.setbody(1,0,0.2)
-b.setvelocity(0,np.sqrt(a.Mass))
+b.setbody(1,0,0.1)
+b.setvelocity(0,np.sqrt(10))
 
 c = AstralBody(D)
-c.setbody(-2,0,0.1)
-c.setvelocity(0,-np.sqrt(a.Mass/2))
+c.setbody(2,0,0.5)
+c.setvelocity(0,np.sqrt(10/5))
 
 # Simulation
 plt.figure("Trajectory")
@@ -32,6 +32,7 @@ Bxy = np.array([])  # for record
 for _ in D.t:
     plt.pause(0.01)
     plt.clf()
+    if _ == 1: b.vy = - np.sqrt(20)
     for this_body in D.BodyList:
         this_body.refresh(dt)
         this_body.Gvector(0.1)
@@ -43,6 +44,7 @@ for _ in D.t:
 for this_body in D.BodyList:
     if this_body.IsMoving:
         plt.plot(this_body.Kinetic["x"],this_body.Kinetic["y"],this_body.Color+"-")
+plt.grid("both")
 
 plt.figure("Acc")
 plt.plot(D.t,np.sqrt(b.Kinetic["ax"]**2+b.Kinetic["ay"]**2),"b-")
@@ -53,4 +55,3 @@ plt.show()
 path = "/Users/floriandelrieu/OneDrive/Cours/Python/Etudes/Gravitationnal-Sytem/Datas/"
 Dict2CSV(a.Kinetic,path+"a_Kinetic.csv")
 Dict2CSV(b.Kinetic,path+"b_Kinetic.csv")
-Dict2CSV(c.Kinetic,path+"c_Kinetic.csv")
