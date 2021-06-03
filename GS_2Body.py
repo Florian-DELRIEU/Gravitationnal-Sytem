@@ -42,22 +42,15 @@ for _ in D.t:
     Bxy = np.append(Bxy,np.sqrt(b.x**2 + b.y**2))
 for this_body in D.BodyList:
     if this_body.IsMoving:
-        this_body.Trajectory = np.array(this_body.Trajectory)
-        plt.plot(this_body.Trajectory[:,0],this_body.Trajectory[:,1],this_body.Color+"-")
+        plt.plot(this_body.Kinetic["x"],this_body.Kinetic["y"],this_body.Color+"-")
 
 plt.figure("Acc")
-plt.plot(D.t,b.Acceleration,"b-")
+plt.plot(D.t,np.sqrt(b.Kinetic["ax"]**2+b.Kinetic["ay"]**2),"b-")
 plt.figure("Dist")
-plt.plot(D.t,Bxy,"b-")
+plt.plot(D.t,np.sqrt(b.Kinetic["x"]**2+b.Kinetic["y"]**2),"b-")
 plt.show()
 
-path = "D:\OneDrive\Cours\Python\Etudes\Gravitationnal-Sytem\Datas\ "
-A = dict()
-A["t"] = D.t
-A["x"] = a.Trajectory[0]
-A["y"] = a.Trajectory[1]
-A["vx"] = a.Speed[0]
-A["vy"] = a.Speed[1]
-A["ax"] = a.Acceleration[0]
-A["ay"] = a.Acceleration[1]
-Dict2CSV(A,path+"A.csv")
+path = "/Users/floriandelrieu/OneDrive/Cours/Python/Etudes/Gravitationnal-Sytem/Datas/"
+Dict2CSV(a.Kinetic,path+"a_Kinetic.csv")
+Dict2CSV(b.Kinetic,path+"b_Kinetic.csv")
+Dict2CSV(c.Kinetic,path+"c_Kinetic.csv")

@@ -25,7 +25,13 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="" />
+    <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Gravitationnal-Sytem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Gravitationnal-Sytem.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GS_2Body.py" beforeDir="false" afterPath="$PROJECT_DIR$/GS_2Body.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GSmain.py" beforeDir="false" afterPath="$PROJECT_DIR$/GSmain.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,14 +80,11 @@
       <module name="Gravitationnal-Sytem" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/spam/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="false" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GS_2Body.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
@@ -133,6 +136,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.GS_2Body" />
+      <item itemvalue="Python.GS_2D" />
+      <item itemvalue="Python.GSmain" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.GS_2Body" />
@@ -556,48 +564,6 @@
     <MESSAGE value="[v2.2.2] Update" />
     <MESSAGE value="[v2.2.3] Minor add - Pictures" />
     <option name="LAST_COMMIT_MESSAGE" value="[v2.2.3] Minor add - Pictures" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="326" y="273" key="#xdebugger.XInspectDialog" timestamp="1622624830252">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="326" y="273" key="#xdebugger.XInspectDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622624830252" />
-    <state width="1899" height="348" key="GridCell.Tab.0.bottom" timestamp="1622563201021">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622563201021" />
-    <state width="1899" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1622054790230" />
-    <state width="1899" height="348" key="GridCell.Tab.0.center" timestamp="1622563201021">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="348" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622563201021" />
-    <state width="1899" height="348" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1622054790229" />
-    <state width="1899" height="348" key="GridCell.Tab.0.left" timestamp="1622563201021">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="348" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622563201021" />
-    <state width="1899" height="348" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1622054790229" />
-    <state width="1899" height="348" key="GridCell.Tab.0.right" timestamp="1622563201021">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="348" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622563201021" />
-    <state width="1899" height="348" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1622054790229" />
-    <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1622563201021">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622563201021" />
-    <state width="1899" height="348" key="GridCell.Tab.1.center" timestamp="1622563201021">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622563201021" />
-    <state width="1899" height="348" key="GridCell.Tab.1.left" timestamp="1622563201021">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622563201021" />
-    <state width="1899" height="348" key="GridCell.Tab.1.right" timestamp="1622563201021">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622563201021" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

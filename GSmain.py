@@ -30,9 +30,14 @@ class AstralBody:
     # Paramètres garphiques
         self.Color = ""
         self.Mark = "o"
-        self.Trajectory = list()  # Suite des points parcourues
-        self.Speed = list()
-        self.Acceleration = list()
+        self.Kinetic = dict()
+        self.Kinetic["Time"] = np.array(Domain.t)
+        self.Kinetic["x"] = list()
+        self.Kinetic["y"] = list()
+        self.Kinetic["vx"] = np.array([])
+        self.Kinetic["vy"] = np.array([])
+        self.Kinetic["ax"] = np.array([])
+        self.Kinetic["ay"] = np.array([])
 
     def __repr__(self):
         txt = """Astral Body
@@ -58,9 +63,12 @@ class AstralBody:
             # Calcul des nouvelles positions
             self.x += self.vx*dt
             self.y += self.vy*dt
-            self.Acceleration.append((self.ax,self.ay))
-            self.Speed.append((self.vx,self.vy))
-            self.Trajectory.append((self.x,self.y))  # Ajout du nouveau point
+            self.Kinetic["x"] = np.append(self.Kinetic["x"],self.x)
+            self.Kinetic["y"] = np.append(self.Kinetic["y"],self.y)
+            self.Kinetic["vx"] = np.append(self.Kinetic["vx"],self.vx)
+            self.Kinetic["vy"] = np.append(self.Kinetic["vy"],self.vy)
+            self.Kinetic["ax"] = np.append(self.Kinetic["ax"],self.ax)
+            self.Kinetic["ay"] = np.append(self.Kinetic["ay"],self.ay)
 
     def Gvector(self,ratio=1):
         """
