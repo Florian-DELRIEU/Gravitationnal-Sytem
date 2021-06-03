@@ -2,11 +2,13 @@
 Programme visant à simuler un system orbital avec 2 corps en utilisant GSmain.
 """
 from GSmain import *
+from MyPack.FFT import *
+from MyPack.Convert import *
 
 # Global Parametres
 D = Domain()
-D.dt = 0.01
-D.tf = 10
+D.dt = 0.02
+D.tf = 1
 D.settime(D.dt,D.tf)
 dt = D.dt
 
@@ -16,8 +18,12 @@ a.setbody(0,0,10)
 a.IsMoving = True
 
 b = AstralBody(D)
-b.setbody(1,0,0)
+b.setbody(1,0,0.2)
 b.setvelocity(0,np.sqrt(a.Mass))
+
+c = AstralBody(D)
+c.setbody(-2,0,0.1)
+c.setvelocity(0,-np.sqrt(a.Mass/2))
 
 # Simulation
 plt.figure("Trajectory")
@@ -44,3 +50,14 @@ plt.plot(D.t,b.Acceleration,"b-")
 plt.figure("Dist")
 plt.plot(D.t,Bxy,"b-")
 plt.show()
+
+path = "D:\OneDrive\Cours\Python\Etudes\Gravitationnal-Sytem\Datas\ "
+A = dict()
+A["t"] = D.t
+A["x"] = a.Trajectory[0]
+A["y"] = a.Trajectory[1]
+A["vx"] = a.Speed[0]
+A["vy"] = a.Speed[1]
+A["ax"] = a.Acceleration[0]
+A["ay"] = a.Acceleration[1]
+Dict2CSV(A,path+"A.csv")

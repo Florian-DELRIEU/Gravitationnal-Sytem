@@ -31,6 +31,7 @@ class AstralBody:
         self.Color = ""
         self.Mark = "o"
         self.Trajectory = list()  # Suite des points parcourues
+        self.Speed = list()
         self.Acceleration = list()
 
     def __repr__(self):
@@ -45,20 +46,21 @@ class AstralBody:
             self.Body_list = self.Domain.BodyList.copy() # Obliger de faire une copy de la liste
             self.Body_list.remove(self)  # se supprime lui meme pour eviter auto-influence
             self.ax, self.ay = 0,0  # refresh pour eviter cumuls des acc avec itération précédente
-        # Calcul de l'accéleration due à la présence de chaque corps
+            # Calcul de l'accéleration due à la présence de chaque corps
             for this_body in self.Body_list:
                 cur_distance = np.sqrt((this_body.x - self.x)**2 + (this_body.y - self.y)**2)  # distance
-            # Calcul des accélérations
+                # Calcul des accélérations
                 self.ax += - self.G * this_body.Mass / cur_distance**3 * (self.x - this_body.x)
                 self.ay += - self.G * this_body.Mass / cur_distance**3 * (self.y - this_body.y)
-        # Calcul des vitesses
+            # Calcul des vitesses
             self.vx += self.ax*dt
             self.vy += self.ay*dt
-        # Calcul des nouvelles positions
+            # Calcul des nouvelles positions
             self.x += self.vx*dt
             self.y += self.vy*dt
-            self.Trajectory.append((self.x,self.y))  # Ajout du nouveau point
             self.Acceleration.append((self.ax,self.ay))
+            self.Speed.append((self.vx,self.vy))
+            self.Trajectory.append((self.x,self.y))  # Ajout du nouveau point
 
     def Gvector(self,ratio=1):
         """
