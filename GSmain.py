@@ -30,8 +30,14 @@ class AstralBody:
     # Paramètres garphiques
         self.Color = ""
         self.Mark = "o"
-        self.Trajectory = list()  # Suite des points parcourues
-        self.Acceleration = list()
+        self.Kinetic = dict()
+        self.Kinetic["Time"] = np.array(Domain.t)
+        self.Kinetic["x"] = list()
+        self.Kinetic["y"] = list()
+        self.Kinetic["vx"] = np.array([])
+        self.Kinetic["vy"] = np.array([])
+        self.Kinetic["ax"] = np.array([])
+        self.Kinetic["ay"] = np.array([])
 
     def __repr__(self):
         txt = """Astral Body
@@ -45,20 +51,24 @@ class AstralBody:
             self.Body_list = self.Domain.BodyList.copy() # Obliger de faire une copy de la liste
             self.Body_list.remove(self)  # se supprime lui meme pour eviter auto-influence
             self.ax, self.ay = 0,0  # refresh pour eviter cumuls des acc avec itération précédente
-        # Calcul de l'accéleration due à la présence de chaque corps
+            # Calcul de l'accéleration due à la présence de chaque corps
             for this_body in self.Body_list:
                 cur_distance = np.sqrt((this_body.x - self.x)**2 + (this_body.y - self.y)**2)  # distance
-            # Calcul des accélérations
+                # Calcul des accélérations
                 self.ax += - self.G * this_body.Mass / cur_distance**3 * (self.x - this_body.x)
                 self.ay += - self.G * this_body.Mass / cur_distance**3 * (self.y - this_body.y)
-        # Calcul des vitesses
+            # Calcul des vitesses
             self.vx += self.ax*dt
             self.vy += self.ay*dt
-        # Calcul des nouvelles positions
+            # Calcul des nouvelles positions
             self.x += self.vx*dt
             self.y += self.vy*dt
-            self.Trajectory.append((self.x,self.y))  # Ajout du nouveau point
-            self.Acceleration.append((self.ax,self.ay))
+            self.Kinetic["x"] = np.append(self.Kinetic["x"],self.x)
+            self.Kinetic["y"] = np.append(self.Kinetic["y"],self.y)
+            self.Kinetic["vx"] = np.append(self.Kinetic["vx"],self.vx)
+            self.Kinetic["vy"] = np.append(self.Kinetic["vy"],self.vy)
+            self.Kinetic["ax"] = np.append(self.Kinetic["ax"],self.ax)
+            self.Kinetic["ay"] = np.append(self.Kinetic["ay"],self.ay)
 
     def Gvector(self,ratio=1):
         """
