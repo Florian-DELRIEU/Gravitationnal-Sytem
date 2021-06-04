@@ -26,7 +26,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Gravitationnal-Sytem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Gravitationnal-Sytem.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datas/a_Kinetic.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datas/a_Kinetic.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datas/b_Kinetic.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datas/b_Kinetic.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GS_2Body.py" beforeDir="false" afterPath="$PROJECT_DIR$/GS_2Body.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GSmain.py" beforeDir="false" afterPath="$PROJECT_DIR$/GSmain.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,9 +82,6 @@
       <module name="Gravitationnal-Sytem" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/spam/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -150,7 +153,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -563,6 +566,12 @@
     <MESSAGE value="[v2.2.2] Update" />
     <MESSAGE value="[v2.2.3] Minor add - Pictures" />
     <option name="LAST_COMMIT_MESSAGE" value="[v2.2.3] Minor add - Pictures" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="461" y="165" key="SettingsEditor" timestamp="1622796383713">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1622796383713" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
