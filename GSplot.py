@@ -46,6 +46,20 @@ def PlotAcceleration(CSVfile,mark="",grid=True):
     plt.plot(t,np.sqrt(ax**2+ay**2),mark)
     if grid: plt.grid("both")
 
+def NumericalRelativeSpeed(CSVfile,mark="",grid=True):
+    """
+    Trace le nombre v.dt/a pour chaque corps pour evaluer la précision numérique
+    """
+    Data = Csv2Dict(CSVfile)
+    t = np.array(Data["Time"])
+    dt = t[0] - t[1]
+    vx = np.array(Data["vx"])
+    vy = np.array(Data["vy"])
+    x = np.array(Data["x"])
+    y = np.array(Data["y"])
+    plt.semilogy(t,abs(np.sqrt(vx**2+vy**2)*dt/np.sqrt(x**2+y**2)),mark)
+    if grid: plt.grid("both")
+
 
 ###
 path = "Datas\Circulaire a=1, G=1, m1=1 m2=10 dt=0.1/"
@@ -60,3 +74,7 @@ PlotSpeed(path+"b_mass10.csv")
 plt.figure("Distance")
 PlotDistance(path+"a_mass1.csv")
 PlotDistance(path+"b_mass10.csv")
+
+plt.figure("Numerical")
+NumericalRelativeSpeed(path+"a_mass1.csv")
+NumericalRelativeSpeed(path+"b_mass10.csv")
