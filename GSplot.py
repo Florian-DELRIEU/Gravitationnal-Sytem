@@ -62,19 +62,13 @@ def NumericalRelativeSpeed(CSVfile,mark="",grid=True):
 
 
 ###
-path = "Datas\Circulaire a=1, G=1, m1=1 m2=10 dt=0.1/"
+path = "Datas/"
 plt.figure("Trajectory")
-PlotTrajectory(path+"a_mass1.csv")
-PlotTrajectory(path+"b_mass10.csv")
 
 plt.figure("Speed")
-PlotSpeed(path+"a_mass1.csv")
-PlotSpeed(path+"b_mass10.csv")
+
 
 plt.figure("Distance")
-PlotDistance(path+"a_mass1.csv")
-PlotDistance(path+"b_mass10.csv")
+
 
 plt.figure("Numerical")
-NumericalRelativeSpeed(path+"a_mass1.csv")
-NumericalRelativeSpeed(path+"b_mass10.csv")
