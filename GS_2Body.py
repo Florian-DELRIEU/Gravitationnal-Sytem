@@ -5,6 +5,7 @@ from GSmain import *
 from MyPack.FFT import *
 from MyPack.Convert import *
 import time as t
+import GSplot
 
 start = t.time()
 # Global Parametres
