@@ -27,13 +27,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/Circulaire a=1, G=1, m1=1 m2=10 dt=0.1/a_mass1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/Circulaire a=1, G=1, m1=1 m2=10 dt=0.1/b_mass10.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/a_Kinetic.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datas/a_Kinetic.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/b1_Kinetic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/b2_Kinetic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/b3_Kinetic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GS_2Body.py" beforeDir="false" afterPath="$PROJECT_DIR$/GS_2Body.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GS_2Body.py" beforeDir="false" afterPath="$PROJECT_DIR$/CircularOrbit_run.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GSplot.py" beforeDir="false" afterPath="$PROJECT_DIR$/GSplot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +57,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/GSmain.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/GS_2Body.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/CircularOrbit_run.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1daVpabDrW3AmExsXGuNdWOFEPE" />
   <component name="ProjectLevelVcsManager">
@@ -79,8 +73,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.GS_2Body">
-    <configuration name="GS_2Body" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.CircularOrbit_run">
+    <configuration name="CircularOrbit_run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Gravitationnal-Sytem" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -89,7 +83,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="false" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GS_2Body.py" />
+      <option name="SCRIPT_NAME" value="D:\OneDrive\Cours\Python\Etudes\Gravitationnal-Sytem\CircularOrbit_run.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -159,18 +153,18 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.GS_2Body" />
       <item itemvalue="Python.GS_2D" />
       <item itemvalue="Python.GSmain" />
       <item itemvalue="Python.GSplot" />
+      <item itemvalue="Python.CircularOrbit_run" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.GS_2Body" />
+        <item itemvalue="Python.CircularOrbit_run" />
         <item itemvalue="Python.GSplot" />
         <item itemvalue="Python.GSmain" />
         <item itemvalue="Python.GS_2D" />
-        <item itemvalue="Python.GS_2Body" />
+        <item itemvalue="Python.CircularOrbit_run" />
       </list>
     </recent_temporary>
   </component>
