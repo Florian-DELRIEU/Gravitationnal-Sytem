@@ -59,3 +59,13 @@ def NumericalRelativeSpeed(CSVfile,mark="",grid=True):
     y = np.array(Data["y"])
     plt.semilogy(t,abs(np.sqrt(vx**2+vy**2)*dt/np.sqrt(x**2+y**2)),mark)
     if grid: plt.grid("both")
+
+def Unzip(CSVfile):
+    if type(CSVfile) == list():
+        List = list()
+        for file in CSVfile:
+            List.append(Csv2Dict(file))
+        return List
+    else:
+        Dico = Csv2Dict(file)
+        return Dico
