@@ -26,13 +26,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Gravitationnal-Sytem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Gravitationnal-Sytem.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/a_Kinetic.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datas/a_Kinetic.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/b1_Kinetic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/b2_Kinetic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/b3_Kinetic.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/GSplot.py" beforeDir="false" afterPath="$PROJECT_DIR$/GSplot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

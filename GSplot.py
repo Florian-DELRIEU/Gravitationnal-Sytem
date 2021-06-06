@@ -67,5 +67,5 @@ def Unzip(CSVfile):
             List.append(Csv2Dict(file))
         return List
     else:
-        Dico = Csv2Dict(file)
+        Dico = Csv2Dict(CSVfile)
         return Dico
