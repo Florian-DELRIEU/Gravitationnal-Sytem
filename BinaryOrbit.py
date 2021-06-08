@@ -8,9 +8,11 @@ from MyPack.Convert import *
 import time as t
 
 SIMULATION = False
-PLOTTING = True
-SAVE_FIGURE = True # Si PLOTTING == True
+PLOTTING = False
+SAVE_FIGURE = False # Si PLOTTING == True
 path = "Datas/OrbiteBinaire1b/"
+
+COMPARE = True
 
 if SIMULATION:
     start = t.time()
@@ -68,3 +70,18 @@ if PLOTTING:
     NumericalRelativeSpeed(path + "a_Kinetic.csv",mark="r-")
     NumericalRelativeSpeed(path + "b_Kinetic.csv",mark="b-")
     if SAVE_FIGURE: plt.savefig(path+"Numerical", dpi=900)
+
+if COMPARE:
+    plt.figure(1)
+    plt.title("Distance de A par rapport à l'origine")
+    path = "Datas/OrbiteBinaire1a/"
+    PlotDistance(path + "a_Kinetic.csv", mark="k-",label="case 1A")
+    path = "Datas/OrbiteBinaire1b/"
+    PlotDistance(path + "a_Kinetic.csv", mark="k--",label="case 1B")
+
+    plt.figure(2)
+    plt.title("NRS pour A dans 2 cas")
+    path = "Datas/OrbiteBinaire1a/"
+    NumericalRelativeSpeed(path + "a_Kinetic.csv", mark="k-", label="case 1A")
+    path = "Datas/OrbiteBinaire1b/"
+    NumericalRelativeSpeed(path + "a_Kinetic.csv", mark="k--", label="case 1B")
