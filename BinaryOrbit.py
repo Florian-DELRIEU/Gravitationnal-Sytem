@@ -12,7 +12,7 @@ PLOTTING = False
 SAVE_FIGURE = False # Si PLOTTING == True
 COMPARE = False
 ANIME = True
-path = "Datas/OrbiteBinaire1c/"
+path = "Datas/"
 
 
 if SIMULATION:
@@ -24,7 +24,7 @@ if SIMULATION:
     D.settime(D.dt,D.tf)
     dt = D.dt
 
-    AB = 3
+    AB = 1
     a = AstralBody(D)
     b = AstralBody(D)
     a.setbody(-AB,0,10)
@@ -97,4 +97,4 @@ if ANIME:
     plt.figure(3)
     plt.xlim(-5,5)
     plt.ylim(-5,5)
-    PlotAnimation(CSVlist,Trajectory=True)
+    PlotAnimation(CSVlist,Trajectory=True,PPF=10)
