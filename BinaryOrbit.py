@@ -23,6 +23,8 @@ if SIMULATION:
     b = AstralBody(D)
     a.setbody(-1,0,10)
     b.setbody(1,0,10)
+    a.Mark = "c-"
+    b.Mass = "r-"
 
     a.setvelocity(0,np.sqrt(b.Mass)/2)
     b.setvelocity(0,-np.sqrt(a.Mass)/2)
@@ -46,19 +48,19 @@ if SIMULATION:
     print("Simulation time {}".format(duration))
 
 if PLOTTING:
-    path = "Datas/OrbiteBinaire1_dt1e-2"
+    path = "Datas/OrbiteBinaire1a/"
     plt.figure("Trajectory")
-    PlotTrajectory(path + "a_Kinetic.csv")
-    PlotTrajectory(path + "b_Kinetic.csv")
+    PlotTrajectory(path + "a_Kinetic.csv",mark="r-")
+    PlotTrajectory(path + "b_Kinetic.csv",mark="b-")
 
     plt.figure("Speed")
-    PlotSpeed(path + "a_Kinetic.csv")
-    PlotSpeed(path + "b_Kinetic.csv")
+    PlotSpeed(path + "a_Kinetic.csv",mark="r-")
+    PlotSpeed(path + "b_Kinetic.csv",mark="b-")
 
     plt.figure("Distance")
-    PlotDistance(path + "a_Kinetic.csv")
-    PlotDistance(path + "b_Kinetic.csv")
+    PlotDistance(path + "a_Kinetic.csv",mark="r-")
+    PlotDistance(path + "b_Kinetic.csv",mark="b-")
 
     plt.figure("Numerical")
-    NumericalRelativeSpeed(path + "a_Kinetic.csv")
-    NumericalRelativeSpeed(path + "b_Kinetic.csv")
+    NumericalRelativeSpeed(path + "a_Kinetic.csv",mark="r-")
+    NumericalRelativeSpeed(path + "b_Kinetic.csv",mark="b-")
