@@ -9,6 +9,7 @@ import time as t
 
 SIMULATION = False
 PLOTTING = True
+SAVE_FIGURE = True # Si PLOTTING == True
 
 if SIMULATION:
     start = t.time()
@@ -52,15 +53,19 @@ if PLOTTING:
     plt.figure("Trajectory")
     PlotTrajectory(path + "a_Kinetic.csv",mark="r-")
     PlotTrajectory(path + "b_Kinetic.csv",mark="b-")
+    if SAVE_FIGURE: plt.savefig(path+"Trajectory",dpi=900)
 
     plt.figure("Speed")
     PlotSpeed(path + "a_Kinetic.csv",mark="r-")
     PlotSpeed(path + "b_Kinetic.csv",mark="b-")
+    if SAVE_FIGURE: plt.savefig(path+"Speed", dpi=900)
 
     plt.figure("Distance")
     PlotDistance(path + "a_Kinetic.csv",mark="r-")
     PlotDistance(path + "b_Kinetic.csv",mark="b-")
+    if SAVE_FIGURE: plt.savefig(path+"Distance", dpi=900)
 
     plt.figure("Numerical")
     NumericalRelativeSpeed(path + "a_Kinetic.csv",mark="r-")
     NumericalRelativeSpeed(path + "b_Kinetic.csv",mark="b-")
+    if SAVE_FIGURE: plt.savefig(path+"Numerical", dpi=900)

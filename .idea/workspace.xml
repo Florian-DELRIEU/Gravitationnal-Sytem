@@ -28,10 +28,6 @@
     <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BinaryOrbit.py" beforeDir="false" afterPath="$PROJECT_DIR$/BinaryOrbit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/OrbiteBinaire1_dt1e-2/a_Kinetic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/OrbiteBinaire1_dt1e-2/b_Kinetic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/OrbiteBinaire1_dt1e-4/a_Kinetic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/OrbiteBinaire1_dt1e-4/b_Kinetic.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
