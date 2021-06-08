@@ -12,7 +12,7 @@ PLOTTING = False
 SAVE_FIGURE = False # Si PLOTTING == True
 COMPARE = False
 ANIME = True
-path = "Datas/OrbiteBinaire1c/"
+path = "Datas/OrbiteBinaire1a/"
 
 
 if SIMULATION:

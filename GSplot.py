@@ -65,7 +65,10 @@ def NumericalRelativeSpeed(CSVfile,mark="",grid=True,label=""):
     if grid: plt.grid("both")
     if label is not "": plt.legend(loc="upper right")
 
-def PlotAnimation(CSVlist,Trajectory=False):
+def PlotAnimation(CSVlist, Trajectory=False, PPF=10):
+    """
+    :PPF: Pause per frame (ecart entre chaque frame affiché)
+    """
     BodyList = list() # List de dict regroupant les données de tout les corps de la list voulue
     for file in CSVlist:
         Data = Csv2Dict(file)  # Unzip un csv à la fois
@@ -81,10 +84,13 @@ def PlotAnimation(CSVlist,Trajectory=False):
     t = BodyList[0]["Time"]
     frame = 0
     for i,_ in enumerate(t):
-        plt.pause(0.1)
-        plt.clf()
-        for body in BodyList:
-            plt.xlim(-5,5)
-            plt.ylim(-5,5)
-            plt.plot(body["x"][i],body["y"][i],"o")
-            if Trajectory: plt.plot(np.array(body["x"][:i]),np.array(body["y"][:i]),"-")
+        frame += 1
+        if frame == PPF:
+            plt.pause(0.1)
+            plt.clf()
+            for body in BodyList:
+                plt.xlim(-5,5)
+                plt.ylim(-5,5)
+                plt.plot(body["x"][i],body["y"][i],"o")
+                if Trajectory: plt.plot(np.array(body["x"][:i]),np.array(body["y"][:i]),"-")
+            frame = 0
