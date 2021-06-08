@@ -7,11 +7,12 @@ from MyPack.FFT import *
 from MyPack.Convert import *
 import time as t
 
-SIMULATION = True
-PLOTTING = True
+SIMULATION = False
+PLOTTING = False
 SAVE_FIGURE = False # Si PLOTTING == True
 COMPARE = False
-path = "Datas/"
+ANIME = True
+path = "Datas/OrbiteBinaire1c/"
 
 
 if SIMULATION:
@@ -23,7 +24,7 @@ if SIMULATION:
     D.settime(D.dt,D.tf)
     dt = D.dt
 
-    AB = 1
+    AB = 3
     a = AstralBody(D)
     b = AstralBody(D)
     a.setbody(-1,0,10)
@@ -33,7 +34,7 @@ if SIMULATION:
     Vorb_A = np.sqrt(D.G*b.Mass / (2*AB) )
     Vorb_B = np.sqrt(D.G*a.Mass / (2*AB) )
     a.setvelocity(0,Vorb_A)
-    b.setvelocity(0,Vorb_B)
+    b.setvelocity(0,-Vorb_B)
 
     # Simulation
     for i,_ in enumerate(D.t):
@@ -87,3 +88,13 @@ if COMPARE:
     NumericalRelativeSpeed(path + "a_Kinetic.csv", mark="k-", label="case 1A")
     path = "Datas/OrbiteBinaire1b/"
     NumericalRelativeSpeed(path + "a_Kinetic.csv", mark="k--", label="case 1B")
+
+if ANIME:
+    CSVlist = [
+        path + "a_Kinetic.csv",
+        path + "b_Kinetic.csv"
+    ]
+    plt.figure(3)
+    plt.xlim(-5,5)
+    plt.ylim(-5,5)
+    PlotAnimation(CSVlist,Trajectory=True)
