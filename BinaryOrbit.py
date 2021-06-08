@@ -7,12 +7,12 @@ from MyPack.FFT import *
 from MyPack.Convert import *
 import time as t
 
-SIMULATION = False
+SIMULATION = True
 PLOTTING = False
 SAVE_FIGURE = False # Si PLOTTING == True
 COMPARE = False
 ANIME = True
-path = "Datas/OrbiteBinaire1a/"
+path = "Datas/OrbiteBinaire1c/"
 
 
 if SIMULATION:
@@ -27,8 +27,8 @@ if SIMULATION:
     AB = 3
     a = AstralBody(D)
     b = AstralBody(D)
-    a.setbody(-1,0,10)
-    b.setbody(1,0,10)
+    a.setbody(-AB,0,10)
+    b.setbody(AB,0,10)
     a.Mark = "c-"
     b.Mark = "r-"
     Vorb_A = np.sqrt(D.G*b.Mass / (2*AB) )
