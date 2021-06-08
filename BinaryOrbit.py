@@ -10,6 +10,7 @@ import time as t
 SIMULATION = False
 PLOTTING = True
 SAVE_FIGURE = True # Si PLOTTING == True
+path = "Datas/OrbiteBinaire1b/"
 
 if SIMULATION:
     start = t.time()
@@ -40,7 +41,6 @@ if SIMULATION:
         if i == 0.7*len(D.t): print("70 %")
         if i == 0.9*len(D.t): print("90 %")
 
-    path = "Datas/"
     Dict2CSV(a.Kinetic,path+"a_Kinetic.csv")
     Dict2CSV(b.Kinetic,path+"b_Kinetic.csv")
 
@@ -49,7 +49,6 @@ if SIMULATION:
     print("Simulation time {}".format(duration))
 
 if PLOTTING:
-    path = "Datas/OrbiteBinaire1a/"
     plt.figure("Trajectory")
     PlotTrajectory(path + "a_Kinetic.csv",mark="r-")
     PlotTrajectory(path + "b_Kinetic.csv",mark="b-")
