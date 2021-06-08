@@ -1,5 +1,5 @@
 """
-Simulation de 2 corps pesant en orbite circulaire
+Simulation de 2 corps pesant en orbite circulaire de même masse et répartie sur un cerlce de rayon :a:
 """
 from GSmain import *
 from GSplot import *
@@ -7,31 +7,33 @@ from MyPack.FFT import *
 from MyPack.Convert import *
 import time as t
 
-SIMULATION = False
-PLOTTING = False
+SIMULATION = True
+PLOTTING = True
 SAVE_FIGURE = False # Si PLOTTING == True
-path = "Datas/OrbiteBinaire1b/"
+COMPARE = False
+path = "Datas/"
 
-COMPARE = True
 
 if SIMULATION:
     start = t.time()
     # Global Parametres
     D = Domain()
-    D.dt = 1e-4
+    D.dt = 1e-2
     D.tf = 20
     D.settime(D.dt,D.tf)
     dt = D.dt
 
+    AB = 1
     a = AstralBody(D)
     b = AstralBody(D)
     a.setbody(-1,0,10)
     b.setbody(1,0,10)
     a.Mark = "c-"
-    b.Mass = "r-"
-
-    a.setvelocity(0,np.sqrt(b.Mass)/2)
-    b.setvelocity(0,-np.sqrt(a.Mass)/2)
+    b.Mark = "r-"
+    Vorb_A = np.sqrt(D.G*b.Mass / (2*AB) )
+    Vorb_B = np.sqrt(D.G*a.Mass / (2*AB) )
+    a.setvelocity(0,Vorb_A)
+    b.setvelocity(0,Vorb_B)
 
     # Simulation
     for i,_ in enumerate(D.t):
