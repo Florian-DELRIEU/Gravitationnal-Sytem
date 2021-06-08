@@ -8,7 +8,8 @@ from MyPack.Convert import *
 import time as t
 
 SIMULATION = False
-PLOT = False
+PLOT = True
+SAVE_FIGURE = False # Si PLOT == True
 
 if SIMULATION:
     start = t.time()
@@ -37,8 +38,14 @@ if SIMULATION:
     b3.setvelocity(0,np.sqrt(2))
 
     # Simulation
-    for _ in D.t:
+    for i,_ in enumerate(D.t):
         for this_body in D.BodyList: this_body.refresh(dt)
+        if i == 0.01*len(D.t): print("1 %")
+        if i == 0.1*len(D.t): print("10 %")
+        if i == 0.3*len(D.t): print("30 %")
+        if i == 0.5*len(D.t): print("50 %")
+        if i == 0.7*len(D.t): print("70 %")
+        if i == 0.9*len(D.t): print("90 %")
 
     path = "Datas/CircularOrbit1/"
     Dict2CSV(a.Kinetic,path+"a_Kinetic.csv")
@@ -55,21 +62,25 @@ if PLOT:
     PlotTrajectory(path+"b1_Kinetic.csv")
     PlotTrajectory(path+"b2_Kinetic.csv")
     PlotTrajectory(path+"b3_Kinetic.csv")
+    if SAVE_FIGURE: plt.savefig(path + "Trajectory", dpi=900)
 
     plt.figure("Speed")
     PlotSpeed(path+"a_Kinetic.csv")
     PlotSpeed(path+"b1_Kinetic.csv")
     PlotSpeed(path+"b2_Kinetic.csv")
     PlotSpeed(path+"b3_Kinetic.csv")
+    if SAVE_FIGURE: plt.savefig(path + "Speed", dpi=900)
 
     plt.figure("Distance")
     PlotDistance(path+"a_Kinetic.csv")
     PlotDistance(path+"b1_Kinetic.csv")
     PlotDistance(path+"b2_Kinetic.csv")
     PlotDistance(path+"b3_Kinetic.csv")
+    if SAVE_FIGURE: plt.savefig(path + "Distance", dpi=900)
 
     plt.figure("Numerical")
     NumericalRelativeSpeed(path+"a_Kinetic.csv")
     NumericalRelativeSpeed(path+"b1_Kinetic.csv")
     NumericalRelativeSpeed(path+"b2_Kinetic.csv")
     NumericalRelativeSpeed(path+"b3_Kinetic.csv")
+    if SAVE_FIGURE: plt.savefig(path + "Numerical", dpi=900)
