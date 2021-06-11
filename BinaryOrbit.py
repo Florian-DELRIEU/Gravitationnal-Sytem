@@ -9,22 +9,22 @@ import time as t
 
 SIMULATION = False
 PLOTTING = True
-SAVE_FIGURE = False # Si PLOTTING == True
+SAVE_FIGURE = True # Si PLOTTING == True
 COMPARE = False
 ANIME = False
-path = "Datas/"
+path = "Datas/OrbiteBinaire1c/"
 
 
 if SIMULATION:
     start = t.time()
     # Global Parametres
     D = Domain()
-    D.dt = 1e-2
+    D.dt = 1e-3
     D.tf = 20
     D.settime(D.dt,D.tf)
     dt = D.dt
 
-    AB = 2
+    AB = 10
     a = AstralBody(D)
     b = AstralBody(D)
     a.setbody(-AB/2,0,10)
@@ -95,6 +95,6 @@ if ANIME:
         path + "b_Kinetic.csv"
     ]
     plt.figure(3)
-    plt.xlim(-5,5)
-    plt.ylim(-5,5)
-    PlotAnimation(CSVlist,Trajectory=True,PPF=10)
+    plt.xlim(-15,15)
+    plt.ylim(-15,15)
+    PlotAnimation(CSVlist,Trajectory=True,PPF=40)
