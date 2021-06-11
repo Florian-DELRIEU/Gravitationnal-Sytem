@@ -7,11 +7,11 @@ from MyPack.FFT import *
 from MyPack.Convert import *
 import time as t
 
-SIMULATION = True
-PLOTTING = False
+SIMULATION = False
+PLOTTING = True
 SAVE_FIGURE = False # Si PLOTTING == True
 COMPARE = False
-ANIME = True
+ANIME = False
 path = "Datas/"
 
 
@@ -24,15 +24,15 @@ if SIMULATION:
     D.settime(D.dt,D.tf)
     dt = D.dt
 
-    AB = 1
+    AB = 2
     a = AstralBody(D)
     b = AstralBody(D)
-    a.setbody(-AB,0,10)
-    b.setbody(AB,0,10)
+    a.setbody(-AB/2,0,10)
+    b.setbody(AB/2,0,10)
     a.Mark = "c-"
     b.Mark = "r-"
-    Vorb_A = np.sqrt(D.G*b.Mass / (2*AB) )
-    Vorb_B = np.sqrt(D.G*a.Mass / (2*AB) )
+    Vorb_A = 1/AB * np.sqrt(D.G*b.Mass*AB/2)
+    Vorb_B = 1/AB * np.sqrt(D.G*a.Mass*AB/2)
     a.setvelocity(0,Vorb_A)
     b.setvelocity(0,-Vorb_B)
 

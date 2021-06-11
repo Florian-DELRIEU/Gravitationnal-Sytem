@@ -7,9 +7,10 @@ from MyPack.FFT import *
 from MyPack.Convert import *
 import time as t
 
-SIMULATION = False
+SIMULATION = True
 PLOT = True
 SAVE_FIGURE = False # Si PLOT == True
+path = "Datas/"
 
 if SIMULATION:
     start = t.time()
@@ -21,21 +22,25 @@ if SIMULATION:
     dt = D.dt
 
     # Creating bodies
-    a = AstralBody(D)
-    a.setbody(0,0,10)
-    a.setvelocity(0,0)
+    A = AstralBody(D)
+    A.setbody(0,0,10)
+    A.setvelocity(0,0)
 
-    b1 = AstralBody(D)
-    b1.setbody(1,0,0)
-    b1.setvelocity(0,np.sqrt(10))
+    a1 = 1
+    a2 = 2
+    a3 = 5
 
-    b2 = AstralBody(D)
-    b2.setbody(2,0,0)
-    b2.setvelocity(0,np.sqrt(5))
+    A1 = AstralBody(D)
+    A1.setbody(1,0,0)
+    A1.setvelocity(0,1/a1 * np.sqrt(D.G*A.Mass*a1))
 
-    b3 = AstralBody(D)
-    b3.setbody(5,0,0)
-    b3.setvelocity(0,np.sqrt(2))
+    A2 = AstralBody(D)
+    A2.setbody(2,0,0)
+    A2.setvelocity(0,1/a2 * np.sqrt(D.G*A.Mass*a2))
+
+    A3 = AstralBody(D)
+    A3.setbody(5,0,0)
+    A3.setvelocity(0,1/a3 * np.sqrt(D.G*A.Mass*a3))
 
     # Simulation
     for i,_ in enumerate(D.t):
@@ -47,40 +52,34 @@ if SIMULATION:
         if i == 0.7*len(D.t): print("70 %")
         if i == 0.9*len(D.t): print("90 %")
 
-    path = "Datas/CircularOrbit1/"
-    Dict2CSV(a.Kinetic,path+"a_Kinetic.csv")
-    Dict2CSV(b1.Kinetic,path+"b1_Kinetic.csv")
-    Dict2CSV(b2.Kinetic,path+"b2_Kinetic.csv")
-    Dict2CSV(b3.Kinetic,path+"b3_Kinetic.csv")
+    Dict2CSV(A1.Kinetic,path+"A1_Kinetic.csv")
+    Dict2CSV(A2.Kinetic,path+"A2_Kinetic.csv")
+    Dict2CSV(A3.Kinetic,path+"A3_Kinetic.csv")
 
     duration = t.time() - start
     print("Simulation time {}".format(duration))
 
 if PLOT:
     plt.figure("Trajectory")
-    PlotTrajectory(path+"a_Kinetic.csv")
-    PlotTrajectory(path+"b1_Kinetic.csv")
-    PlotTrajectory(path+"b2_Kinetic.csv")
-    PlotTrajectory(path+"b3_Kinetic.csv")
+    PlotTrajectory(path+"A1_Kinetic.csv")
+    PlotTrajectory(path+"A2_Kinetic.csv")
+    PlotTrajectory(path+"A3_Kinetic.csv")
     if SAVE_FIGURE: plt.savefig(path + "Trajectory", dpi=900)
 
     plt.figure("Speed")
-    PlotSpeed(path+"a_Kinetic.csv")
-    PlotSpeed(path+"b1_Kinetic.csv")
-    PlotSpeed(path+"b2_Kinetic.csv")
-    PlotSpeed(path+"b3_Kinetic.csv")
+    PlotSpeed(path+"A1_Kinetic.csv")
+    PlotSpeed(path+"A2_Kinetic.csv")
+    PlotSpeed(path+"A3_Kinetic.csv")
     if SAVE_FIGURE: plt.savefig(path + "Speed", dpi=900)
 
     plt.figure("Distance")
-    PlotDistance(path+"a_Kinetic.csv")
-    PlotDistance(path+"b1_Kinetic.csv")
-    PlotDistance(path+"b2_Kinetic.csv")
-    PlotDistance(path+"b3_Kinetic.csv")
+    PlotDistance(path+"A1_Kinetic.csv")
+    PlotDistance(path+"A2_Kinetic.csv")
+    PlotDistance(path+"A3_Kinetic.csv")
     if SAVE_FIGURE: plt.savefig(path + "Distance", dpi=900)
 
     plt.figure("Numerical")
-    NumericalRelativeSpeed(path+"a_Kinetic.csv")
-    NumericalRelativeSpeed(path+"b1_Kinetic.csv")
-    NumericalRelativeSpeed(path+"b2_Kinetic.csv")
-    NumericalRelativeSpeed(path+"b3_Kinetic.csv")
+    NumericalRelativeSpeed(path+"A1_Kinetic.csv")
+    NumericalRelativeSpeed(path+"A2_Kinetic.csv")
+    NumericalRelativeSpeed(path+"A3_Kinetic.csv")
     if SAVE_FIGURE: plt.savefig(path + "Numerical", dpi=900)
