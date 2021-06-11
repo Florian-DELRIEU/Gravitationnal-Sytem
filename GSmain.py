@@ -106,6 +106,24 @@ class AstralBody:
         self.vx = vx
         self.vy = vy
 
+    def DoBurn(self,Prograde=0,Radial=0):
+        """
+        Effectue une poussé dans les deux directions tangeantielles ou radiales à la vitesse
+        """
+        DV_p = Prograde
+        DV_r = Radial
+        Theta_p = np.arctan(self.vy/self.vx)  # Angle du vecteur vitesse
+        Theta_r = Theta_p + np.pi/2  # Angle du vecteur radiale (vers le centre de l'ellipse)
+        V_p = np.sqrt(self.vx**2 + self.vy**2)
+        V_r = 0
+
+        V_p += DV_p
+        V_r += DV_r
+
+        self.vx = np.cos(Theta_p)*V_p + np.cos(Theta_r)*V_r
+        self.vy = np.sin(Theta_p)*V_p + np.sin(Theta_r)*V_r
+
+
 class Domain:
     """
     Objet regroupant les constantes de l'univers ainsi que le maillage spatio-temporel

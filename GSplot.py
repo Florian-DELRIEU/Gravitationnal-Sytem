@@ -89,8 +89,8 @@ def PlotAnimation(CSVlist, Trajectory=False, PPF=10):
             plt.pause(0.1)
             plt.clf()
             for body in BodyList:
-                plt.xlim(-5,5)
-                plt.ylim(-5,5)
+                plt.xlim(-15,15)
+                plt.ylim(-15,15)
                 plt.plot(body["x"][i],body["y"][i],"o")
                 if Trajectory: plt.plot(np.array(body["x"][:i]),np.array(body["y"][:i]),"-")
             frame = 0
