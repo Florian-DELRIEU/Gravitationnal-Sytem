@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDF/Images/RappelsMecaCel.tex" beforeDir="false" afterPath="$PROJECT_DIR$/PDF/Images/RappelsMecaCel.tex" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="DomainClass-Editing" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="master" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="Florian-DELRIEU" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="Gravitationnal-Sytem" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/GSmain.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/GS_2Body.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectId" id="1daVpabDrW3AmExsXGuNdWOFEPE" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager" selected="Python.GS_2Body">
+    <configuration name="GS_2Body" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Gravitationnal-Sytem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/spam/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="false" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GS_2Body.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="GS_2D" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Gravitationnal-Sytem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GS_2D.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="GSmain" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Gravitationnal-Sytem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GSmain.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.GS_2Body" />
+      <item itemvalue="Python.GS_2D" />
+      <item itemvalue="Python.GSmain" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.GS_2Body" />
+        <item itemvalue="Python.GSmain" />
+        <item itemvalue="Python.GS_2D" />
+        <item itemvalue="Python.GS_2Body" />
+        <item itemvalue="Python.GS_2Body" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="" />
+      <created>1592663374586</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592663374586</updated>
+    </task>
+    <task id="LOCAL-00001" summary="[ADD] v0.1 - GS_2D.py added">
+      <created>1592663668708</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1592663668708</updated>
+    </task>
+    <task id="LOCAL-00002" summary="[Minor Update] v0.2 - Short Description">
+      <created>1592663822584</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1592663822584</updated>
+    </task>
+    <task id="LOCAL-00003" summary="[Minor Update] v0.2.1 - Astral body class">
+      <created>1592664449517</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1592664449517</updated>
+    </task>
+    <task id="LOCAL-00004" summary="[Minor Update] v0.2.2 - Maillage">
+      <created>1592665229098</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1592665229098</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[Minor Update] v0.2.3">
+      <created>1592665309027</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1592665309027</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[Minor Update] v0.3 - Add Maillage in master">
+      <created>1592665734140</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1592665734140</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[Minor Update] v0.3.1">
+      <created>1592673452700</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1592673452700</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[Update] v0.3.2">
+      <created>1592674281602</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1592674281602</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[Update] v0.3.3">
+      <created>1592674523667</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1592674523667</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[Update] v0.3.4 - First Plot">
+      <created>1592676031635</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1592676031635</updated>
+    </task>
+    <task id="LOCAL-00011" summary="[Update] v0.2.4 - Improve AstralObject() class">
+      <created>1593805710846</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1593805710846</updated>
+    </task>
+    <task id="LOCAL-00012" summary="[Fix] v0.2.5 - Potential and Distance">
+      <created>1593806137534</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1593806137534</updated>
+    </task>
+    <task id="LOCAL-00013" summary="[Update] v0.2.6">
+      <created>1593809908170</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1593809908170</updated>
+    </task>
+    <task id="LOCAL-00014" summary="[Update] v0.2.7">
+      <created>1593811361131</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1593811361131</updated>
+    </task>
+    <task id="LOCAL-00015" summary="[Update] v0.2.8 - Remove Potential">
+      <created>1593811657385</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1593811657385</updated>
+    </task>
+    <task id="LOCAL-00016" summary="[Update] v0.2.9">
+      <created>1593814660439</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1593814660439</updated>
+    </task>
+    <task id="LOCAL-00017" summary="[Update] v0.2.10">
+      <created>1593818075771</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1593818075771</updated>
+    </task>
+    <task id="LOCAL-00018" summary="[Update] v0.2.10">
+      <created>1593820947654</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1593820947654</updated>
+    </task>
+    <task id="LOCAL-00019" summary="[Update] v0.2.11 - Quiver and mask">
+      <created>1593823774357</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1593823774357</updated>
+    </task>
+    <task id="LOCAL-00020" summary="[Update] v0.2.12">
+      <created>1593937763730</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1593937763730</updated>
+    </task>
+    <task id="LOCAL-00021" summary="[Update] v0.2.13">
+      <created>1593940537404</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1593940537404</updated>
+    </task>
+    <task id="LOCAL-00022" summary="[Update] v0.2.14 - mask modification">
+      <created>1593941264452</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1593941264452</updated>
+    </task>
+    <task id="LOCAL-00023" summary="[Minor Update] v0.2.15">
+      <created>1593942039036</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1593942039036</updated>
+    </task>
+    <task id="LOCAL-00024" summary="[Minor Update] v0.2.15 - AstralBody.__repr__ edited">
+      <created>1593942461710</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1593942461710</updated>
+    </task>
+    <task id="LOCAL-00025" summary="[Minor Update] v0.2.17">
+      <created>1594507960886</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1594507960886</updated>
+    </task>
+    <task id="LOCAL-00026" summary="[Fix] v0.2.18 - Distance is tuple fixed and minor comments">
+      <created>1594510869624</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1594510869624</updated>
+    </task>
+    <task id="LOCAL-00027" summary="[Minor Update] v0.2.19 - add self.Radius">
+      <created>1594511836417</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1594511836417</updated>
+    </task>
+    <task id="LOCAL-00028" summary="[Minor Update] v0.2.20 - radius is mask">
+      <created>1594514510769</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1594514510769</updated>
+    </task>
+    <task id="LOCAL-00029" summary="[Minor Update] v0.2.21">
+      <created>1594543517474</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1594543517474</updated>
+    </task>
+    <task id="LOCAL-00030" summary="[Update] v0.3.5">
+      <created>1594543926357</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1594543926357</updated>
+    </task>
+    <task id="LOCAL-00031" summary="[Fix] v0.3.7 - bugs fixed and plot">
+      <created>1594544984235</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1594544984235</updated>
+    </task>
+    <task id="LOCAL-00032" summary="[Update] v1.0">
+      <created>1594568675333</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1594568675333</updated>
+    </task>
+    <task id="LOCAL-00033" summary="[Update] v0.2.21.1 - File cleared">
+      <created>1594571797613</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1594571797613</updated>
+    </task>
+    <task id="LOCAL-00034" summary="[Update] v0.2b.2 - File cleared">
+      <created>1594574856737</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1594574856737</updated>
+    </task>
+    <task id="LOCAL-00035" summary="[Update] v0.2b.3 - AstralBody.refresh added&#10;&#10;Il faut que je trouve un moyen de supprimer&#10;a,b = AstralBody(), AstralBody()&#10;Body = [a , b]&#10;&#10;a.Body_list = Body.copy()&#10;a.Body_list.remove(self) # Ne marche pas&#10;&#10;b.Body_list = Body&#10;b.Body_list.remove(self) # marche mais supprime aussi dans Body">
+      <created>1596063289297</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1596063289297</updated>
+    </task>
+    <task id="LOCAL-00036" summary="[v0.2b.4] Minor fix - 0.2b.3 bug fixed">
+      <created>1596126821276</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1596126821276</updated>
+    </task>
+    <task id="LOCAL-00037" summary="[v0.2b.5] Update - Now working">
+      <created>1596129196260</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1596129196260</updated>
+    </task>
+    <task id="LOCAL-00038" summary="[v0.2b.6] Update">
+      <created>1596927626475</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1596927626475</updated>
+    </task>
+    <task id="LOCAL-00039" summary="[v0.2b.7] Update - add trajectory">
+      <created>1596928720558</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1596928720558</updated>
+    </task>
+    <task id="LOCAL-00040" summary="[v2.0] Major Update - Astral Object Classs">
+      <created>1596929785337</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1596929785337</updated>
+    </task>
+    <task id="LOCAL-00041" summary="[v2.1.1] Update - Universe Class&#10;&#10;Classe possédant les constantes, le maillage, la liste des corps et tout le reste">
+      <created>1596931523277</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1596931523277</updated>
+    </task>
+    <task id="LOCAL-00042" summary="[v2.1.2] Update - Rename and update">
+      <created>1596966991444</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1596966991444</updated>
+    </task>
+    <task id="LOCAL-00043" summary="[v2.2b] Update">
+      <created>1597482542065</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1597482542065</updated>
+    </task>
+    <task id="LOCAL-00044" summary="[v2.2.1] Update - Adding GS_2Body">
+      <created>1597483388956</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1597483388956</updated>
+    </task>
+    <task id="LOCAL-00045" summary="[v2.2.2] Update">
+      <created>1597486551175</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1597486551175</updated>
+    </task>
+    <task id="LOCAL-00046" summary="[v2.2.3] Minor add - Pictures">
+      <created>1597487029860</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1597487029860</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="AstralObject-Class2" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="AstralObject-Class" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[Update] v0.2.14 - mask modification" />
+    <MESSAGE value="[Minor Update] v0.2.15" />
+    <MESSAGE value="[Minor Update] v0.2.16 - AstralBody.__repr__ edited" />
+    <MESSAGE value="[Update] v0.2.17" />
+    <MESSAGE value="[Fix] v0.2.18 - Distance is tuple fixed and minor comments" />
+    <MESSAGE value="[Minor Update] v0.2.19 - add self.Radius" />
+    <MESSAGE value="[Minor Update] v0.2.20 - radius is mask" />
+    <MESSAGE value="[Minor Update] v0.2.21" />
+    <MESSAGE value="[Update] v0.3.6" />
+    <MESSAGE value="[Fix] v0.3.7 - bugs fixed and plot" />
+    <MESSAGE value="[Update] v1.0" />
+    <MESSAGE value="[Update] v0.2b.1 - File cleared" />
+    <MESSAGE value="[Update] v0.2b.2 - File cleared" />
+    <MESSAGE value="[Update] v0.2b.3 - AstralBody.refresh added&#10;&#10;Il faut que je trouve un moyen de supprimer&#10;a,b = AstralBody(), AstralBody()&#10;Body = [a , b]&#10;&#10;a.Body_list = Body.copy()&#10;a.Body_list.remove(self) # Ne marche pas&#10;&#10;b.Body_list = Body&#10;b.Body_list.remove(self) # marche mais supprime aussi dans Body" />
+    <MESSAGE value="[v0.2b.4] Minor fix - 0.2b.3 bug fixed" />
+    <MESSAGE value="[v0.2b.5] Update - Now working" />
+    <MESSAGE value="[v0.2b.6] Update" />
+    <MESSAGE value="[v0.2b.7] Update - add trajectory" />
+    <MESSAGE value="[v2.0] Major Update - Astral Object Classs" />
+    <MESSAGE value="[v2.1.1] Update - Universe Class&#10;&#10;Classe possédant les constantes, le maillage, la liste des corps et tout le reste" />
+    <MESSAGE value="[v2.1.2] Update - Rename and update" />
+    <MESSAGE value="[v2.2b] Update" />
+    <MESSAGE value="[v2.2.1] Update - Adding GS_2Body" />
+    <MESSAGE value="[v2.2.2] Update" />
+    <MESSAGE value="[v2.2.3] Minor add - Pictures" />
+    <option name="LAST_COMMIT_MESSAGE" value="[v2.2.3] Minor add - Pictures" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
