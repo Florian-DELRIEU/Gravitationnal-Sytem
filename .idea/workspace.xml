@@ -28,6 +28,7 @@
     <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BinaryOrbit.py" beforeDir="false" afterPath="$PROJECT_DIR$/BinaryOrbit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CircularOrbit.py" beforeDir="false" afterPath="$PROJECT_DIR$/CircularOrbit.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +80,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.project" />
   </component>
-  <component name="RunManager" selected="Python.DataAnalyze">
+  <component name="RunManager" selected="Python.CircularOrbit">
     <configuration name="BinaryOrbit" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Gravitationnal-Sytem" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,9 +127,6 @@
       <module name="Gravitationnal-Sytem" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -189,15 +187,15 @@
       <item itemvalue="Python.BinaryOrbit" />
       <item itemvalue="Python.BinaryOrbit_plot" />
       <item itemvalue="Python.CircularOrbit" />
-      <item itemvalue="Python.DataAnalyze" />
       <item itemvalue="Python.Maneuver" />
+      <item itemvalue="Python.DataAnalyze" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.CircularOrbit" />
         <item itemvalue="Python.DataAnalyze" />
         <item itemvalue="Python.Maneuver" />
         <item itemvalue="Python.BinaryOrbit" />
-        <item itemvalue="Python.CircularOrbit" />
         <item itemvalue="Python.BinaryOrbit_plot" />
       </list>
     </recent_temporary>

@@ -12,8 +12,8 @@ PLOTTING = True
 SAVE_FIGURE = True # Si PLOTTING == True
 COMPARE = False
 ANIME = False
-path = "Datas/OrbiteBinaire1c/"
-CSV_List = [
+path = "Datas/OrbiteBinaire1c/"  # Chemins du dossier de sauvegarde
+CSV_List = [  # Listes des fichiers CSV de sauvegarde
     "a_Kinetic.csv",
     "b_Kinetic.csv"
 ]
@@ -94,11 +94,5 @@ if COMPARE:
     NumericalRelativeSpeed(directory + "a_Kinetic.csv", mark="k--", label="case 1B")
 
 if ANIME:
-    CSVlist = [
-        path + "a_Kinetic.csv",
-        path + "b_Kinetic.csv"
-    ]
     plt.figure(3)
-    plt.xlim(-15,15)
-    plt.ylim(-15,15)
-    PlotAnimation(CSVlist,Trajectory=True,PPF=40)
+    PlotAnimation(CSV_List,Trajectory=True,PPF=40)

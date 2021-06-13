@@ -11,6 +11,12 @@ SIMULATION = True
 PLOT = True
 SAVE_FIGURE = False # Si PLOT == True
 path = "Datas/"
+CSV_List  = [
+    "A_Kinetic.csv",
+    "A1_Kinetic.csv",
+    "A2_Kinetic.csv",
+    "A3_Kinetic.csv"
+]
 
 if SIMULATION:
     start = t.time()
@@ -52,34 +58,28 @@ if SIMULATION:
         if i == 0.7*len(D.t): print("70 %")
         if i == 0.9*len(D.t): print("90 %")
 
-    Dict2CSV(A1.Kinetic,path+"A1_Kinetic.csv")
-    Dict2CSV(A2.Kinetic,path+"A2_Kinetic.csv")
-    Dict2CSV(A3.Kinetic,path+"A3_Kinetic.csv")
+    for i,csv in enumerate(CSV_List): Dict2CSV(D.BodyList[i].Kinetic,path+CSV_List[i])
 
     duration = t.time() - start
     print("Simulation time {}".format(duration))
 
 if PLOT:
     plt.figure("Trajectory")
-    PlotTrajectory(path+"A1_Kinetic.csv")
-    PlotTrajectory(path+"A2_Kinetic.csv")
-    PlotTrajectory(path+"A3_Kinetic.csv")
-    if SAVE_FIGURE: plt.savefig(path + "Trajectory", dpi=900)
+    plt.title("Trajectory")
+    for i,csv in enumerate(CSV_List): PlotTrajectory(path + csv,mark="-")
+    if SAVE_FIGURE: plt.savefig(path+"Trajectory",dpi=300)
 
     plt.figure("Speed")
-    PlotSpeed(path+"A1_Kinetic.csv")
-    PlotSpeed(path+"A2_Kinetic.csv")
-    PlotSpeed(path+"A3_Kinetic.csv")
-    if SAVE_FIGURE: plt.savefig(path + "Speed", dpi=900)
+    plt.title("Speed")
+    for i, csv in enumerate(CSV_List): PlotSpeed(path+csv,mark="-")
+    if SAVE_FIGURE: plt.savefig(path+"Speed", dpi=300)
 
     plt.figure("Distance")
-    PlotDistance(path+"A1_Kinetic.csv")
-    PlotDistance(path+"A2_Kinetic.csv")
-    PlotDistance(path+"A3_Kinetic.csv")
-    if SAVE_FIGURE: plt.savefig(path + "Distance", dpi=900)
+    plt.title("Distance")
+    for i, csv in enumerate(CSV_List): PlotDistance(path+csv,mark="-")
+    if SAVE_FIGURE: plt.savefig(path+"Distance", dpi=300)
 
     plt.figure("Numerical")
-    NumericalRelativeSpeed(path+"A1_Kinetic.csv")
-    NumericalRelativeSpeed(path+"A2_Kinetic.csv")
-    NumericalRelativeSpeed(path+"A3_Kinetic.csv")
-    if SAVE_FIGURE: plt.savefig(path + "Numerical", dpi=900)
+    plt.title("Numerical")
+    for i, csv in enumerate(CSV_List): NumericalRelativeSpeed(path+csv,mark="-")
+    if SAVE_FIGURE: plt.savefig(path+"Numerical", dpi=300)
