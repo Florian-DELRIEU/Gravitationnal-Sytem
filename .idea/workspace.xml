@@ -27,6 +27,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinaryOrbit.py" beforeDir="false" afterPath="$PROJECT_DIR$/BinaryOrbit.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +147,9 @@
       <module name="Gravitationnal-Sytem" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Datas/SystemePesant2" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -185,8 +189,8 @@
       <item itemvalue="Python.BinaryOrbit" />
       <item itemvalue="Python.BinaryOrbit_plot" />
       <item itemvalue="Python.CircularOrbit" />
-      <item itemvalue="Python.Maneuver" />
       <item itemvalue="Python.DataAnalyze" />
+      <item itemvalue="Python.Maneuver" />
     </list>
     <recent_temporary>
       <list>

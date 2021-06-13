@@ -13,7 +13,11 @@ SAVE_FIGURE = True # Si PLOTTING == True
 COMPARE = False
 ANIME = False
 path = "Datas/OrbiteBinaire1c/"
-
+CSV_List = [
+    "a_Kinetic.csv",
+    "b_Kinetic.csv"
+]
+Mark_List = ["r","b"]
 
 if SIMULATION:
     start = t.time()
@@ -55,39 +59,39 @@ if SIMULATION:
 
 if PLOTTING:
     plt.figure("Trajectory")
-    PlotTrajectory(path + "a_Kinetic.csv",mark="r-")
-    PlotTrajectory(path + "b_Kinetic.csv",mark="b-")
-    if SAVE_FIGURE: plt.savefig(path+"Trajectory",dpi=900)
+    plt.title("Trajectory")
+    for i,csv in enumerate(CSV_List): PlotTrajectory(path + csv,mark=Mark_List[i]+"-")
+    if SAVE_FIGURE: plt.savefig(path+"Trajectory",dpi=300)
 
     plt.figure("Speed")
-    PlotSpeed(path + "a_Kinetic.csv",mark="r-")
-    PlotSpeed(path + "b_Kinetic.csv",mark="b-")
-    if SAVE_FIGURE: plt.savefig(path+"Speed", dpi=900)
+    plt.title("Speed")
+    for i, csv in enumerate(CSV_List): PlotSpeed(path+csv,mark=Mark_List[i]+"-")
+    if SAVE_FIGURE: plt.savefig(path+"Speed", dpi=300)
 
     plt.figure("Distance")
-    PlotDistance(path + "a_Kinetic.csv",mark="r-")
-    PlotDistance(path + "b_Kinetic.csv",mark="b-")
-    if SAVE_FIGURE: plt.savefig(path+"Distance", dpi=900)
+    plt.title("Distance")
+    for i, csv in enumerate(CSV_List): PlotDistance(path+csv,mark=Mark_List[i]+"-")
+    if SAVE_FIGURE: plt.savefig(path+"Distance", dpi=300)
 
     plt.figure("Numerical")
-    NumericalRelativeSpeed(path + "a_Kinetic.csv",mark="r-")
-    NumericalRelativeSpeed(path + "b_Kinetic.csv",mark="b-")
-    if SAVE_FIGURE: plt.savefig(path+"Numerical", dpi=900)
+    plt.title("Numerical")
+    for i, csv in enumerate(CSV_List): NumericalRelativeSpeed(path+csv,mark=Mark_List[i]+"-")
+    if SAVE_FIGURE: plt.savefig(path+"Numerical", dpi=300)
 
 if COMPARE:
     plt.figure(1)
     plt.title("Distance de A par rapport à l'origine")
-    path = "Datas/OrbiteBinaire1a/"
-    PlotDistance(path + "a_Kinetic.csv", mark="k-",label="case 1A")
-    path = "Datas/OrbiteBinaire1b/"
-    PlotDistance(path + "a_Kinetic.csv", mark="k--",label="case 1B")
+    directory = "Datas/OrbiteBinaire1a/"
+    PlotDistance(directory + "a_Kinetic.csv", mark="k-",label="case 1A")
+    directory = "Datas/OrbiteBinaire1b/"
+    PlotDistance(directory + "a_Kinetic.csv", mark="k--",label="case 1B")
 
     plt.figure(2)
     plt.title("NRS pour A dans 2 cas")
-    path = "Datas/OrbiteBinaire1a/"
-    NumericalRelativeSpeed(path + "a_Kinetic.csv", mark="k-", label="case 1A")
-    path = "Datas/OrbiteBinaire1b/"
-    NumericalRelativeSpeed(path + "a_Kinetic.csv", mark="k--", label="case 1B")
+    directory = "Datas/OrbiteBinaire1a/"
+    NumericalRelativeSpeed(directory + "a_Kinetic.csv", mark="k-", label="case 1A")
+    directory = "Datas/OrbiteBinaire1b/"
+    NumericalRelativeSpeed(directory + "a_Kinetic.csv", mark="k--", label="case 1B")
 
 if ANIME:
     CSVlist = [
