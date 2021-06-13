@@ -10,7 +10,13 @@ import time as t
 SIMULATION = True
 PLOT = True
 SAVE_FIGURE = True # Si PLOT == True
-path = "Datas/SystemePesant2/"
+path = "Datas/SystemePesant3/"
+CSV_List  = [
+    "A_Kinetic.csv",
+    "A1_Kinetic.csv",
+    "A2_Kinetic.csv",
+    "A3_Kinetic.csv"
+]
 
 if SIMULATION:
     start = t.time()
@@ -24,7 +30,7 @@ if SIMULATION:
     # Creating bodies
     A = AstralBody(D)
     A.setbody(0,0,10)
-    A.setvelocity(0,0)
+    A.setvelocity(0,-0.07274182218642697)
 
     a1 = 1
     a2 = 2
@@ -52,39 +58,28 @@ if SIMULATION:
         if i == 0.7*len(D.t): print("70 %")
         if i == 0.9*len(D.t): print("90 %")
 
-    Dict2CSV(A.Kinetic,path+"A_Kinetic.csv")
-    Dict2CSV(A1.Kinetic,path+"A1_Kinetic.csv")
-    Dict2CSV(A2.Kinetic,path+"A2_Kinetic.csv")
-    Dict2CSV(A3.Kinetic,path+"A3_Kinetic.csv")
+    for i,csv in enumerate(CSV_List): Dict2CSV(D.BodyList[i].Kinetic,path+CSV_List[i])
 
     duration = t.time() - start
     print("Simulation time {}".format(duration))
 
 if PLOT:
     plt.figure("Trajectory")
-    PlotTrajectory(path+"A_Kinetic.csv",label="A")
-    PlotTrajectory(path+"A1_Kinetic.csv",label="A1")
-    PlotTrajectory(path+"A2_Kinetic.csv",label="A2")
-    PlotTrajectory(path+"A3_Kinetic.csv",label="A3")
-    if SAVE_FIGURE: plt.savefig(path + "Trajectory", dpi=900)
+    plt.title("Trajectory")
+    for i,csv in enumerate(CSV_List): PlotTrajectory(path + csv,mark="-")
+    if SAVE_FIGURE: plt.savefig(path+"Trajectory",dpi=300)
 
     plt.figure("Speed")
-    PlotSpeed(path+"A_Kinetic.csv",label="A")
-    PlotSpeed(path+"A1_Kinetic.csv",label="A1")
-    PlotSpeed(path+"A2_Kinetic.csv",label="A2")
-    PlotSpeed(path+"A3_Kinetic.csv",label="A3")
-    if SAVE_FIGURE: plt.savefig(path + "Speed", dpi=900)
+    plt.title("Speed")
+    for i, csv in enumerate(CSV_List): PlotSpeed(path+csv,mark="-")
+    if SAVE_FIGURE: plt.savefig(path+"Speed", dpi=300)
 
     plt.figure("Distance")
-    PlotDistance(path+"A_Kinetic.csv",label="A")
-    PlotDistance(path+"A1_Kinetic.csv",label="A1")
-    PlotDistance(path+"A2_Kinetic.csv",label="A2")
-    PlotDistance(path+"A3_Kinetic.csv",label="A3")
-    if SAVE_FIGURE: plt.savefig(path + "Distance", dpi=900)
+    plt.title("Distance")
+    for i, csv in enumerate(CSV_List): PlotDistance(path+csv,mark="-")
+    if SAVE_FIGURE: plt.savefig(path+"Distance", dpi=300)
 
     plt.figure("Numerical")
-    NumericalRelativeSpeed(path+"A_Kinetic.csv",label="A")
-    NumericalRelativeSpeed(path+"A1_Kinetic.csv",label="A1")
-    NumericalRelativeSpeed(path+"A2_Kinetic.csv",label="A2")
-    NumericalRelativeSpeed(path+"A3_Kinetic.csv",label="A3")
-    if SAVE_FIGURE: plt.savefig(path + "Numerical", dpi=900)
+    plt.title("Numerical")
+    for i, csv in enumerate(CSV_List): NumericalRelativeSpeed(path+csv,mark="-")
+    if SAVE_FIGURE: plt.savefig(path+"Numerical", dpi=300)
