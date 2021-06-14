@@ -5,7 +5,7 @@ import numpy as np
 
 def PlotTrajectory(CSVfile,mark="",grid=True,label=""):
     """
-
+    Extrait les données du :CSVfile: et affiche la trajectoire
     """
     Data = Csv2Dict(CSVfile)
     x = np.array(Data["x"])
@@ -16,7 +16,7 @@ def PlotTrajectory(CSVfile,mark="",grid=True,label=""):
 
 def PlotDistance(CSVfile,mark="",grid=True,label=""):
     """
-
+    Extrait les données du :CSVfile: et affiche la distance par rapport à l'origine
     """
     Data = Csv2Dict(CSVfile)
     t = np.array(Data["Time"])
@@ -28,7 +28,7 @@ def PlotDistance(CSVfile,mark="",grid=True,label=""):
 
 def PlotSpeed(CSVfile,mark="",grid=True,label=""):
     """
-
+    Extrait les données du :CSVfile: et affiche la vitesse
     """
     Data = Csv2Dict(CSVfile)
     t = np.array(Data["Time"])
@@ -40,7 +40,7 @@ def PlotSpeed(CSVfile,mark="",grid=True,label=""):
 
 def PlotAcceleration(CSVfile,mark="",grid=True,label=""):
     """
-
+    Extrait les données du :CSVfile: et affiche l'accélération 
     """
     Data = Csv2Dict(CSVfile)
     t = np.array(Data["Time"])
@@ -52,7 +52,7 @@ def PlotAcceleration(CSVfile,mark="",grid=True,label=""):
 
 def NumericalRelativeSpeed(CSVfile,mark="",grid=True,label=""):
     """
-    Trace le nombre v.dt/a pour chaque corps pour evaluer la précision numérique
+    Trace le nombre v*dt/a pour chaque corps pour evaluer la précision numérique
     """
     Data = Csv2Dict(CSVfile)
     t = np.array(Data["Time"])
