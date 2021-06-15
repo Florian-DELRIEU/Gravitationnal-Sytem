@@ -14,7 +14,7 @@ if PSD_VitesseA:
     V = np.sqrt(vx**2 + vy**2)
 
     psdV = psd.psd(V)
-    freq = psd.freq(V,t)
+    freq = psd.freq(t,V)
 
     plt.title("PSD de la vitesse de l'étoile")
     plt.semilogx(freq,psdV)
@@ -29,7 +29,7 @@ if PSD_PositionA:
 
     PSDx = psd.psd(x)
     PSDy = psd.psd(y)
-    F = psd.freq(x, t)
+    F = psd.freq(t,x)
 
     plt.title("PSD de la position de l'étoile")
     plt.loglog(F, PSDx)
