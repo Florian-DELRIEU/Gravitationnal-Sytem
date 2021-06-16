@@ -3,7 +3,6 @@ Programme simulant un sytème gravitationnel a N corps en 2D
 """
 import numpy as np
 import matplotlib.pyplot as plt
-plt.ion()
 
 def GRAVITYFIELD(body_list): pass
 

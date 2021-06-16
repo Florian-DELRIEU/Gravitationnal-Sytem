@@ -99,10 +99,11 @@ def PlotAnimation(CSVlist, Trajectory=False, PPF=10):
                 if Trajectory: plt.plot(np.array(body["x"][:i]),np.array(body["y"][:i]),"-")
             frame = 0
 
-def Distance(CSV,CSVList=list()):
-    if CSV in CSVList: CSVList.remove(CSV)
-    DATA = Unzip(CSVList)
-    ListSize = len(CSVList)
+def Distance(CSV, CSVList=list()):
+    CSVList_temp = CSVList.copy()
+    if CSV in CSVList_temp: CSVList_temp.remove(CSV)
+    DATA = Unzip(CSVList_temp)
+    ListSize = len(CSVList_temp)
     x,y = np.array(Extract(CSV,"x")) , np.array(Extract(CSV,"y"))  #Extrait les coordonées du corps cible
     N = len(x)
     distance_list = list()
