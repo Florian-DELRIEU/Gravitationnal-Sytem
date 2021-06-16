@@ -7,7 +7,7 @@ from MyPack.FFT import *
 from MyPack.Convert import *
 import time as t
 
-SIMULATION = True
+SIMULATION = False
 PLOT = True
 SAVE_FIGURE = True # Si PLOT == True
 path = "Datas/SystemePesant3/"
@@ -81,5 +81,9 @@ if PLOT:
 
     plt.figure("Numerical")
     plt.title("Numerical")
-    for i, csv in enumerate(CSV_List): NumericalRelativeSpeed(path+csv,mark="-")
+    CSV_List_copy = CSV_List.copy()
+    for i,_ in enumerate(CSV_List):
+        CSV_List_copy[i] = path + _
+    for i, csv in enumerate(CSV_List_copy): NumericalRelativeSpeed(csv,CSV_List_copy,mark="-",label=csv.split("_")[0])
+    del CSV_List_copy
     if SAVE_FIGURE: plt.savefig(path+"Numerical", dpi=300)
