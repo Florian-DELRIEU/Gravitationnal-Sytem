@@ -61,11 +61,14 @@ def NumericalRelativeSpeed(CSVfile,CSVlist=list(),mark="",grid=True,label=""):
     vy = np.array(Data["vy"])
     x = np.array(Data["x"])
     y = np.array(Data["y"])
-    dist = Distance(CSVfile,CSVlist)
+    V = np.sqrt(vx**2 + vy**2)
+    dist = np.array(Distance(CSVfile,CSVlist))
     min_dist_list = list()
-    for i,_ in enumerate(dist):
+    for i in np.arange(len(dist[0,:])):
         min_dist_list.append(dist[:,i].min())
-    plt.semilogy(t,dist[:,],mark,label=label)
+    Numeric = (V * dt) / np.array(min_dist_list)
+    for i in np.arange(len(dist)):
+        plt.semilogy(t,abs(Numeric),mark,label=label)
     if grid: plt.grid("both")
     if label is not "": plt.legend(loc="upper right")
 
