@@ -1,5 +1,6 @@
 """
-Programme visant à simuler un system orbital avec 2 corps en utilisant GSmain.
+Programme visant à simuler un system orbital avec 4 corps en utilisant GSmain.
+Systeme a étudier
 """
 from GSmain import *
 from GSplot import *
@@ -11,7 +12,7 @@ import os
 SIMULATION = False
 PLOT = True
 SAVE_FIGURE = True # Si PLOT == True
-path = "Datas/SystemePesant2/"
+path = "Datas/SystemePesant3/"
 os.chdir(path)
 CSV_List  = [
     "A_Kinetic.csv",
