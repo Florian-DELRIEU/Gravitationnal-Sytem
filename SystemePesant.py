@@ -6,11 +6,13 @@ from GSplot import *
 from MyPack.FFT import *
 from MyPack.Convert import *
 import time as t
+import os
 
 SIMULATION = False
 PLOT = True
 SAVE_FIGURE = True # Si PLOT == True
 path = "Datas/SystemePesant3/"
+os.chdir(path)
 CSV_List  = [
     "A_Kinetic.csv",
     "A1_Kinetic.csv",
@@ -66,24 +68,20 @@ if SIMULATION:
 if PLOT:
     plt.figure("Trajectory")
     plt.title("Trajectory")
-    for i,csv in enumerate(CSV_List): PlotTrajectory(path + csv,mark="-")
-    if SAVE_FIGURE: plt.savefig(path+"Trajectory",dpi=300)
+    for i,csv in enumerate(CSV_List): PlotTrajectory(csv,mark="-")
+    if SAVE_FIGURE: plt.savefig("Trajectory",dpi=300)
 
     plt.figure("Speed")
     plt.title("Speed")
-    for i, csv in enumerate(CSV_List): PlotSpeed(path+csv,mark="-")
-    if SAVE_FIGURE: plt.savefig(path+"Speed", dpi=300)
+    for i, csv in enumerate(CSV_List): PlotSpeed(csv,mark="-")
+    if SAVE_FIGURE: plt.savefig("Speed", dpi=300)
 
     plt.figure("Distance")
     plt.title("Distance")
-    for i, csv in enumerate(CSV_List): PlotDistance(path+csv,mark="-")
-    if SAVE_FIGURE: plt.savefig(path+"Distance", dpi=300)
+    for i, csv in enumerate(CSV_List): PlotDistance(csv,mark="-")
+    if SAVE_FIGURE: plt.savefig("Distance", dpi=300)
 
     plt.figure("Numerical")
     plt.title("Numerical")
-    CSV_List_copy = CSV_List.copy()
-    for i,_ in enumerate(CSV_List):
-        CSV_List_copy[i] = path + _
-    for i, csv in enumerate(CSV_List_copy): NumericalRelativeSpeed(csv,CSV_List_copy,mark="-",label=csv.split("_")[0])
-    del CSV_List_copy
-    if SAVE_FIGURE: plt.savefig(path+"Numerical", dpi=300)
+    for i, csv in enumerate(CSV_List): NumericalRelativeSpeed(csv,CSV_List,mark="-",label=csv.split("_")[0])
+    if SAVE_FIGURE: plt.savefig("Numerical", dpi=300)
