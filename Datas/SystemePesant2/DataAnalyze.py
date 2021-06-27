@@ -1,7 +1,10 @@
+import os
+os.chdir("../../")
 from GSmain import *
 from GSplot import *
 import MyPack.FFT as psd
 plt.ion()
+os.chdir("Datas/SystemePesant2/")
 
 PSD_VitesseA = False
 PSD_PositionA = True
@@ -32,6 +35,6 @@ if PSD_PositionA:
     F = psd.freq(t,x)
 
     plt.title("PSD de la position de l'étoile")
-    plt.loglog(F, PSDx)
+    plt.semilogy(F, PSDx)
     plt.xlabel("Frequence (Hz)")
     plt.ylabel("Amplitude")
