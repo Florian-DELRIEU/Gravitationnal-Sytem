@@ -2,16 +2,17 @@
 Programme visant à simuler un system orbital avec 4 corps en utilisant GSmain.
 Systeme a étudier
 """
+import os
+os.chdir("../../")
 from GSmain import *
 from GSplot import *
 from MyPack.FFT import *
 from MyPack.Convert import *
 import time as t
-import os
 
 SIMULATION = False
 PLOT = True
-SAVE_FIGURE = True # Si PLOT == True
+SAVE_FIGURE = False # Si PLOT == True
 path = "Datas/SystemePesant3/"
 os.chdir(path)
 CSV_List  = [
@@ -69,20 +70,27 @@ if SIMULATION:
 if PLOT:
     plt.figure("Trajectory")
     plt.title("Trajectory")
-    for i,csv in enumerate(CSV_List): PlotTrajectory(csv,mark="-")
+    for i,csv in enumerate(CSV_List): PlotTrajectory(csv,mark="-",label=csv.split("_")[0])
     if SAVE_FIGURE: plt.savefig("Trajectory",dpi=300)
 
     plt.figure("Speed")
     plt.title("Speed")
-    for i, csv in enumerate(CSV_List): PlotSpeed(csv,mark="-")
+    for i, csv in enumerate(CSV_List): PlotSpeed(csv,mark="-",label=csv.split("_")[0])
     if SAVE_FIGURE: plt.savefig("Speed", dpi=300)
 
     plt.figure("Distance")
     plt.title("Distance")
-    for i, csv in enumerate(CSV_List): PlotDistance(csv,mark="-")
+    for i, csv in enumerate(CSV_List): PlotDistance(csv,mark="-",label=csv.split("_")[0])
     if SAVE_FIGURE: plt.savefig("Distance", dpi=300)
+
+    plt.figure("Acceleration")
+    plt.title("Accélération")
+    for i, csv in enumerate(CSV_List): PlotAcceleration(csv,mark="-",label=csv.split("_")[0])
+    if SAVE_FIGURE: plt.savefig("Accélération", dpi=300)
 
     plt.figure("Numerical")
     plt.title("Numerical")
     for i, csv in enumerate(CSV_List): NumericalRelativeSpeed(csv,CSV_List,mark="-",label=csv.split("_")[0])
     if SAVE_FIGURE: plt.savefig("Numerical", dpi=300)
+
+    plt.show()
