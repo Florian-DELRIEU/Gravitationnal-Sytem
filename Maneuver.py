@@ -6,13 +6,19 @@ from GSplot import *
 from MyPack.FFT import *
 from MyPack.Convert import *
 import time as t
+import os
 
-SIMULATION = True
-PLOT = False
+path = "Datas/"
+SIMULATION = False
+PLOT = True
 SAVE_FIGURE = False # Si PLOT == True
 ANIME = True
-path = "Datas/"
 
+os.chdir(path)
+CSVlist = [
+        "a_Kinetic.csv",
+        "b_Kinetic.csv"
+    ]
 if SIMULATION:
     start = t.time()
     # Global Parametres
@@ -24,14 +30,12 @@ if SIMULATION:
 
     # Creating bodies
     A = AstralBody(D)
-    A.setbody(0,0,10)
+    A.setbody(0,0,1)
     A.setvelocity(0,0)
 
-    a = 10
-
     B = AstralBody(D)
-    B.setbody(a,0,0)
-    B.setvelocity(0,1/a * np.sqrt(D.G*A.Mass*a))
+    B.setbody(1,0,0)
+    B.setvelocity(0,1)
 
     # Simulation
     for i,_ in enumerate(D.t):
@@ -41,39 +45,37 @@ if SIMULATION:
         if i == 0.3*len(D.t): print("30 %")
         if i == 0.5*len(D.t):
             print("50 %")
-            B.DoBurn(0,0)
+            B.DoBurn(-0.1,0)
         if i == 0.7*len(D.t): print("70 %")
         if i == 0.9*len(D.t): print("90 %")
 
-    Dict2CSV(B.Kinetic,path+"A_Kinetic.csv")
-    Dict2CSV(B.Kinetic,path+"B_Kinetic.csv")
+    Dict2CSV(A.Kinetic,"A_Kinetic.csv")
+    Dict2CSV(B.Kinetic,"B_Kinetic.csv")
 
     duration = t.time() - start
     print("Simulation time {}".format(duration))
 
 if PLOT:
     plt.figure("Trajectory")
-    PlotTrajectory(path+"B_Kinetic.csv")
-    if SAVE_FIGURE: plt.savefig(path + "Trajectory", dpi=900)
+    PlotTrajectory("B_Kinetic.csv")
+    if SAVE_FIGURE: plt.savefig(path + "Trajectory", dpi=300)
 
     plt.figure("Speed")
-    PlotSpeed(path+"B_Kinetic.csv")
-    if SAVE_FIGURE: plt.savefig(path + "Speed", dpi=900)
+    PlotSpeed("B_Kinetic.csv")
+    if SAVE_FIGURE: plt.savefig(path + "Speed", dpi=300)
 
     plt.figure("Distance")
-    PlotDistance(path+"B_Kinetic.csv")
-    if SAVE_FIGURE: plt.savefig(path + "Distance", dpi=900)
+    PlotDistance("B_Kinetic.csv")
+    if SAVE_FIGURE: plt.savefig("Distance", dpi=300)
 
     plt.figure("Numerical")
-    NumericalRelativeSpeed(path+"B_Kinetic.csv")
-    if SAVE_FIGURE: plt.savefig(path + "Numerical", dpi=900)
+    NumericalRelativeSpeed("B_Kinetic.csv",CSVlist=CSVlist)
+    if SAVE_FIGURE: plt.savefig("Numerical", dpi=300)
 
 if ANIME:
-    CSVlist = [
-        path + "a_Kinetic.csv",
-        path + "b_Kinetic.csv"
-    ]
     plt.figure(3)
-    plt.xlim(-15,15)
-    plt.ylim(-15,15)
-    PlotAnimation(CSVlist,Trajectory=True,PPF=100)
+    plt.xlim(-2,2)
+    plt.ylim(-2,2)
+    PlotAnimation(CSVlist,Trajectory=True,PPF=100, range=2)
+
+os.chdir("../")

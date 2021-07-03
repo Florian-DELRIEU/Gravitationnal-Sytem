@@ -71,7 +71,7 @@ def NumericalRelativeSpeed(CSVfile,CSVlist=list(),mark="",grid=True,label=""):
     if grid: plt.grid("both")
     if label is not "": plt.legend(loc="upper right")
 
-def PlotAnimation(CSVlist, Trajectory=False, PPF=10):
+def PlotAnimation(CSVlist, Trajectory=False, PPF=10 , range=10):
     """
     :PPF: Pause per frame (ecart entre chaque frame affiché)
     """
@@ -95,8 +95,8 @@ def PlotAnimation(CSVlist, Trajectory=False, PPF=10):
             plt.pause(0.1)
             plt.clf()
             for body in BodyList:
-                plt.xlim(-15,15)
-                plt.ylim(-15,15)
+                plt.xlim(-range,range)
+                plt.ylim(-range,range)
                 plt.plot(body["x"][i],body["y"][i],"o")
                 if Trajectory: plt.plot(np.array(body["x"][:i]),np.array(body["y"][:i]),"-")
             frame = 0
