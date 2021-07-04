@@ -32,7 +32,7 @@ if SIMULATION:
     # Creating bodies
     A = AstralBody(D)
     A.setbody(0,0,10)
-    A.setvelocity(0,-0.07274182218642697)
+    A.setvelocity(0,-0.07274182218642697)  # issue d'une simulation précédente
 
     a1 = 1
     a2 = 2

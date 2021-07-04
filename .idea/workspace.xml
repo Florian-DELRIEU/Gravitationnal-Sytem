@@ -27,10 +27,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/SystemePesant2/Distance.png" beforeDir="false" afterPath="$PROJECT_DIR$/Datas/SystemePesant2/Distance.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/SystemePesant2/Numerical.png" beforeDir="false" afterPath="$PROJECT_DIR$/Datas/SystemePesant2/Numerical.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/SystemePesant2/Speed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Datas/SystemePesant2/Speed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/SystemePesant2/Trajectory.png" beforeDir="false" afterPath="$PROJECT_DIR$/Datas/SystemePesant2/Trajectory.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datas/Haumann a1=1, a2=2, G=1, m2=10, m1=0, dt=0.1/a_Kinetic.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datas/Haumann a1=1, a2=2, G=1, m2=10, m1=0, dt=0.1/b_Kinetic.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maneuver.py" beforeDir="false" afterPath="$PROJECT_DIR$/Maneuver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SystemePesant.py" beforeDir="false" afterPath="$PROJECT_DIR$/SystemePesant.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +80,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Datas/SystemePesant3" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.project" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
