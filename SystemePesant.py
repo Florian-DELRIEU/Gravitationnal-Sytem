@@ -85,3 +85,5 @@ if PLOT:
     plt.title("Numerical")
     for i, csv in enumerate(CSV_List): NumericalRelativeSpeed(csv,CSV_List,mark="-",label=csv.split("_")[0])
     if SAVE_FIGURE: plt.savefig("Numerical", dpi=300)
+
+os.chdir("../../")
