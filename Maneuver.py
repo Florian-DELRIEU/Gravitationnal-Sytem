@@ -4,7 +4,7 @@
 from GSmain import *
 from GSplot import *
 from MyPack.FFT import *
-from MyPack.Convert import *
+from MyPack.Saves.CSV import *
 import time as t
 import os
 
