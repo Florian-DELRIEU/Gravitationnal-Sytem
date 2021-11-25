@@ -1,9 +1,7 @@
 """
 Programme visant à simuler un system orbital avec 2 corps en utilisant GSmain.
 """
-from GSmain import *
-from GSplot import *
-from MyPack.FFT import *
+from MainFiles.GSplot import *
 from MyPack.Saves.CSV import *
 import time as t
 

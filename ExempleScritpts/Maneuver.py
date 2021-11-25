@@ -1,9 +1,7 @@
 """
 1 corps non pesant en orbite et faisant des maneuvres autour d'un corps pesant
 """
-from GSmain import *
-from GSplot import *
-from MyPack.FFT import *
+from MainFiles.GSplot import *
 from MyPack.Saves.CSV import *
 import time as t
 import os

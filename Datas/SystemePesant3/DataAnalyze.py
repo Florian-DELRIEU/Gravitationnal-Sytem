@@ -1,7 +1,6 @@
 import os
 os.chdir("../../")
-from GSmain import *
-from GSplot import *
+from MainFiles.GSplot import *
 import MyPack.FFT as fft
 plt.ion()
 os.chdir("Datas/SystemePesant3/")
