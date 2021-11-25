@@ -10,7 +10,7 @@ import time as t
 SIMULATION = True
 PLOT = True
 SAVE_FIGURE = False # Si PLOT == True
-path = "Datas/"
+path = "../Datas/"
 CSV_List  = [
     "A_Kinetic.csv",
     "A1_Kinetic.csv",

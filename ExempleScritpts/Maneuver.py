@@ -8,7 +8,7 @@ from MyPack.Saves.CSV import *
 import time as t
 import os
 
-path = "Datas/"
+path = "../Datas/"
 SIMULATION = False
 PLOT = True
 SAVE_FIGURE = False # Si PLOT == True

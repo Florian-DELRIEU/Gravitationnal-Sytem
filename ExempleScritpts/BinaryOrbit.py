@@ -12,7 +12,7 @@ PLOTTING = True
 SAVE_FIGURE = True # Si PLOTTING == True
 COMPARE = False
 ANIME = False
-path = "Datas/OrbiteBinaire1c/"  # Chemins du dossier de sauvegarde
+path = "../Datas/OrbiteBinaire1c/"  # Chemins du dossier de sauvegarde
 CSV_List = [  # Listes des fichiers CSV de sauvegarde
     "a_Kinetic.csv",
     "b_Kinetic.csv"

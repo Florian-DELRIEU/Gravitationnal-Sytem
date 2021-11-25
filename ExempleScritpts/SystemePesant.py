@@ -11,7 +11,7 @@ import os
 SIMULATION = False
 PLOT = True
 SAVE_FIGURE = True # Si PLOT == True
-path = "Datas/SystemePesant2/"
+path = "../Datas/SystemePesant2/"
 os.chdir(path)
 CSV_List  = [
     "A_Kinetic.csv",
