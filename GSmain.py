@@ -3,7 +3,6 @@ Programme simulant un sytème gravitationnel a N corps en 2D
 """
 import numpy as np
 import matplotlib.pyplot as plt
-
 class AstralBody:
     def __init__(self,Domain):
         """

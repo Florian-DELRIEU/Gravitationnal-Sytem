@@ -3,8 +3,8 @@ Programme visant à simuler un system orbital avec 2 corps en utilisant GSmain.
 """
 from GSmain import *
 from GSplot import *
-from MyPack.FFT import *
-from MyPack.Convert import *
+from MyPack_1_5.FFT import *
+from MyPack_1_5.Convert import *
 import time as t
 import os
 
@@ -19,7 +19,6 @@ CSV_List  = [
     "A2_Kinetic.csv",
     "A3_Kinetic.csv"
 ]
-
 if SIMULATION:
     start = t.time()
     # Global Parametres

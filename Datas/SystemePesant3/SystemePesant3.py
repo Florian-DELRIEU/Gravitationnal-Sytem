@@ -6,8 +6,8 @@ import os
 os.chdir("../../")
 from GSmain import *
 from GSplot import *
-from MyPack.FFT import *
-from MyPack.Convert import *
+from MyPack_1_5.FFT import *
+from MyPack_1_5.Convert import *
 import time as t
 
 SIMULATION = False

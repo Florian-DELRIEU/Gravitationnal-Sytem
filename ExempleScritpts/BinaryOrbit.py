@@ -3,8 +3,8 @@ Simulation de 2 corps pesant en orbite circulaire de même masse et répartie su
 """
 from GSmain import *
 from GSplot import *
-from MyPack.FFT import *
-from MyPack.Saves.CSV import *
+from MyPack_1_5.FFT import *
+from MyPack_1_5.Saves.CSV import *
 import time as t
 
 SIMULATION = False
