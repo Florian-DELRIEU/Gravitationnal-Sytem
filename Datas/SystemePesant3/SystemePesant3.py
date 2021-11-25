@@ -4,7 +4,8 @@ Systeme a étudier
 """
 import os
 os.chdir("../../")
-from MainFiles.GSplot import *
+from GSmain import *
+from GSplot import *
 from MyPack.FFT import *
 from MyPack.Convert import *
 import time as t

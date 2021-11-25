@@ -1,7 +1,9 @@
 """
 Simulation de 2 corps pesant en orbite circulaire de même masse et répartie sur un cerlce de rayon :a:
 """
-from MainFiles.GSplot import *
+from GSmain import *
+from GSplot import *
+from MyPack.FFT import *
 from MyPack.Saves.CSV import *
 import time as t
 
