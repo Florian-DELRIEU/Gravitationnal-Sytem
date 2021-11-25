@@ -27,10 +27,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3a13a131-eaeb-4fdb-a9be-a1b1c50c6e5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/Haumann a1=1, a2=2, G=1, m2=10, m1=0, dt=0.1/a_Kinetic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datas/Haumann a1=1, a2=2, G=1, m2=10, m1=0, dt=0.1/b_Kinetic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Maneuver.py" beforeDir="false" afterPath="$PROJECT_DIR$/Maneuver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SystemePesant.py" beforeDir="false" afterPath="$PROJECT_DIR$/SystemePesant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="DomainClass-Editing" />
+        <entry key="$PROJECT_DIR$" value="3e566f540a2c6147442075e78d76dc1b466bb22a" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,7 +63,7 @@
     <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="Gravitationnal-Sytem" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/GSmain.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../Thermometers_reader/main.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1daVpabDrW3AmExsXGuNdWOFEPE" />
   <component name="ProjectLevelVcsManager">
@@ -85,6 +82,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Datas/SystemePesant3" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/MainFiles" />
     </key>
   </component>
   <component name="RunManager" selected="Python.Maneuver">
@@ -142,7 +142,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GSplot.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MainFiles/GSplot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -221,13 +221,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1592663374586</updated>
-    </task>
-    <task id="LOCAL-00001" summary="[ADD] v0.1 - GS_2D.py added">
-      <created>1592663668708</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1592663668708</updated>
     </task>
     <task id="LOCAL-00002" summary="[Minor Update] v0.2 - Short Description">
       <created>1592663822584</created>
@@ -544,8 +537,47 @@
       <option name="project" value="LOCAL" />
       <updated>1597487029860</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Update README.md">
+      <created>1637876584479</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1637876584479</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Delete and Move some files to clear">
+      <created>1637877356139</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1637877356139</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Delete and Move some files to clear">
+      <created>1637877496404</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1637877496404</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Move main files">
+      <created>1637877892087</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1637877892088</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -597,9 +629,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Update] v0.2.14 - mask modification" />
-    <MESSAGE value="[Minor Update] v0.2.15" />
-    <MESSAGE value="[Minor Update] v0.2.16 - AstralBody.__repr__ edited" />
     <MESSAGE value="[Update] v0.2.17" />
     <MESSAGE value="[Fix] v0.2.18 - Distance is tuple fixed and minor comments" />
     <MESSAGE value="[Minor Update] v0.2.19 - add self.Radius" />
@@ -622,7 +651,10 @@
     <MESSAGE value="[v2.2.1] Update - Adding GS_2Body" />
     <MESSAGE value="[v2.2.2] Update" />
     <MESSAGE value="[v2.2.3] Minor add - Pictures" />
-    <option name="LAST_COMMIT_MESSAGE" value="[v2.2.3] Minor add - Pictures" />
+    <MESSAGE value="Update README.md" />
+    <MESSAGE value="Delete and Move some files to clear" />
+    <MESSAGE value="Move main files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move main files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
