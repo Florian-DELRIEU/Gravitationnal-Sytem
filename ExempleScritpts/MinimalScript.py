@@ -1,3 +1,8 @@
+"""
+FIXME
+    - PlotAnimation need a CSV list
+"""
+
 from GSmain import AstralBody,Domain
 from GSplot import PlotAnimation
 from MyPack_1_5.Saves.CSV import Dict2CSV
@@ -11,4 +16,4 @@ B = AstralBody(D,(+1,0),(0,-1),5)
 
 D.run_simulation(save_data=True)
 
-#PlotAnimation(CSV_list,True)
+PlotAnimation(CSV_list,True)
