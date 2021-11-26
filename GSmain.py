@@ -7,7 +7,7 @@ from MyPack_1_5.Saves.CSV import Dict2CSV
 from MyPack_1_5.Utilities import AskUser
 
 class AstralBody:
-    def __init__(self,Domain):
+    def __init__(self,Domain,CI_pos:tuple=(0,0),CI_speed:tuple=(0,0),mass:float=0):
         """
         Comporte toutes les caractérisques et données d'un objet célèste
         :param Domain: objet :class Universe: nécéssaire comportant les données du domain dans lequel il évolue
@@ -16,11 +16,11 @@ class AstralBody:
         self.Domain = Domain  # Liaison avex l'objet :Univere:
         self.G = Domain.G  # Recupere G de l'objet :Universe:
     # Variable definitions
-        self.Mass = float(0)
-        self.x = float(0)
-        self.y = float(0)
-        self.vx = float(0)
-        self.vy = float(0)
+        self.Mass = mass
+        self.x = CI_pos[0]
+        self.y = CI_pos[1]
+        self.vx = CI_speed[0]
+        self.vy = CI_speed[1]
         self.ax = float(0)
         self.ay = float(0)
         Domain.BodyList.append(self)  # S'ajoute lui-même dans liste de l'univers
@@ -144,16 +144,16 @@ class Domain:
     """
     Objet regroupant les constantes de l'univers ainsi que le maillage spatio-temporel
     """
-    def __init__(self):
+    def __init__(self,dt:float=0.1,tf:float=1):
         self.G = 1  # Constante gravitationnelle (G = 6.67e-11 SI)
     # Maillage espace - temps
         self.dx = .1
         self.dy = .1
-        self.dt = .1
+        self.dt = dt
     # Taille domaine
         self.x_range = 10
         self.y_range = 10
-        self.tf = 1  # Temps final
+        self.tf = tf  # Temps final
     # Maillage
         self.X,self.Y = np.meshgrid(np.arange(-self.x_range,self.x_range,self.dx),
                                     np.arange(-self.y_range,self.y_range,self.dy))

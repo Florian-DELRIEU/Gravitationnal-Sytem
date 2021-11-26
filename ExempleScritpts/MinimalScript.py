@@ -6,16 +6,12 @@ os.chdir("../Datas/Minimal")
 
 CSV_list = ["a_kinetic.csv","b_kinetic.csv"]
 
-D = Domain()
-D.settime(0.01,2)
-
-A = AstralBody(D)
-B = AstralBody(D)
-A.setCI((-1,0),(0,1),5)
-A.setCI((+1,0),(0,-1),5)
+## Initialize
+D = Domain(0.01,.5)
+A = AstralBody(D,(-1,0),(0,+1),5)
+B = AstralBody(D,(+1,0),(0,-1),5)
 
 D.run_simulation()
-
 A.SaveKinetic("A")
 B.SaveKinetic("B")
 
