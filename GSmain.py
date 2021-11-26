@@ -30,21 +30,22 @@ class AstralBody:
         self.filename = ""
         self.Color = ""
         self.Mark = "o"
-        self.Kinetic = dict()
+        self.Kinetic = {}
         self.Kinetic["Time"] = np.array(Domain.t)
-        self.Kinetic["x"] = list()
-        self.Kinetic["y"] = list()
+        self.Kinetic["x"] = []
+        self.Kinetic["y"] = []
         self.Kinetic["vx"] = np.array([])
         self.Kinetic["vy"] = np.array([])
         self.Kinetic["ax"] = np.array([])
         self.Kinetic["ay"] = np.array([])
 
     def __repr__(self):
-        txt = """Astral Body
+        return """Astral Body
             - Pos = ({} , {})
             - Mass = {}
-        """.format(self.x,self.y,self.Mass)
-        return txt
+        """.format(
+            self.x, self.y, self.Mass
+        )
 
     def refresh(self,dt):
         if self.IsMoving:  # si il peut bouger
@@ -132,18 +133,16 @@ class AstralBody:
         Dict2CSV(self.Kinetic,filename+".csv")
 
     def set_filename(self,filename=None):
-        if (filename == "" or None) and (self.filename == "" or None):
+        if filename == "" and self.filename == "":
             filename = f"Body_{self.bodylist_indic()}"
             self.filename = filename
         elif filename == ["" or None] and self.filename != ["" or None]:
             filename = self.filename
-        else: pass
         return filename
 
     def bodylist_indic(self):
         arr = np.array(self.Domain.BodyList)
-        i = int(np.where(arr==self)[0])
-        return i
+        return int(np.where(arr==self)[0])
 
 class Domain:
     """
@@ -163,7 +162,7 @@ class Domain:
         self.X,self.Y = np.meshgrid(np.arange(-self.x_range,self.x_range,self.dx),
                                     np.arange(-self.y_range,self.y_range,self.dy))
     # Liste des corps appartenant à l'univers (systeme)
-        self.BodyList = list()
+        self.BodyList = []
     # Creation vecteur temps
         self.settime()
 
@@ -176,10 +175,7 @@ class Domain:
         :return: self.t as :array: 0:dt:tf
         """
         if dt == float(0): dt = self.dt
-        else: pass
         if tf == float(0): tf = self.tf
-        else: pass
-
         self.t = np.array([])
         self.t = np.arange(0,tf,dt)
 
