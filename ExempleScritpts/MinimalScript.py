@@ -4,21 +4,11 @@ from MyPack_1_5.Saves.CSV import Dict2CSV
 import os
 os.chdir("../Datas/Minimal")
 
-D = Domain()
-D.settime(0.01,10)
+## Initialize
+D = Domain(0.01,.5)
+A = AstralBody(D,(-1,0),(0,+1),5)
+B = AstralBody(D,(+1,0),(0,-1),5)
 
-A = AstralBody(D)
-B = AstralBody(D)
-A.setbody(-1,0,5)
-B.setbody(+1,0,5)
-A.setvelocity(0,1)
-B.setvelocity(0,-1)
+D.run_simulation(save_data=True)
 
-for t in D.t:
-    A.refresh(D.dt)
-    B.refresh(D.dt)
-
-Dict2CSV(A.Kinetic,"a_Kinetic.csv")
-Dict2CSV(B.Kinetic,"b_Kinetic.csv")
-
-PlotAnimation(["a_kinetic.csv","b_kinetic.csv"],True)
+#PlotAnimation(CSV_list,True)
