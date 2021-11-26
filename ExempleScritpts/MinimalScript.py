@@ -5,7 +5,7 @@ import os
 os.chdir("../Datas/Minimal")
 
 D = Domain()
-D.settime(0.01,10)
+D.settime(0.01,2)
 
 A = AstralBody(D)
 B = AstralBody(D)
@@ -14,9 +14,7 @@ B.setbody(+1,0,5)
 A.setvelocity(0,1)
 B.setvelocity(0,-1)
 
-for t in D.t:
-    A.refresh(D.dt)
-    B.refresh(D.dt)
+D.run_simulation()
 
 Dict2CSV(A.Kinetic,"a_Kinetic.csv")
 Dict2CSV(B.Kinetic,"b_Kinetic.csv")

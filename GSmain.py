@@ -157,3 +157,11 @@ class Domain:
 
         self.t = np.array([])
         self.t = np.arange(0,tf,dt)
+
+    def run_simulation(self):
+        """
+        Run the simulation for all bodies of the domain :object;
+        """
+        for ti in self.t:
+            for body in self.BodyList:
+                body.refresh(self.dt)
