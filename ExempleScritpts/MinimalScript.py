@@ -16,7 +16,7 @@ B.setvelocity(0,-1)
 
 D.run_simulation()
 
-Dict2CSV(A.Kinetic,"a_Kinetic.csv")
-Dict2CSV(B.Kinetic,"b_Kinetic.csv")
+A.SaveKinetic()
+B.SaveKinetic("test")
 
 PlotAnimation(["a_kinetic.csv","b_kinetic.csv"],True)

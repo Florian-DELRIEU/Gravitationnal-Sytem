@@ -3,6 +3,9 @@ Programme simulant un sytème gravitationnel a N corps en 2D
 """
 import numpy as np
 import matplotlib.pyplot as plt
+from MyPack_1_5.Saves.CSV import Dict2CSV
+from MyPack_1_5.Utilities import AskUser
+
 class AstralBody:
     def __init__(self,Domain):
         """
@@ -24,6 +27,7 @@ class AstralBody:
         self.Bodylist = Domain.BodyList.copy()  # Listes des autres corps dans :Universe:
         self.IsMoving = True  # Si :False: l'objet ne peut pas bouger
     # Paramètres garphiques
+        self.filename = ""
         self.Color = ""
         self.Mark = "o"
         self.Kinetic = dict()
@@ -119,6 +123,18 @@ class AstralBody:
         self.vx = np.cos(Theta_p)*V_p + np.cos(Theta_r)*V_r
         self.vy = np.sin(Theta_p)*V_p + np.sin(Theta_r)*V_r
 
+    def SaveKinetic(self,filename=""):
+        filename = self.set_filename(filename)
+        Dict2CSV(self.Kinetic,filename+".csv")
+
+    def set_filename(self,filename=None):
+        if (filename == "" or None) and (self.filename == "" or None):
+            filename = AskUser("Choisissez le nom du fichier :", "")
+            self.filename = filename
+        elif filename == ["" or None] and self.filename != ["" or None]:
+            filename = self.filename
+        else: pass
+        return filename
 
 class Domain:
     """
