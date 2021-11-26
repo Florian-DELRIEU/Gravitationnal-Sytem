@@ -50,8 +50,8 @@ if SIMULATION:
         if i == 0.7*len(D.t): print("70 %")
         if i == 0.9*len(D.t): print("90 %")
 
-    Dict2CSV(a.Kinetic,path+"a_Kinetic.csv")
-    Dict2CSV(b.Kinetic,path+"b_Kinetic.csv")
+    Dict2CSV(a.Kinetic,"a_Kinetic.csv")
+    Dict2CSV(b.Kinetic,"b_Kinetic.csv")
 
     #End of simulation
     duration = t.time() - start
