@@ -6,13 +6,13 @@ from GSplot import *
 from MyPack_1_5.FFT import *
 from MyPack_1_5.Saves.CSV import *
 import time as t
-
+import os
+os.chdir("../Datas/OrbiteBinaire1c/")
 SIMULATION = False
 PLOTTING = True
 SAVE_FIGURE = True # Si PLOTTING == True
 COMPARE = False
 ANIME = False
-path = "../Datas/OrbiteBinaire1c/"  # Chemins du dossier de sauvegarde
 CSV_List = [  # Listes des fichiers CSV de sauvegarde
     "a_Kinetic.csv",
     "b_Kinetic.csv"
@@ -60,23 +60,23 @@ if SIMULATION:
 if PLOTTING:
     plt.figure("Trajectory")
     plt.title("Trajectory")
-    for i,csv in enumerate(CSV_List): PlotTrajectory(path + csv,mark=Mark_List[i]+"-")
-    if SAVE_FIGURE: plt.savefig(path+"Trajectory",dpi=300)
+    for i,csv in enumerate(CSV_List): PlotTrajectory(csv,mark=Mark_List[i]+"-")
+    if SAVE_FIGURE: plt.savefig("Trajectory",dpi=300)
 
     plt.figure("Speed")
     plt.title("Speed")
-    for i, csv in enumerate(CSV_List): PlotSpeed(path+csv,mark=Mark_List[i]+"-")
-    if SAVE_FIGURE: plt.savefig(path+"Speed", dpi=300)
+    for i, csv in enumerate(CSV_List): PlotSpeed(csv,mark=Mark_List[i]+"-")
+    if SAVE_FIGURE: plt.savefig("Speed", dpi=300)
 
     plt.figure("Distance")
     plt.title("Distance")
-    for i, csv in enumerate(CSV_List): PlotDistance(path+csv,mark=Mark_List[i]+"-")
-    if SAVE_FIGURE: plt.savefig(path+"Distance", dpi=300)
+    for i, csv in enumerate(CSV_List): PlotDistance(csv,mark=Mark_List[i]+"-")
+    if SAVE_FIGURE: plt.savefig("Distance", dpi=300)
 
     plt.figure("Numerical")
     plt.title("Numerical")
-    for i, csv in enumerate(CSV_List): NumericalRelativeSpeed(path+csv,mark=Mark_List[i]+"-")
-    if SAVE_FIGURE: plt.savefig(path+"Numerical", dpi=300)
+    for i, csv in enumerate(CSV_List): NumericalRelativeSpeed(csv,CSV_List,mark=Mark_List[i]+"-")
+    if SAVE_FIGURE: plt.savefig("Numerical", dpi=300)
 
 if COMPARE:
     plt.figure(1)
