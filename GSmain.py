@@ -106,6 +106,10 @@ class AstralBody:
         self.vx = vx
         self.vy = vy
 
+    def setCI(self,pos:tuple,speed:tuple,mass:float):
+        self.setbody(pos[0],pos[1],mass)
+        self.setvelocity(speed[0],speed[1])
+
     def DoBurn(self,Prograde=0,Radial=0):
         """
         Effectue une poussé dans les deux directions tangeantielles ou radiales à la vitesse
