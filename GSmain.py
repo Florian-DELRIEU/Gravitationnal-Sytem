@@ -133,12 +133,17 @@ class AstralBody:
 
     def set_filename(self,filename=None):
         if (filename == "" or None) and (self.filename == "" or None):
-            filename = AskUser("Choisissez le nom du fichier :", "")
+            filename = f"Body_{self.bodylist_indic()}"
             self.filename = filename
         elif filename == ["" or None] and self.filename != ["" or None]:
             filename = self.filename
         else: pass
         return filename
+
+    def bodylist_indic(self):
+        arr = np.array(self.Domain.BodyList)
+        i = int(np.where(arr==self)[0])
+        return i
 
 class Domain:
     """

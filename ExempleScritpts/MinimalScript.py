@@ -12,7 +12,7 @@ A = AstralBody(D,(-1,0),(0,+1),5)
 B = AstralBody(D,(+1,0),(0,-1),5)
 
 D.run_simulation()
-A.SaveKinetic("A")
-B.SaveKinetic("B")
+A.SaveKinetic()
+B.SaveKinetic()
 
-PlotAnimation(CSV_list,True)
+#PlotAnimation(CSV_list,True)
