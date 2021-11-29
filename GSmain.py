@@ -38,6 +38,7 @@ class AstralBody:
         self.Kinetic["vy"] = np.array([])
         self.Kinetic["ax"] = np.array([])
         self.Kinetic["ay"] = np.array([])
+        self.set_filename()
 
     def __repr__(self):
         txt = """Astral Body
@@ -127,18 +128,16 @@ class AstralBody:
         self.vx = np.cos(Theta_p)*V_p + np.cos(Theta_r)*V_r
         self.vy = np.sin(Theta_p)*V_p + np.sin(Theta_r)*V_r
 
-    def SaveKinetic(self,filename=""):
-        filename = self.set_filename(filename)
-        Dict2CSV(self.Kinetic,filename+".csv")
+    def SaveKinetic(self):
+        Dict2CSV(self.Kinetic,self.filename+".csv")
 
-    def set_filename(self,filename=None):
-        if (filename == "" or None) and (self.filename == "" or None):
-            filename = f"Body_{self.bodylist_indic()}"
+    def set_filename(self,filename=""):
+        if filename == "" or None:
+            if self.filename == "" or None: self.filename = f"Body_{self.bodylist_indic()}"
+            else:                           pass
+        else:
             self.filename = filename
-        elif filename == ["" or None] and self.filename != ["" or None]:
-            filename = self.filename
-        else: pass
-        return filename
+        self.Domain.setCSV_list()
 
     def bodylist_indic(self):
         arr = np.array(self.Domain.BodyList)
@@ -163,7 +162,8 @@ class Domain:
         self.X,self.Y = np.meshgrid(np.arange(-self.x_range,self.x_range,self.dx),
                                     np.arange(-self.y_range,self.y_range,self.dy))
     # Liste des corps appartenant à l'univers (systeme)
-        self.BodyList = list()
+        self.BodyList = []
+        self.CSVList = []
     # Creation vecteur temps
         self.settime()
 
@@ -193,3 +193,8 @@ class Domain:
         if save_data:
             for body in self.BodyList:
                 body.SaveKinetic()
+
+    def setCSV_list(self):
+        self.CSVList = []
+        for body in self.BodyList:
+            self.CSVList.append(body.filename+".csv")
