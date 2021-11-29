@@ -1,5 +1,6 @@
 # Introduction 
 **Last Release :** [v2.0](https://github.com/Florian-DELRIEU/Gravitationnal-Sytem/releases/tag/v2.0)
+
 **Pre-Release :** [v2.1](https://github.com/Florian-DELRIEU/Gravitationnal-Sytem/releases/tag/v2.1)
 
 Ce petit programme vise à simuler l'interaction gravitationnelle entre plusieurs corps dans un plan 2D.
