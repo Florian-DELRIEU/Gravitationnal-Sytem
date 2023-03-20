@@ -39,7 +39,7 @@ if SIMULATION:
 
     # Simulation
     for i,_ in enumerate(D.t):
-        for this_body in D.BodyList: this_body.refresh(dt)
+        for this_body in D.body_list: this_body.refresh(dt)
         if i == 0.01*len(D.t): print("1 %")
         if i == 0.1*len(D.t): print("10 %")
         if i == 0.3*len(D.t): print("30 %")
@@ -49,8 +49,8 @@ if SIMULATION:
         if i == 0.7*len(D.t): print("70 %")
         if i == 0.9*len(D.t): print("90 %")
 
-    Dict2CSV(A.Kinetic,"A_Kinetic.csv")
-    Dict2CSV(B.Kinetic,"B_Kinetic.csv")
+    Dict2CSV(A.kinetic_dict, "A_Kinetic.csv")
+    Dict2CSV(B.kinetic_dict, "B_Kinetic.csv")
 
     duration = t.time() - start
     print("Simulation time {}".format(duration))

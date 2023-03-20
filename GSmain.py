@@ -3,86 +3,86 @@ Programme simulant un sytème gravitationnel a N corps en 2D
 """
 import numpy as np
 import matplotlib.pyplot as plt
-from MyPack_1_5.Saves.CSV import Dict2CSV
-from MyPack_1_5.Utilities import AskUser
+from MyPack2.Saves.CSV import Dict2CSV
+from MyPack2.Utilities import AskUser
 
 class AstralBody:
-    def __init__(self,Domain,CI_pos:tuple=(0,0),CI_speed:tuple=(0,0),mass:float=0):
+    def __init__(self, Domain, ci_pos:tuple=(0, 0), ci_speed:tuple=(0, 0), mass:float=0):
         """
         Comporte toutes les caractérisques et données d'un objet célèste
         :param Domain: objet :class Universe: nécéssaire comportant les données du domain dans lequel il évolue
             -
         """
-        self.Domain = Domain  # Liaison avex l'objet :Univere:
+        self.Domain = Domain  # Liaison avex l'objet :Universe:
         self.G = Domain.G  # Recupere G de l'objet :Universe:
     # Variable definitions
-        self.Mass = mass
-        self.x = CI_pos[0]
-        self.y = CI_pos[1]
-        self.vx = CI_speed[0]
-        self.vy = CI_speed[1]
+        self.mass = mass
+        self.x = ci_pos[0]
+        self.y = ci_pos[1]
+        self.vx = ci_speed[0]
+        self.vy = ci_speed[1]
         self.ax = float(0)
         self.ay = float(0)
-        Domain.BodyList.append(self)  # S'ajoute lui-même dans liste de l'univers
-        self.Bodylist = Domain.BodyList.copy()  # Listes des autres corps dans :Universe:
-        self.IsMoving = True  # Si :False: l'objet ne peut pas bouger
+        Domain.body_list.append(self)  # S'ajoute lui-même dans liste de l'univers
+        self.Bodylist = Domain.body_list.copy()  # Listes des autres corps dans :Universe:
+        self.is_moving = True  # Si :False: l'objet ne peut pas bouger
     # Paramètres garphiques
         self.filename = ""
-        self.Color = ""
-        self.Mark = "o"
-        self.Kinetic = dict()
-        self.Kinetic["Time"] = np.array(Domain.t)
-        self.Kinetic["x"] = list()
-        self.Kinetic["y"] = list()
-        self.Kinetic["vx"] = np.array([])
-        self.Kinetic["vy"] = np.array([])
-        self.Kinetic["ax"] = np.array([])
-        self.Kinetic["ay"] = np.array([])
+        self.color = ""
+        self.mark = "o"
+        self.kinetic_dict = dict()
+        self.kinetic_dict["Time"] = np.array(Domain.t)
+        self.kinetic_dict["x"] = list()
+        self.kinetic_dict["y"] = list()
+        self.kinetic_dict["vx"] = np.array([])
+        self.kinetic_dict["vy"] = np.array([])
+        self.kinetic_dict["ax"] = np.array([])
+        self.kinetic_dict["ay"] = np.array([])
 
     def __repr__(self):
         txt = """Astral Body
             - Pos = ({} , {})
             - Mass = {}
-        """.format(self.x,self.y,self.Mass)
+        """.format(self.x, self.y, self.mass)
         return txt
 
     def refresh(self,dt):
-        if self.IsMoving:  # si il peut bouger
-            self.Body_list = self.Domain.BodyList.copy() # Obliger de faire une copy de la liste
-            self.Body_list.remove(self)  # se supprime lui meme pour eviter auto-influence
+        if self.is_moving:  # si il peut bouger
+            self.body_list = self.Domain.body_list.copy() # Obliger de faire une copy de la liste
+            self.body_list.remove(self)  # se supprime lui meme pour eviter auto-influence
             self.ax, self.ay = 0,0  # refresh pour eviter cumuls des acc avec itération précédente
             # Calcul de l'accéleration due à la présence de chaque corps
-            for this_body in self.Body_list:
+            for this_body in self.body_list:
                 cur_distance = np.sqrt((this_body.x - self.x)**2 + (this_body.y - self.y)**2)  # distance
                 # Calcul des accélérations
-                self.ax += - self.G * this_body.Mass / cur_distance**3 * (self.x - this_body.x)
-                self.ay += - self.G * this_body.Mass / cur_distance**3 * (self.y - this_body.y)
+                self.ax += - self.G * this_body.mass / cur_distance ** 3 * (self.x - this_body.x)
+                self.ay += - self.G * this_body.mass / cur_distance ** 3 * (self.y - this_body.y)
             # Calcul des vitesses
             self.vx += self.ax*dt
             self.vy += self.ay*dt
             # Calcul des nouvelles positions
             self.x += self.vx*dt
             self.y += self.vy*dt
-            self.Kinetic["x"] = np.append(self.Kinetic["x"],self.x)
-            self.Kinetic["y"] = np.append(self.Kinetic["y"],self.y)
-            self.Kinetic["vx"] = np.append(self.Kinetic["vx"],self.vx)
-            self.Kinetic["vy"] = np.append(self.Kinetic["vy"],self.vy)
-            self.Kinetic["ax"] = np.append(self.Kinetic["ax"],self.ax)
-            self.Kinetic["ay"] = np.append(self.Kinetic["ay"],self.ay)
+            self.kinetic_dict["x"] = np.append(self.kinetic_dict["x"], self.x)
+            self.kinetic_dict["y"] = np.append(self.kinetic_dict["y"], self.y)
+            self.kinetic_dict["vx"] = np.append(self.kinetic_dict["vx"], self.vx)
+            self.kinetic_dict["vy"] = np.append(self.kinetic_dict["vy"], self.vy)
+            self.kinetic_dict["ax"] = np.append(self.kinetic_dict["ax"], self.ax)
+            self.kinetic_dict["ay"] = np.append(self.kinetic_dict["ay"], self.ay)
 
     def Gvector(self,ratio=1):
         """
         Affiche le vecteur accélération de :self:
         """
-        self.Body_list = self.Domain.BodyList.copy()  # Obliger de faire une copy de la liste
-        self.Body_list.remove(self)  # se supprime lui meme pour eviter auto-influence
+        self.body_list = self.Domain.body_list.copy()  # Obliger de faire une copy de la liste
+        self.body_list.remove(self)  # se supprime lui meme pour eviter auto-influence
         self.ax, self.ay = 0, 0  # refresh pour eviter cumuls des acc avec itération précédente
         # Calcul de l'accéleration due à la présence de chaque corps
-        for this_body in self.Body_list:
+        for this_body in self.body_list:
             cur_distance = np.sqrt((this_body.x - self.x) ** 2 + (this_body.y - self.y) ** 2)  # distance
             # Calcul des accélérations
-            self.ax += - self.G * this_body.Mass / cur_distance ** 3 * (self.x - this_body.x)
-            self.ay += - self.G * this_body.Mass / cur_distance ** 3 * (self.y - this_body.y)
+            self.ax += - self.G * this_body.mass / cur_distance ** 3 * (self.x - this_body.x)
+            self.ay += - self.G * this_body.mass / cur_distance ** 3 * (self.y - this_body.y)
         plt.arrow(self.x,self.y,ratio*self.ax,ratio*self.ay)
         self.ax, self.ay = 0, 0  # refresh pour eviter cumuls des acc avec itération précédente
 
@@ -95,7 +95,7 @@ class AstralBody:
         """
         self.x = x
         self.y = y
-        self.Mass = Mass
+        self.mass = Mass
 
     def setvelocity(self,vx,vy):
         """
@@ -127,22 +127,22 @@ class AstralBody:
         self.vx = np.cos(Theta_p)*V_p + np.cos(Theta_r)*V_r
         self.vy = np.sin(Theta_p)*V_p + np.sin(Theta_r)*V_r
 
-    def SaveKinetic(self,filename=""):
+    def save_kinetic(self, filename=""):
         filename = self.set_filename(filename)
-        Dict2CSV(self.Kinetic,filename+".csv")
+        Dict2CSV(self.kinetic_dict, filename + ".csv")
 
     def set_filename(self,filename=None):
         if (filename == "" or None) and (self.filename == "" or None):
-            filename = f"Body_{self.bodylist_indic()}"
+            filename = f"Body_{self.find_body_list_indic()}"
             self.filename = filename
         elif filename == ["" or None] and self.filename != ["" or None]:
             filename = self.filename
         else: pass
         return filename
 
-    def bodylist_indic(self):
-        arr = np.array(self.Domain.BodyList)
-        i = int(np.where(arr==self)[0])
+    def find_body_list_indic(self):
+        temp_body_list = np.array(self.Domain.body_list)
+        i = int(np.where(temp_body_list==self)[0])
         return i
 
 class Domain:
@@ -163,7 +163,7 @@ class Domain:
         self.X,self.Y = np.meshgrid(np.arange(-self.x_range,self.x_range,self.dx),
                                     np.arange(-self.y_range,self.y_range,self.dy))
     # Liste des corps appartenant à l'univers (systeme)
-        self.BodyList = list()
+        self.body_list = []
     # Creation vecteur temps
         self.settime()
 
@@ -188,8 +188,8 @@ class Domain:
         Run the simulation for all bodies of the domain :object;
         """
         for ti in self.t:
-            for body in self.BodyList:
+            for body in self.body_list:
                 body.refresh(self.dt)
         if save_data:
-            for body in self.BodyList:
-                body.SaveKinetic()
+            for body in self.body_list:
+                body.save_kinetic()

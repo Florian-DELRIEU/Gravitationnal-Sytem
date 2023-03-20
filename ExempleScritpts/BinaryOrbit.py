@@ -33,16 +33,16 @@ if SIMULATION:
     b = AstralBody(D)
     a.setbody(-AB/2,0,10)
     b.setbody(AB/2,0,10)
-    a.Mark = "c-"
-    b.Mark = "r-"
-    Vorb_A = 1/AB * np.sqrt(D.G*b.Mass*AB/2)
-    Vorb_B = 1/AB * np.sqrt(D.G*a.Mass*AB/2)
+    a.mark = "c-"
+    b.mark = "r-"
+    Vorb_A = 1/AB * np.sqrt(D.G * b.mass * AB / 2)
+    Vorb_B = 1/AB * np.sqrt(D.G * a.mass * AB / 2)
     a.setvelocity(0,Vorb_A)
     b.setvelocity(0,-Vorb_B)
 
     # Simulation
     for i,_ in enumerate(D.t):
-        for this_body in D.BodyList: this_body.refresh(dt)
+        for this_body in D.body_list: this_body.refresh(dt)
         if i == 0.01*len(D.t): print("1 %")
         if i == 0.1*len(D.t): print("10 %")
         if i == 0.3*len(D.t): print("30 %")
@@ -50,8 +50,8 @@ if SIMULATION:
         if i == 0.7*len(D.t): print("70 %")
         if i == 0.9*len(D.t): print("90 %")
 
-    Dict2CSV(a.Kinetic,"a_Kinetic.csv")
-    Dict2CSV(b.Kinetic,"b_Kinetic.csv")
+    Dict2CSV(a.kinetic_dict, "a_Kinetic.csv")
+    Dict2CSV(b.kinetic_dict, "b_Kinetic.csv")
 
     #End of simulation
     duration = t.time() - start

@@ -1,9 +1,9 @@
 #import matplotlib.pyplot as plt
 from GSmain import *
-from MyPack_1_5.Saves.CSV import *
+from MyPack2.Saves.CSV import *
 import numpy as np
 
-def PlotTrajectory(CSVfile,mark="",grid=True,label=""):
+def plot_trajectory(CSVfile, mark="", grid=True, label=""):
     """
     Extrait les données du :CSVfile: et affiche la trajectoire
     """
@@ -14,7 +14,7 @@ def PlotTrajectory(CSVfile,mark="",grid=True,label=""):
     if grid: plt.grid("both")
     if label != "": plt.legend(loc="upper right")
 
-def PlotDistance(CSVfile,mark="",grid=True,label=""):
+def plot_distance(CSVfile, mark="", grid=True, label=""):
     """
     Extrait les données du :CSVfile: et affiche la distance par rapport à l'origine
     """
@@ -26,7 +26,7 @@ def PlotDistance(CSVfile,mark="",grid=True,label=""):
     if grid: plt.grid("both")
     if label != "": plt.legend(loc="upper right")
 
-def PlotSpeed(CSVfile,mark="",grid=True,label=""):
+def plot_speed(CSVfile, mark="", grid=True, label=""):
     """
     Extrait les données du :CSVfile: et affiche la vitesse
     """
@@ -38,7 +38,7 @@ def PlotSpeed(CSVfile,mark="",grid=True,label=""):
     if grid: plt.grid("both")
     if label != "": plt.legend(loc="upper right")
 
-def PlotAcceleration(CSVfile,mark="",grid=True,label=""):
+def plot_acceleration(CSVfile, mark="", grid=True, label=""):
     """
     Extrait les données du :CSVfile: et affiche l'accélération 
     """
@@ -50,28 +50,28 @@ def PlotAcceleration(CSVfile,mark="",grid=True,label=""):
     if grid: plt.grid("both")
     if label != "": plt.legend(loc="upper right")
 
-def NumericalRelativeSpeed(CSVfile,CSVlist:list,mark="",grid=True,label=""):
+def plot_numerical_relative_speed(CSVfile, CSVlist:list, mark="", grid=True, label=""):
     """
     Trace le nombre v*dt/a pour chaque corps pour evaluer la précision numérique
     """
-    Data = Csv2Dict(CSVfile)
-    t = np.array(Data["Time"])
+    DATA = Csv2Dict(CSVfile)
+    t = np.array(DATA["Time"])
     dt = t[0] - t[1]
-    vx = np.array(Data["vx"])
-    vy = np.array(Data["vy"])
-    x = np.array(Data["x"])
-    y = np.array(Data["y"])
+    vx = np.array(DATA["vx"])
+    vy = np.array(DATA["vy"])
+    x = np.array(DATA["x"])
+    y = np.array(DATA["y"])
     V = np.sqrt(vx**2 + vy**2)
-    dist = np.array(Distance(CSVfile,CSVlist))
+    dist = np.array(distance_in_list(CSVfile, CSVlist))
     min_dist_list = []
     for i in np.arange(len(dist[0,:])):
         min_dist_list.append(dist[:,i].min())
-    Numeric = (V * dt) / np.array(min_dist_list)
-    plt.semilogy(t,abs(Numeric),mark,label=label)
+    numeric_rel_speed = (V * dt) / np.array(min_dist_list)
+    plt.semilogy(t,abs(numeric_rel_speed),mark,label=label)
     if grid: plt.grid("both")
     if label != "": plt.legend(loc="upper right")
 
-def PlotAnimation(CSVlist, Trajectory=False, PPF=10 , range=10):
+def plot_animation(CSVlist, Trajectory=False, PPF=10, range=10):
     """
     :PPF: Pause per frame (ecart entre chaque frame affiché)
     """
@@ -101,7 +101,7 @@ def PlotAnimation(CSVlist, Trajectory=False, PPF=10 , range=10):
                 if Trajectory: plt.plot(np.array(body["x"][:i]),np.array(body["y"][:i]),"-")
             frame = 0
 
-def Distance(CSV, CSVList:list):
+def distance_in_list(CSV, CSVList:list):
     CSVList_temp = CSVList.copy()
     if CSV in CSVList_temp: CSVList_temp.remove(CSV)
     DATA = UnzipCSV(CSVList_temp)
