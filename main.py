@@ -1,5 +1,5 @@
 import pygame
-from simulation import Simulation
+from Simulation import Simulation
 
 # Initialisation de Pygame
 pygame.init()
