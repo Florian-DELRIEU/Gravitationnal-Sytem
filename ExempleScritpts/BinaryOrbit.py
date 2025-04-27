@@ -1,6 +1,7 @@
 """
 Simulation de 2 corps pesant en orbite circulaire de même masse et répartie sur un cerlce de rayon :a:
 """
+import GSplot
 from GSmain import *
 from GSplot import *
 from MyPack2.FFT import *
@@ -60,39 +61,43 @@ if SIMULATION:
 if PLOTTING:
     plt.figure("Trajectory")
     plt.title("Trajectory")
-    for i,csv in enumerate(CSV_List): PlotTrajectory(csv,mark=Mark_List[i]+"-")
+    for i,csv in enumerate(CSV_List):
+        plot_trajectory(csv, mark=f"{Mark_List[i]}-")
     if SAVE_FIGURE: plt.savefig("Trajectory",dpi=300)
 
     plt.figure("Speed")
     plt.title("Speed")
-    for i, csv in enumerate(CSV_List): PlotSpeed(csv,mark=Mark_List[i]+"-")
+    for i, csv in enumerate(CSV_List):
+        plot_speed(csv, mark=f"{Mark_List[i]}-")
     if SAVE_FIGURE: plt.savefig("Speed", dpi=300)
 
     plt.figure("Distance")
     plt.title("Distance")
-    for i, csv in enumerate(CSV_List): PlotDistance(csv,mark=Mark_List[i]+"-")
+    for i, csv in enumerate(CSV_List):
+        plot_distance(csv, mark=f"{Mark_List[i]}-")
     if SAVE_FIGURE: plt.savefig("Distance", dpi=300)
 
     plt.figure("Numerical")
     plt.title("Numerical")
-    for i, csv in enumerate(CSV_List): NumericalRelativeSpeed(csv,CSV_List,mark=Mark_List[i]+"-")
+    for i, csv in enumerate(CSV_List):
+        plot_numerical_relative_speed(csv, CSV_List, mark=f"{Mark_List[i]}-")
     if SAVE_FIGURE: plt.savefig("Numerical", dpi=300)
 
 if COMPARE:
     plt.figure(1)
     plt.title("Distance de A par rapport à l'origine")
     directory = "Datas/OrbiteBinaire1a/"
-    PlotDistance(directory + "a_Kinetic.csv", mark="k-",label="case 1A")
+    plot_distance(directory + "a_Kinetic.csv", mark="k-",label="case 1A")
     directory = "Datas/OrbiteBinaire1b/"
-    PlotDistance(directory + "a_Kinetic.csv", mark="k--",label="case 1B")
+    plot_distance(directory + "a_Kinetic.csv", mark="k--",label="case 1B")
 
     plt.figure(2)
     plt.title("NRS pour A dans 2 cas")
     directory = "Datas/OrbiteBinaire1a/"
-    NumericalRelativeSpeed(directory + "a_Kinetic.csv", mark="k-", label="case 1A")
+    plot_numerical_relative_speed(directory + "a_Kinetic.csv", mark="k-", label="case 1A")
     directory = "Datas/OrbiteBinaire1b/"
-    NumericalRelativeSpeed(directory + "a_Kinetic.csv", mark="k--", label="case 1B")
+    plot_numerical_relative_speed(directory + "a_Kinetic.csv", mark="k--", label="case 1B")
 
 if ANIME:
     plt.figure(3)
-    PlotAnimation(CSV_List,Trajectory=True,PPF=40)
+    plot_animation(CSV_List,Trajectory=True,PPF=40)
