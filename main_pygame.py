@@ -11,10 +11,14 @@ PANEL_WIDTH = WINDOW_WIDTH - VIEW_WIDTH   # Zone de contrôle future
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 BLUE = (50, 100, 255)
+RED = (255, 100, 50)
 
 # --- Initialisation du moteur physique ---
 domain = Domain(dt=0.05, tf=10)
-planet = AstralBody(domain, ci_pos=(3, 0), ci_speed=(0, 1), mass=100)
+planetA = AstralBody(domain, ci_pos=(3, 0), ci_speed=(0, 1), mass=10)
+planetA.color = BLUE
+planetB = AstralBody(domain, ci_pos=(-3, 0), ci_speed=(0, -1), mass=10)
+planetB.color = BLUE
 
 # --- Initialisation Pygame ---
 pygame.init()
@@ -43,10 +47,11 @@ while running:
     pygame.draw.rect(screen, (40, 40, 40), (VIEW_WIDTH, 0, PANEL_WIDTH, WINDOW_HEIGHT))
 
     # Coordonnées converties en pixels (centre de la zone graphique = origine)
-    px = int(VIEW_WIDTH / 2 + planet.x * 50)
-    py = int(WINDOW_HEIGHT / 2 - planet.y * 50)
-
-    pygame.draw.circle(screen, BLUE, (px, py), 5)
+    for body in domain.body_list:
+        color = getattr(body, 'color', body.color)  # Couleur par défaut si non définie
+        px = int(VIEW_WIDTH / 2 + body.x * 50)
+        py = int(WINDOW_HEIGHT / 2 - body.y * 50)
+        pygame.draw.circle(screen, color, (px, py), 5)
 
     pygame.display.flip()
     clock.tick(60)
