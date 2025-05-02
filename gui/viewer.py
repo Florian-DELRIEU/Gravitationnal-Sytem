@@ -18,6 +18,7 @@ class PygameViewer:
     def __init__(self, domain):
         self.domain = domain
         self.paused = True
+        self.show_trajectories = False
 
         pygame.init()
         self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -30,7 +31,7 @@ class PygameViewer:
         # Zones de fond
         self.screen.fill(BLACK)
         pygame.draw.rect(self.screen, DARK_GREY, (0, 0, VIEW_WIDTH, WINDOW_HEIGHT))   # zone graphique
-        self.panel.draw(self.screen, self.paused)
+        self.panel.draw(self.screen, self.paused, self.show_trajectories)
 
     def draw_bodies(self):
         for body in self.domain.body_list:
@@ -38,7 +39,22 @@ class PygameViewer:
             px = int(VIEW_WIDTH / 2 + body.x * 50)
             py = int(WINDOW_HEIGHT / 2 - body.y * 50)
             radius = max(3, min(int(body.mass ** 0.5), 20))
+
             pygame.draw.circle(self.screen, color, (px, py), radius)
+
+            if self.show_trajectories and "x" in body.kinetic_dict and "y" in body.kinetic_dict:
+                traj_x = body.kinetic_dict["x"]
+                traj_y = body.kinetic_dict["y"]
+
+                if len(traj_x) > 1:
+                    points = [
+                        (
+                            int(VIEW_WIDTH / 2 + x * 50),
+                            int(WINDOW_HEIGHT / 2 - y * 50)
+                        )
+                        for x, y in zip(traj_x, traj_y)
+                    ]
+                    pygame.draw.lines(self.screen, color, False, points, 1)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -54,8 +70,12 @@ class PygameViewer:
                     print("Recul non encore implémenté.")
 
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                self.paused = self.panel.handle_click(event.pos, self.paused, self.domain)
-
+                action = self.panel.handle_click(event.pos, self.paused, self.domain)
+                if action == "toggle_trajectories":
+                    print("Affichage des trajectoires :", self.show_trajectories)
+                    self.show_trajectories = not self.show_trajectories
+                elif isinstance(action, bool):
+                    self.paused = action
 
         return True
 
