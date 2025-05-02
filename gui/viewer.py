@@ -58,7 +58,7 @@ class PygameViewer:
             color = getattr(body, 'color', BLUE)
             px = int(VIEW_WIDTH / 2 + body.x * 50)
             py = int(WINDOW_HEIGHT / 2 - body.y * 50)
-            pygame.draw.circle(self.screen, color, (px, py), 5)
+            pygame.draw.circle(self.screen, color, (px, py), body.mass**(1/2))
 
     def handle_events(self):
         for event in pygame.event.get():
