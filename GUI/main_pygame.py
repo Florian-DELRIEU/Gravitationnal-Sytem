@@ -42,8 +42,14 @@ while running:
                     domain.step()
             elif event.key == pygame.K_LEFT:
                 pass  #todo ← Avancer d’un pas en arrière = plus complexe, à implémenter plus tard
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            if buttons["play_pause"].collidepoint(event.pos):
+                paused = not paused
+            elif buttons["step_forward"].collidepoint(event.pos) and paused:
+                domain.step()
+            elif buttons["step_back"].collidepoint(event.pos):
+                print("Fonction pas encore disponible.")  # À remplacer plus tard
 
-    # --- Simulation physique ---
     # --- Simulation physique ---
     if not paused:
         domain.step()
@@ -60,6 +66,32 @@ while running:
     status_text = "PAUSE" if paused else "PLAY"
     text_surface = font.render(status_text, True, WHITE)
     screen.blit(text_surface, (VIEW_WIDTH + 20, 20))
+    # --- Interface latérale ---
+    pygame.draw.rect(screen, (40, 40, 40), (VIEW_WIDTH, 0, PANEL_WIDTH, WINDOW_HEIGHT))
+
+    font = pygame.font.SysFont(None, 24)
+
+    # Définir les boutons
+    buttons = {
+        "play_pause": pygame.Rect(VIEW_WIDTH + 20, 40, 120, 30),
+        "step_forward": pygame.Rect(VIEW_WIDTH + 20, 80, 120, 30),
+        "step_back": pygame.Rect(VIEW_WIDTH + 20, 120, 120, 30)
+    }
+
+    # Dessiner les boutons
+    pygame.draw.rect(screen, (100, 200, 100), buttons["play_pause"])
+    pygame.draw.rect(screen, (100, 100, 255), buttons["step_forward"])
+    pygame.draw.rect(screen, (150, 150, 150), buttons["step_back"])
+
+    screen.blit(font.render("Play/Pause", True, BLACK), (buttons["play_pause"].x + 10, buttons["play_pause"].y + 5))
+    screen.blit(font.render("Avancer", True, BLACK), (buttons["step_forward"].x + 20, buttons["step_forward"].y + 5))
+    screen.blit(font.render("<< (désactivé)", True, BLACK), (buttons["step_back"].x + 5, buttons["step_back"].y + 5))
+
+    # Détecter le survol du bouton "recul"
+    mouse_pos = pygame.mouse.get_pos()
+    if buttons["step_back"].collidepoint(mouse_pos):
+        screen.blit(font.render("À venir : sauvegarde état précédent", True, WHITE), (VIEW_WIDTH + 20, 160))
+
 
 
     # Coordonnées converties en pixels (centre de la zone graphique = origine)
