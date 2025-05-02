@@ -29,13 +29,24 @@ clock = pygame.time.Clock()
 
 # --- Boucle principale ---
 running = True
+paused = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                paused = not paused
+            elif event.key == pygame.K_RIGHT:
+                if paused:
+                    domain.step()
+            elif event.key == pygame.K_LEFT:
+                pass  #todo ← Avancer d’un pas en arrière = plus complexe, à implémenter plus tard
 
     # --- Simulation physique ---
-    domain.step()
+    # --- Simulation physique ---
+    if not paused:
+        domain.step()
 
     # --- Affichage ---
     screen.fill(BLACK)
@@ -45,6 +56,11 @@ while running:
 
     # Dessin de la zone latérale
     pygame.draw.rect(screen, (40, 40, 40), (VIEW_WIDTH, 0, PANEL_WIDTH, WINDOW_HEIGHT))
+    font = pygame.font.SysFont(None, 24)
+    status_text = "PAUSE" if paused else "PLAY"
+    text_surface = font.render(status_text, True, WHITE)
+    screen.blit(text_surface, (VIEW_WIDTH + 20, 20))
+
 
     # Coordonnées converties en pixels (centre de la zone graphique = origine)
     for body in domain.body_list:
