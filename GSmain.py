@@ -193,3 +193,10 @@ class Domain:
         if save_data:
             for body in self.body_list:
                 body.save_kinetic()
+
+    def step(self):
+        """
+        Exécute un seul pas de simulation
+        """
+        for body in self.body_list:
+            body.refresh(self.dt)
