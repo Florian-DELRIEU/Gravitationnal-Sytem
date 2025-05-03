@@ -199,7 +199,7 @@ class Domain:
     def step(self):
         if not hasattr(self, "current_step"):
             self.current_step = 0
-        if self.current_step < len(self.t):
-            for body in self.body_list:
-                body.refresh(self.dt)
-            self.current_step += 1
+        for body in self.body_list:
+            body.refresh(self.dt)
+        self.current_step += 1
+
