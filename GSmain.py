@@ -156,10 +156,12 @@ class Domain:
         self.dy = .1
         self.dt = dt
     # Taille domaine
+        self.current_step = 0
         self.x_range = 10
         self.y_range = 10
         self.tf = tf  # Temps final
-    # Maillage
+
+        # Maillage
         self.X,self.Y = np.meshgrid(np.arange(-self.x_range,self.x_range,self.dx),
                                     np.arange(-self.y_range,self.y_range,self.dy))
     # Liste des corps appartenant à l'univers (systeme)
@@ -195,8 +197,9 @@ class Domain:
                 body.save_kinetic()
 
     def step(self):
-        """
-        Exécute un seul pas de simulation
-        """
-        for body in self.body_list:
-            body.refresh(self.dt)
+        if not hasattr(self, "current_step"):
+            self.current_step = 0
+        if self.current_step < len(self.t):
+            for body in self.body_list:
+                body.refresh(self.dt)
+            self.current_step += 1

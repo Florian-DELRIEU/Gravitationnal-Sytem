@@ -30,7 +30,15 @@ class PygameViewer:
     def draw_interface(self):
         # Zones de fond
         self.screen.fill(BLACK)
-        pygame.draw.rect(self.screen, DARK_GREY, (0, 0, VIEW_WIDTH, WINDOW_HEIGHT))   # zone graphique
+        # Ecran principal
+        pygame.draw.rect(self.screen, DARK_GREY, (0, 0, VIEW_WIDTH, WINDOW_HEIGHT))  # zone graphique
+        # Affichage du temps en haut à gauche
+        try:
+            t = self.domain.t[self.domain.current_step]
+        except (AttributeError, IndexError):
+            t = self.domain.t[-1] if hasattr(self.domain, "t") and len(self.domain.t) > 0 else 0
+        time_str = f"t = {t:.2f} s"
+        self.screen.blit(self.font.render(time_str, True, WHITE), (10, 10))
         self.panel.draw(self.screen, self.paused, self.show_trajectories)
 
     def draw_bodies(self):

@@ -12,7 +12,7 @@ class SidePanel:
         self.buttons = {
             "play_pause": pygame.Rect(x_offset + 20, 40, 120, 30),
             "step_forward": pygame.Rect(x_offset + 20, 80, 120, 30),
-            "step_back": pygame.Rect(x_offset + 20, 120, 120, 30),
+            "reset": pygame.Rect(x_offset + 20, 120, 120, 30),
             "toggle_trajectories": pygame.Rect(x_offset + 20, 160, 120, 30)
         }
 
@@ -24,11 +24,11 @@ class SidePanel:
         pygame.draw.rect(screen, (100, 200, 100), self.buttons["play_pause"])
         pygame.draw.rect(screen, (100, 100, 255), self.buttons["step_forward"])
         pygame.draw.rect(screen, traj_color, self.buttons["toggle_trajectories"])
-        pygame.draw.rect(screen, LIGHT_GREY, self.buttons["step_back"])
+        pygame.draw.rect(screen, (180, 80, 80), self.buttons["reset"])
 
         screen.blit(self.font.render("Play/Pause", True, BLACK), self.buttons["play_pause"].move(10, 5).topleft)
         screen.blit(self.font.render("Avancer", True, BLACK), self.buttons["step_forward"].move(20, 5).topleft)
-        screen.blit(self.font.render("<< (désactivé)", True, BLACK), self.buttons["step_back"].move(5, 5).topleft)
+        screen.blit(self.font.render("Réinitialiser", True, BLACK), self.buttons["reset"].move(5, 5).topleft)
         screen.blit(self.font.render("Trajectoires", True, BLACK), self.buttons["toggle_trajectories"].move(10, 5).topleft)
 
         status = "PAUSE" if paused else "PLAY"
@@ -36,16 +36,14 @@ class SidePanel:
 
         # Infobulle
         mouse_pos = pygame.mouse.get_pos()
-        if self.buttons["step_back"].collidepoint(mouse_pos):
-            screen.blit(self.font.render("À venir : sauvegarde état précédent", True, WHITE), (self.rect.x + 20, 160))
 
     def handle_click(self, event_pos, paused, domain):
         if self.buttons["play_pause"].collidepoint(event_pos):
             return not paused
         elif self.buttons["step_forward"].collidepoint(event_pos) and paused:
             domain.step()
-        elif self.buttons["step_back"].collidepoint(event_pos):
-            print("Fonction recul non encore disponible.")
+        elif self.buttons["reset"].collidepoint(event_pos):
+            return "reset"
         elif self.buttons["toggle_trajectories"].collidepoint(event_pos):
             return "toggle_trajectories"
         return paused
