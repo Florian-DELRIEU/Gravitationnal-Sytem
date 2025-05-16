@@ -1,5 +1,6 @@
 import pygame
 from gui.panel import SidePanel
+import matplotlib.pyplot as plt
 
 
 # --- Constantes graphiques ---
@@ -19,6 +20,7 @@ class PygameViewer:
         self.domain = domain
         self.paused = True
         self.show_trajectories = False
+        self.data_window_opened = False
 
         pygame.init()
         self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -74,6 +76,7 @@ class PygameViewer:
                 elif event.key == pygame.K_LEFT:
                     print("Recul non encore implémenté.")
 
+
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 action = self.panel.handle_click(event.pos, self.paused, self.domain)
                 if action == "toggle_trajectories":
@@ -81,6 +84,9 @@ class PygameViewer:
                     self.show_trajectories = not self.show_trajectories
                 elif isinstance(action, bool):
                     self.paused = action
+                elif action == "open_data":
+                    if not self.data_window_opened:
+                        self.open_data_window()
 
         return True
 
@@ -97,3 +103,14 @@ class PygameViewer:
             self.clock.tick(60)
 
         pygame.quit()
+
+    def open_data_window(self):
+        self.data_window_opened = True
+        fig, axs = plt.subplots(2, 1, figsize=(6, 5))
+        axs[0].plot([], [])  # Placeholder
+        axs[0].set_title("Position x(t)")
+        axs[1].plot([], [])  # Placeholder
+        axs[1].set_title("Vitesse |v|(t)")
+        plt.tight_layout()
+        plt.show()
+

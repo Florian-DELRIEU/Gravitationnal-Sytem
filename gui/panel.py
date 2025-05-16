@@ -13,7 +13,8 @@ class SidePanel:
             "play_pause": pygame.Rect(x_offset + 20, 40, 120, 30),
             "step_forward": pygame.Rect(x_offset + 20, 80, 120, 30),
             "reset": pygame.Rect(x_offset + 20, 120, 120, 30),
-            "toggle_trajectories": pygame.Rect(x_offset + 20, 160, 120, 30)
+            "toggle_trajectories": pygame.Rect(x_offset + 20, 160, 120, 30),
+            "open_data": pygame.Rect(x_offset + 20, 240, 120, 30)
         }
 
     def draw(self, screen, paused, show_trajectories=False):
@@ -25,11 +26,13 @@ class SidePanel:
         pygame.draw.rect(screen, (100, 100, 255), self.buttons["step_forward"])
         pygame.draw.rect(screen, traj_color, self.buttons["toggle_trajectories"])
         pygame.draw.rect(screen, (180, 80, 80), self.buttons["reset"])
+        pygame.draw.rect(screen, (255, 255, 120), self.buttons["open_data"])
 
         screen.blit(self.font.render("Play/Pause", True, BLACK), self.buttons["play_pause"].move(10, 5).topleft)
         screen.blit(self.font.render("Avancer", True, BLACK), self.buttons["step_forward"].move(20, 5).topleft)
         screen.blit(self.font.render("Réinitialiser", True, BLACK), self.buttons["reset"].move(5, 5).topleft)
         screen.blit(self.font.render("Trajectoires", True, BLACK), self.buttons["toggle_trajectories"].move(10, 5).topleft)
+        screen.blit(self.font.render("Afficher données", True, BLACK), self.buttons["open_data"].move(5, 5).topleft)
 
         status = "PAUSE" if paused else "PLAY"
         screen.blit(self.font.render(f"État : {status}", True, WHITE), (self.rect.x + 20, 10))
@@ -46,4 +49,6 @@ class SidePanel:
             return "reset"
         elif self.buttons["toggle_trajectories"].collidepoint(event_pos):
             return "toggle_trajectories"
+        elif self.buttons["open_data"].collidepoint(event_pos):
+            return "open_data"
         return paused
