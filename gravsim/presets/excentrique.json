@@ -1,0 +1,38 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Planète excentrique (e = 0,4)",
+  "description": "Une seule géante excentrique (e = 0,4) à la période extérieure du preset 'resonance_2_1'. Son harmonique 2f imite la planète intérieure du couple résonant.",
+  "bodies": [
+    {
+      "name": "GJ 876",
+      "mass": 0.32,
+      "radius": {
+        "value": 0.376,
+        "unit": "Rsun"
+      },
+      "color": "#ff7755"
+    },
+    {
+      "name": "Planète",
+      "mass": {
+        "value": 2.276,
+        "unit": "Mjup"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rjup"
+      },
+      "color": "#ddaa55",
+      "orbit": {
+        "around": "GJ 876",
+        "distance": 0.123624,
+        "angle_deg": 0.0,
+        "e": 0.4,
+        "at": "periapsis"
+      }
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

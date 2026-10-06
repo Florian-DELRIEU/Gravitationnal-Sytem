@@ -1,0 +1,33 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Étoile binaire",
+  "description": "Deux étoiles (1,0 et 0,8 M☉) en orbite circulaire, séparation 1 UA.",
+  "bodies": [
+    {
+      "name": "Étoile A",
+      "mass": 1.0,
+      "radius": {
+        "value": 1,
+        "unit": "Rsun"
+      },
+      "color": "#ffdd66"
+    },
+    {
+      "name": "Étoile B",
+      "mass": 0.8,
+      "radius": {
+        "value": 0.8,
+        "unit": "Rsun"
+      },
+      "color": "#ff8844",
+      "orbit": {
+        "around": "Étoile A",
+        "distance": 1.0,
+        "angle_deg": 0.0
+      }
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

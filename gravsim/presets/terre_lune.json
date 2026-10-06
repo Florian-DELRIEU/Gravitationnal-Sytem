@@ -1,0 +1,44 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Terre – Lune",
+  "description": "Système Terre-Lune isolé. Lune partant du périgée (363 300 km, e = 0,0549), P ≈ 27,3 jours.",
+  "bodies": [
+    {
+      "name": "Terre",
+      "mass": {
+        "value": 1,
+        "unit": "Mearth"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rearth"
+      },
+      "color": "#3d7dd8"
+    },
+    {
+      "name": "Lune",
+      "mass": {
+        "value": 1,
+        "unit": "Mmoon"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rmoon"
+      },
+      "color": "#bbbbbb",
+      "orbit": {
+        "around": "Terre",
+        "distance": {
+          "value": 363300,
+          "unit": "km"
+        },
+        "angle_deg": 0.0,
+        "e": 0.0549,
+        "at": "periapsis"
+      }
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

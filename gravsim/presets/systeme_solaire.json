@@ -1,0 +1,147 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Système solaire (2D)",
+  "description": "Soleil et 8 planètes, chacune partant de son périhélie, orientée selon sa longitude du périhélie réelle. Les phases relatives ne sont pas celles d'une date réelle.",
+  "bodies": [
+    {
+      "name": "Soleil",
+      "mass": 1.0,
+      "radius": {
+        "value": 1,
+        "unit": "Rsun"
+      },
+      "color": "#ffcc33"
+    },
+    {
+      "name": "Mercure",
+      "mass": 1.6601e-07,
+      "radius": {
+        "value": 2439.7,
+        "unit": "km"
+      },
+      "color": "#a39e93",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 0.307512,
+        "angle_deg": 77.46,
+        "e": 0.2056,
+        "at": "periapsis"
+      }
+    },
+    {
+      "name": "Vénus",
+      "mass": 2.4478e-06,
+      "radius": {
+        "value": 6051.8,
+        "unit": "km"
+      },
+      "color": "#e3c27a",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 0.718411,
+        "angle_deg": 131.6,
+        "e": 0.0068,
+        "at": "periapsis"
+      }
+    },
+    {
+      "name": "Terre",
+      "mass": 3.0035e-06,
+      "radius": {
+        "value": 6371.0,
+        "unit": "km"
+      },
+      "color": "#3d7dd8",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 0.9833,
+        "angle_deg": 102.9,
+        "e": 0.0167,
+        "at": "periapsis"
+      }
+    },
+    {
+      "name": "Mars",
+      "mass": 3.2272e-07,
+      "radius": {
+        "value": 3389.5,
+        "unit": "km"
+      },
+      "color": "#c1440e",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 1.381368,
+        "angle_deg": 336.1,
+        "e": 0.0934,
+        "at": "periapsis"
+      }
+    },
+    {
+      "name": "Jupiter",
+      "mass": 0.00095479,
+      "radius": {
+        "value": 69911.0,
+        "unit": "km"
+      },
+      "color": "#d9a066",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 4.948193,
+        "angle_deg": 14.73,
+        "e": 0.0489,
+        "at": "periapsis"
+      }
+    },
+    {
+      "name": "Saturne",
+      "mass": 0.00028589,
+      "radius": {
+        "value": 58232.0,
+        "unit": "km"
+      },
+      "color": "#e8d18f",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 8.998226,
+        "angle_deg": 92.43,
+        "e": 0.0565,
+        "at": "periapsis"
+      }
+    },
+    {
+      "name": "Uranus",
+      "mass": 4.3662e-05,
+      "radius": {
+        "value": 25362.0,
+        "unit": "km"
+      },
+      "color": "#9fd8e0",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 18.314258,
+        "angle_deg": 170.96,
+        "e": 0.0457,
+        "at": "periapsis"
+      }
+    },
+    {
+      "name": "Neptune",
+      "mass": 5.1514e-05,
+      "radius": {
+        "value": 24622.0,
+        "unit": "km"
+      },
+      "color": "#4b6fd6",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 29.72922,
+        "angle_deg": 44.97,
+        "e": 0.0113,
+        "at": "periapsis"
+      }
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

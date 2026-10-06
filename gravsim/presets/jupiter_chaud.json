@@ -1,0 +1,36 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Jupiter chaud (type 51 Peg b)",
+  "description": "Géante gazeuse très proche de son étoile : P ≈ 4,23 jours, a ≈ 0,053 UA, K ≈ 56 m/s.",
+  "bodies": [
+    {
+      "name": "51 Peg",
+      "mass": 1.11,
+      "radius": {
+        "value": 1.237,
+        "unit": "Rsun"
+      },
+      "color": "#fff1b3"
+    },
+    {
+      "name": "51 Peg b",
+      "mass": {
+        "value": 0.46,
+        "unit": "Mjup"
+      },
+      "radius": {
+        "value": 1.2,
+        "unit": "Rjup"
+      },
+      "color": "#e07b39",
+      "orbit": {
+        "around": "51 Peg",
+        "distance": 0.05302,
+        "angle_deg": 0.0
+      }
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

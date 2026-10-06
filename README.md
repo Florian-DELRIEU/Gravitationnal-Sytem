@@ -40,7 +40,7 @@ docs/
 ## Avancement
 
 - [x] Jalon 0 : mise en place
-- [ ] Jalon 1 : cœur physique + tests
+- [x] Jalon 1 : cœur physique + tests
 - [ ] Jalon 2 : analyse et spectre sans interface
 - [ ] Jalon 3 : interface de simulation
 - [ ] Jalon 4 : interface d'analyse

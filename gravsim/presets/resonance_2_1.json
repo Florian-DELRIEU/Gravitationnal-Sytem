@@ -1,0 +1,53 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Couple résonant 2:1 (type GJ 876)",
+  "description": "Naine rouge et deux géantes sur orbites circulaires en résonance 2:1 (P ≈ 30 et 60 jours). Pendant du preset 'excentrique' : au premier ordre, leurs spectres se confondent.",
+  "bodies": [
+    {
+      "name": "GJ 876",
+      "mass": 0.32,
+      "radius": {
+        "value": 0.376,
+        "unit": "Rsun"
+      },
+      "color": "#ff7755"
+    },
+    {
+      "name": "GJ 876 c",
+      "mass": {
+        "value": 0.714,
+        "unit": "Mjup"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rjup"
+      },
+      "color": "#88bbee",
+      "orbit": {
+        "around": "GJ 876",
+        "distance": 0.12963,
+        "angle_deg": 0.0
+      }
+    },
+    {
+      "name": "GJ 876 b",
+      "mass": {
+        "value": 2.276,
+        "unit": "Mjup"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rjup"
+      },
+      "color": "#ddaa55",
+      "orbit": {
+        "around": "GJ 876",
+        "distance": 0.20604,
+        "angle_deg": 120.0
+      }
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

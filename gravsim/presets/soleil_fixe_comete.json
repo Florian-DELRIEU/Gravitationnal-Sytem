@@ -1,0 +1,51 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Soleil fixe, Terre et comète",
+  "description": "Démonstration d'un corps fixe et d'une particule test : Soleil immobile, Terre circulaire à 1 UA, comète de masse nulle (e = 0,8, périhélie 0,5 UA).",
+  "bodies": [
+    {
+      "name": "Soleil",
+      "mass": 1.0,
+      "radius": {
+        "value": 1,
+        "unit": "Rsun"
+      },
+      "fixed": true,
+      "color": "#ffcc33"
+    },
+    {
+      "name": "Terre",
+      "mass": {
+        "value": 1,
+        "unit": "Mearth"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rearth"
+      },
+      "color": "#3d7dd8",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 1.0,
+        "angle_deg": 0.0
+      }
+    },
+    {
+      "name": "Comète",
+      "mass": 0.0,
+      "radius": {
+        "value": 10,
+        "unit": "km"
+      },
+      "color": "#aaffee",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 0.5,
+        "angle_deg": 200.0,
+        "e": 0.8,
+        "at": "periapsis"
+      }
+    }
+  ]
+}

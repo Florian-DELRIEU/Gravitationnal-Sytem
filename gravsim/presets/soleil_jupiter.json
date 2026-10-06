@@ -1,0 +1,36 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Soleil – Jupiter",
+  "description": "Couple étoile-planète de référence : Jupiter sur une orbite circulaire à 5,2 UA (P ≈ 11,9 ans, K ≈ 12,5 m/s).",
+  "bodies": [
+    {
+      "name": "Soleil",
+      "mass": 1.0,
+      "radius": {
+        "value": 1,
+        "unit": "Rsun"
+      },
+      "color": "#ffcc33"
+    },
+    {
+      "name": "Jupiter",
+      "mass": {
+        "value": 1,
+        "unit": "Mjup"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rjup"
+      },
+      "color": "#d9a066",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 5.2,
+        "angle_deg": 0.0
+      }
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

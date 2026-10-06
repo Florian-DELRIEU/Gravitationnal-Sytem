@@ -144,7 +144,9 @@ Accélération du corps `i` (non fixe) :
 
 `aᵢ = G · Σ_{j≠i} mⱼ · (rⱼ − rᵢ) / ‖rⱼ − rᵢ‖³`
 
-Les corps fixes contribuent à la somme mais leur `a` est forcé à zéro. En recouvrement (`‖rⱼ − rᵢ‖ < Rⱼ`), le terme `j` devient `G·mⱼ·(rⱼ − rᵢ)/Rⱼ³`.
+Les corps fixes contribuent à la somme mais leur `a` est forcé à zéro. En recouvrement, avec `sᵢⱼ = max(Rᵢ, Rⱼ)` et `‖rⱼ − rᵢ‖ < sᵢⱼ`, le terme `j` devient `G·mⱼ·(rⱼ − rᵢ)/sᵢⱼ³` (point dans une sphère homogène). Cette loi est symétrique (action = réaction) et dérive du potentiel `U = −G mᵢ mⱼ (3s² − r²)/(2s³)` : quantité de mouvement et énergie restent conservées pendant un recouvrement.
+
+Paramètre gravitationnel d'une paire : `μ = G(mᵢ + mⱼ)` si les deux corps sont libres, mais `μ = G mⱼ` si le corps de référence `j` est fixe (il ne recule pas). Utilisé par la vitesse orbitale automatique et les éléments orbitaux.
 
 Intégrateurs sélectionnables :
 - **DOP853** (scipy, adaptatif, ordre 8, sortie dense, événements natifs) : défaut en mode interactif et pour les rencontres proches ;
@@ -189,10 +191,10 @@ Les seuils sont des cibles, à calibrer au premier passage.
 | # | Test | Critère visé |
 |---|---|---|
 | T1 | Deux corps, orbite circulaire : période mesurée vs `2π√(a³/(G(M+m)))` | erreur relative < 10⁻⁶ (DOP853) |
-| T2 | Orbite `e = 0,5`, 1000 périodes : dérive d'énergie | DOP853 < 10⁻⁹ ; Yoshida/leapfrog borné, sans dérive séculaire |
+| T2 | Orbite `e = 0,5` : dérive d'énergie | DOP853 < 10⁻⁹ sur 100 périodes ; au pas conseillé, Yoshida < 5×10⁻⁶ et leapfrog < 10⁻³, bornés sans dérive séculaire sur 200 périodes |
 | T3 | Conservation de la quantité de mouvement, sans corps fixe | < 10⁻¹² relatif (invariant linéaire, conservé par tous les intégrateurs retenus) |
 | T4 | Corps fixe : position strictement inchangée, énergie conservée | exact / même critère que T2 |
-| T5 | Vitesse orbitale automatique : excentricité mesurée sur deux corps | `e < 10⁻⁶` (cercle) ; `e` demandée retrouvée sinon ; vitesse de libération → `e = 1` |
+| T5 | Vitesse orbitale automatique : excentricité mesurée sur deux corps | réglage exact (`e < 10⁻¹²` à t₀) ; en cours d'intégration `e < 10⁻⁶` (DOP853), `< 5×10⁻⁶` (Yoshida) ; `e` demandée retrouvée ; vitesse de libération → `e = 1` ; référence fixe → `μ = G mⱼ` |
 | T6 | Poussée prograde au périastre : nouvel apoastre vs vis-viva ; bilan d'énergie de la jauge nul | erreur < 10⁻⁶ |
 | T7 | Collision par chute radiale et contact rasant : instant détecté vs analytique | < 10⁻⁶ an ; contact rasant entre deux pas détecté |
 | T8 | Référentiel tournant : un binaire circulaire apparaît immobile | écart < 10⁻⁶ |
