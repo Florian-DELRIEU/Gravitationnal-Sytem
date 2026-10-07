@@ -46,6 +46,17 @@ def icon_for_platform(workdir: Path) -> Path | None:
     return png  # Linux: PyInstaller ignores the icon, harmless
 
 
+QT_PLUGINS = ["platforms", "styles", "imageformats", "iconengines", "generic", "platforminputcontexts"]
+
+
+def qt_plugin_data() -> list[tuple[Path, str]]:
+    """Plugins Qt nécessaires à l'interface, à placer sous PySide6/plugins/ dans l'application."""
+    from PySide6.QtCore import QLibraryInfo
+
+    plugins = Path(QLibraryInfo.path(QLibraryInfo.LibraryPath.PluginsPath))
+    return [(plugins / name, f"PySide6/plugins/{name}") for name in QT_PLUGINS if (plugins / name).is_dir()]
+
+
 def main() -> int:
     try:
         import PyInstaller  # noqa: F401
@@ -68,6 +79,9 @@ def main() -> int:
         ]
         for mod in EXCLUDES:
             cmd += ["--exclude-module", mod]
+        # Les hooks de PyInstaller n'embarquent pas toujours les plugins Qt (« no Qt platform plugin »).
+        for src, dest in qt_plugin_data():
+            cmd += ["--add-data", f"{src}{os.pathsep}{dest}"]
         if icon is not None:
             cmd += ["--icon", str(icon)]
         cmd.append(str(ROOT / "scripts" / "lancer_gui.py"))
