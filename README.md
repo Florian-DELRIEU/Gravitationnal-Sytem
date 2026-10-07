@@ -31,6 +31,8 @@ python scripts/construire_executable.py
 
 Résultat dans `dist/` : sous **Windows**, le dossier `Simulateur Gravitationnel` avec `Simulateur Gravitationnel.exe` (à copier en entier) ; sous **macOS**, `Simulateur Gravitationnel.app` (~170 Mo). L'exécutable accepte `--autotest` (vérifie les presets, les trois intégrateurs et le rendu, code de sortie 0 si tout va bien).
 
+Sous Windows, le plus simple : double-cliquer sur `windows\Construire l'executable (Windows).bat` (il utilise l'environnement `gravsim` créé par `Installer (Windows).bat`).
+
 Sans PC Windows sous la main : le workflow `.github/workflows/construire.yml` construit et vérifie les versions **Windows et macOS** sur les serveurs de GitHub (onglet *Actions* → *Construire les exécutables* → *Run workflow*, puis télécharger le zip dans *Artifacts*). Il faut pour cela que le projet soit sur GitHub.
 
 **2. Lanceur léger (Windows, avec conda)** : dans le dossier `windows/`, double-cliquer une fois sur `Installer (Windows).bat` (crée l'environnement `gravsim`), puis sur `Lancer le simulateur.bat`. Rapide à mettre en place, mais demande Miniconda.
