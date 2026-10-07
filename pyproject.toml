@@ -23,6 +23,9 @@ gui = [
 dev = [
     "pytest>=8",
 ]
+build = [
+    "pyinstaller>=6",
+]
 
 [project.scripts]
 gravsim = "gravsim.gui.main_window:main"

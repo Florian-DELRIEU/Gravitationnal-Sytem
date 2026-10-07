@@ -133,3 +133,8 @@ outputs/
 
 # Lanceur macOS genere par scripts/creer_app.py (chemin propre a la machine)
 *.app/
+
+# Executables autonomes (PyInstaller)
+dist/
+build/
+*.spec

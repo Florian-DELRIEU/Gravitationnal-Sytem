@@ -474,3 +474,14 @@ def test_screenshot_of_collision_ring(window, qapp, tmp_path):
     ctrl.advance_to(2.0, budget=5.0)
     img = window.grab()
     assert not img.isNull() and img.width() > 800
+
+
+def test_autotest_mode(qapp, capsys):
+    """The self-check used on built executables passes in the development environment."""
+    from gravsim.gui.main_window import _autotest
+
+    w = MainWindow(load_preset("soleil_jupiter"))
+    w.timer.stop()
+    assert _autotest(qapp, w) == 0
+    assert "AUTOTEST OK" in capsys.readouterr().out
+    w.close()

@@ -20,14 +20,22 @@ Le paquet `gravsim` est installé en mode éditable : les modifications du code 
 
 ## Lancer le simulateur
 
-**D'un double-clic (macOS)** : créer l'application une seule fois,
+Trois façons, de la plus simple à la plus souple :
+
+**1. Application autonome (aucun Python à installer)** : un fichier à double-cliquer, copiable sur un autre ordinateur du même système. PyInstaller ne fait pas de compilation croisée : chaque système construit la sienne.
 
 ```bash
-conda activate gravsim
-python scripts/creer_app.py
+pip install -e ".[gui,build]"          # ou, dans l'environnement conda : pip install pyinstaller
+python scripts/construire_executable.py
 ```
 
-puis double-cliquer sur `Simulateur Gravitationnel.app` (la glisser dans le Dock ou dans Applications si on veut). Elle lance le Python de l'environnement `gravsim` ; si cet environnement est supprimé ou déplacé, relancer `creer_app.py`. En cas de problème, le journal est dans `~/Library/Logs/gravsim.log`.
+Résultat dans `dist/` : sous **Windows**, le dossier `Simulateur Gravitationnel` avec `Simulateur Gravitationnel.exe` (à copier en entier) ; sous **macOS**, `Simulateur Gravitationnel.app` (~170 Mo). L'exécutable accepte `--autotest` (vérifie les presets, les trois intégrateurs et le rendu, code de sortie 0 si tout va bien).
+
+Sans PC Windows sous la main : le workflow `.github/workflows/construire.yml` construit et vérifie les versions **Windows et macOS** sur les serveurs de GitHub (onglet *Actions* → *Construire les exécutables* → *Run workflow*, puis télécharger le zip dans *Artifacts*). Il faut pour cela que le projet soit sur GitHub.
+
+**2. Lanceur léger (Windows, avec conda)** : dans le dossier `windows/`, double-cliquer une fois sur `Installer (Windows).bat` (crée l'environnement `gravsim`), puis sur `Lancer le simulateur.bat`. Rapide à mettre en place, mais demande Miniconda.
+
+**3. Lanceur léger (macOS)** : `python scripts/creer_app.py` crée `Simulateur Gravitationnel.app` à la racine, qui lance le Python de l'environnement `gravsim` (journal : `~/Library/Logs/gravsim.log`). À recréer si l'environnement est déplacé.
 
 **Depuis un terminal** :
 

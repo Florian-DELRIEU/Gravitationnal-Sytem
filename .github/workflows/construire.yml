@@ -1,0 +1,53 @@
+name: Construire les exécutables
+
+# Produit l'application autonome pour Windows et macOS sur les serveurs de GitHub.
+# Lancement manuel : onglet Actions > "Construire les exécutables" > Run workflow.
+# Les fichiers produits sont téléchargeables en bas de la page de l'exécution (Artifacts).
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Installer
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[gui,build,dev]"
+      - name: Tests
+        run: python -m pytest -q
+        env:
+          QT_QPA_PLATFORM: offscreen
+      - name: Construire l'application autonome
+        run: python scripts/construire_executable.py
+      - name: Vérifier l'application construite (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath "dist/Simulateur Gravitationnel/Simulateur Gravitationnel.exe" -ArgumentList "--autotest" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "L'autotest de l'exécutable a échoué (code $($p.ExitCode))" }
+      - name: Vérifier l'application construite (macOS)
+        if: runner.os == 'macOS'
+        run: "dist/Simulateur\\ Gravitationnel.app/Contents/MacOS/Simulateur\\ Gravitationnel --autotest"
+      - name: Archiver (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: Compress-Archive -Path "dist/Simulateur Gravitationnel" -DestinationPath "Simulateur-Gravitationnel-Windows.zip"
+      - name: Archiver (macOS)
+        if: runner.os == 'macOS'
+        run: ditto -c -k --keepParent "dist/Simulateur Gravitationnel.app" "Simulateur-Gravitationnel-macOS.zip"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: simulateur-${{ runner.os }}
+          path: Simulateur-Gravitationnel-*.zip

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -279,9 +280,48 @@ class MainWindow(QMainWindow):
             "Clic sur un corps pour le sélectionner ; molette pour zoomer, glisser pour déplacer.")
 
 
+def _autotest(app: QApplication, window: MainWindow) -> int:
+    """Headless self-check, meant for built executables: presets, simulation, rendering. Exit code 0 = OK."""
+    ctrl = window.ctrl
+    problems = []
+    stems = list_presets()
+    if len(stems) < 5:
+        problems.append(f"presets introuvables ({len(stems)})")
+    for stem in stems:
+        try:
+            ctrl.set_scenario(load_preset(stem))
+            ctrl.budget = 30.0
+            ctrl.advance_to(ctrl.scenario.t0 + 5 * ctrl.sim.output_dt)
+        except Exception as exc:  # report every failing preset, then fail
+            problems.append(f"{stem}: {type(exc).__name__}: {exc}")
+    for integrator in ("dop853", "yoshida4", "leapfrog"):
+        ctrl.set_scenario(load_preset("soleil_jupiter"))
+        ctrl.settings.integrator = integrator
+        ctrl.rebuild()
+        ctrl.budget = 30.0
+        ctrl.advance_to(1.0)
+        drift = ctrl.energy_drift()
+        if ctrl.sim is None or ctrl.sim.t < 1.0 or drift is None or abs(drift) > 1e-6:
+            problems.append(f"{integrator}: simulation incorrecte (dérive {drift})")
+    window.show()
+    app.processEvents()
+    if window.grab().isNull():
+        problems.append("rendu de la fenêtre impossible")
+    print("AUTOTEST " + ("OK" if not problems else "ÉCHEC : " + " | ".join(problems)))
+    return 0 if not problems else 1
+
+
 def main(argv: list[str] | None = None) -> int:
-    app = QApplication.instance() or QApplication(argv if argv is not None else sys.argv)
+    argv = list(sys.argv if argv is None else argv)
+    autotest = "--autotest" in argv
+    if autotest:
+        os.environ["QT_QPA_PLATFORM"] = "offscreen"  # must be set before the QApplication exists
+        argv.remove("--autotest")
+    app = QApplication.instance() or QApplication(argv)
     window = MainWindow()
+    if autotest:
+        window.timer.stop()
+        return _autotest(app, window)
     window.show()
     return app.exec()
 
