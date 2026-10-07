@@ -120,6 +120,18 @@ class Simulation:
         self._pending.append(impulse)
         self._pending.sort(key=lambda imp: imp.t)
 
+    def cancel_impulse(self, impulse) -> bool:
+        """Remove a scheduled impulse that has not been applied yet. Returns False if it was already applied."""
+        for k, imp in enumerate(self._pending):
+            if imp is impulse:
+                del self._pending[k]
+                return True
+        return False
+
+    def apply_due_impulses(self) -> None:
+        """Apply right now every impulse scheduled at or before the current time (without advancing time)."""
+        self._apply_due_impulses()
+
     @property
     def energy(self) -> float:
         kinetic = 0.5 * float(np.sum(self.masses[:, None] * self.v**2))

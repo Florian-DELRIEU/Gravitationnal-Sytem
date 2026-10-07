@@ -32,6 +32,7 @@ class Body:
     radius: float = 0.0
     fixed: bool = False
     color: str | None = None
+    display_px: float | None = None  # drawn diameter in pixels when the viewer uses manual sizes
 
     def __post_init__(self):
         self.position = _vec2(self.position)
@@ -65,4 +66,6 @@ class Body:
         }
         if self.color is not None:
             data["color"] = self.color
+        if self.display_px is not None:
+            data["display_px"] = self.display_px
         return data

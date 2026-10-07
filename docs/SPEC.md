@@ -99,7 +99,7 @@ Séries temporelles et graphes pour tout corps ou toute paire :
 - vitesses (norme et composantes), vitesse relative ;
 - énergies cinétique, potentielle, totale ; moment cinétique ; quantité de mouvement ; barycentre ;
 - **analyse d'une paire** : masse réduite, énergie du mouvement relatif, **type d'orbite** (liée elliptique, parabolique, hyperbolique), vitesse de libération ;
-- éléments orbitaux instantanés par rapport à un corps de référence : demi-grand axe `a` (négatif si hyperbolique), excentricité `e`, argument du périastre `ω`, période (si liée) ;
+- éléments orbitaux instantanés par rapport à un corps de référence : demi-grand axe `a` (négatif si hyperbolique), excentricité `e`, argument du périastre `ω`, période (si liée). Le type d'orbite se déduit du **signe de l'énergie**, pas de `e` seul : une chute radiale depuis le repos a `e = 1` mais est liée ;
 - **jauge de fidélité** : dérive relative de l'énergie (après retrait du bilan des poussées), du moment cinétique et de la quantité de mouvement, chacune désactivée quand elle n'a pas de sens (corps fixe, recouvrement).
 
 Export CSV et NPZ des trajectoires et des analyses ; sauvegarde et chargement d'un scénario en JSON versionné.
@@ -179,7 +179,7 @@ Principes :
 - `Trajectory` est la structure centrale : temps `(T,)`, positions `(T, N, 2)`, vitesses `(T, N, 2)`, journal d'événements ;
 - **stockage** : la trajectoire complète est enregistrée à la cadence d'échantillonnage demandée, pas à chaque pas d'intégration ; l'affichage lit une version décimée. Ordre de grandeur : 10⁶ échantillons × 10 corps ≈ 320 Mo, à garder en tête pour les campagnes ;
 - les référentiels et l'observateur sont des fonctions pures `Trajectory → données` ;
-- la simulation tourne dans un thread de travail qui remplit un tampon par blocs ; l'interface lit le tampon à cadence fixe ;
+- l'interface fait avancer la simulation par tranches courtes à budget de temps CPU (12 ms par image), dans le thread de l'interface : pour 2 à ~10 corps c'est aussi fluide qu'un thread de travail, sans verrou autour des poussées immédiates ni des modifications. La vitesse réellement atteinte s'affiche, et se réduit si le calcul ne suit pas. Un thread de travail reste possible si de grands N l'exigent ;
 - le calcul des forces est vectorisé en numpy (O(N²), largement suffisant pour N ≤ 50). Numba envisageable si les campagnes sont trop lentes (mesure au jalon 5).
 
 **Presets** servant aussi de cas de test : Terre-Lune, Soleil-Jupiter, binaire d'étoiles, Soleil + 8 planètes, Jupiter chaud, couple résonant 2:1 (type GJ 876), étoile + planète excentrique (pendant de la dégénérescence).

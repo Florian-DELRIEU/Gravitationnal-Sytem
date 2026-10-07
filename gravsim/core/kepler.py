@@ -63,7 +63,8 @@ def elements_from_state(r_rel, v_rel, mu: float) -> dict:
     Returns a dict of arrays: a (negative if hyperbolic, inf if parabolic), e,
     omega (argument of periapsis, rad), h (specific angular momentum, >0 if
     counterclockwise), energy (specific orbital energy), period (nan if unbound),
-    periapsis, apoapsis (inf if unbound), true_anomaly (rad).
+    periapsis, apoapsis (inf if unbound), true_anomaly (rad), kind ('elliptic' | 'parabolic' | 'hyperbolic',
+    from the sign of the energy).
     """
     r_rel = np.asarray(r_rel, dtype=float)
     v_rel = np.asarray(v_rel, dtype=float)
@@ -78,12 +79,15 @@ def elements_from_state(r_rel, v_rel, mu: float) -> dict:
     ey = ((v2 - mu / r) * y - rv * vy) / mu
     e = np.hypot(ex, ey)
     omega = np.arctan2(ey, ex)
+    # Classification uses the energy, not e alone: a radial fall from rest has e = 1 yet is bound.
+    scale = 0.5 * v2 + mu / r
+    rel_energy = energy / scale
+    kind = np.where(rel_energy < -PARABOLIC_TOL, "elliptic", np.where(rel_energy > PARABOLIC_TOL, "hyperbolic", "parabolic"))
+    bound = kind == "elliptic"
     with np.errstate(divide="ignore", invalid="ignore"):
         a = np.where(np.abs(energy) > 0, -mu / (2.0 * energy), np.inf)
-        p = h * h / mu  # semi-latus rectum
-        periapsis = p / (1.0 + e)
-        bound = e < 1.0 - PARABOLIC_TOL
-        apoapsis = np.where(bound, p / (1.0 - e), np.inf)
+        periapsis = h * h / mu / (1.0 + e)  # p / (1 + e), accurate also when h -> 0
+        apoapsis = np.where(bound, a * (1.0 + e), np.inf)
         per = np.where(bound, 2.0 * np.pi * np.sqrt(np.abs(a) ** 3 / mu), np.nan)
     nu = np.arctan2(y, x) - omega
     if np.ndim(h):
@@ -101,11 +105,15 @@ def elements_from_state(r_rel, v_rel, mu: float) -> dict:
         "periapsis": periapsis,
         "apoapsis": apoapsis,
         "true_anomaly": nu,
+        "kind": kind,
     }
 
 
 def orbit_kind(e) -> np.ndarray:
-    """'elliptic', 'parabolic' or 'hyperbolic' for each eccentricity."""
+    """'elliptic', 'parabolic' or 'hyperbolic' from the eccentricity alone.
+
+    Wrong for radial orbits (e = 1 but bound): prefer ``elements_from_state(...)["kind"]``.
+    """
     e = np.asarray(e)
     return np.where(e < 1 - PARABOLIC_TOL, "elliptic", np.where(e > 1 + PARABOLIC_TOL, "hyperbolic", "parabolic"))
 

@@ -35,7 +35,6 @@ def osculating_elements(traj: Trajectory, body, reference=None) -> dict[str, np.
         raise ValueError("a fixed body has no orbit")
     rel, vrel = relative_state(traj, body, ref)
     el = kepler.elements_from_state(rel, vrel, pair_mu(traj, body, ref))
-    el["kind"] = kepler.orbit_kind(el["e"])
     return el
 
 
@@ -102,7 +101,7 @@ def pair_analysis(traj: Trajectory, a, b) -> PairAnalysis:
     el = kepler.elements_from_state(rel, vrel, mu)
     energy = 0.5 * red * v**2 - traj.G * ma * mb / d
     return PairAnalysis((traj.names[ia], traj.names[ib]), traj.t, d, v, red, energy,
-                        np.sqrt(2 * mu / d), kepler.orbit_kind(el["e"]), el)
+                        np.sqrt(2 * mu / d), el["kind"], el)
 
 
 @dataclass

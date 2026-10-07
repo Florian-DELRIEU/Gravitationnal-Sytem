@@ -23,6 +23,7 @@ AU/yr, yr) or ``{"value": v, "unit": u}`` (see ``units``).
 
 from __future__ import annotations
 
+import copy
 import json
 import math
 from dataclasses import dataclass, field
@@ -93,6 +94,27 @@ class Scenario:
         if not others:
             raise ValueError("no other body to use as reference")
         return max(others, key=lambda b: b.mass).name
+
+    def copy(self) -> "Scenario":
+        return copy.deepcopy(self)
+
+    def problems(self) -> list[str]:
+        """Reasons why this scenario cannot be simulated (empty list if it can)."""
+        issues = []
+        if not self.bodies:
+            return ["aucun corps"]
+        pos = self.positions
+        for i in range(len(pos)):
+            for j in range(i + 1, len(pos)):
+                if np.array_equal(pos[i], pos[j]) and (self.bodies[i].mass > 0 or self.bodies[j].mass > 0):
+                    issues.append(f"{self.bodies[i].name} et {self.bodies[j].name} sont à la même position")
+        names = self.names
+        for imp in self.impulses:
+            if imp.body not in names:
+                issues.append(f"poussée sur un corps inconnu : {imp.body}")
+            if imp.reference is not None and imp.reference not in names:
+                issues.append(f"poussée : corps de référence inconnu : {imp.reference}")
+        return issues
 
     # --- velocity helpers ----------------------------------------------------
     def _relative(self, name: str, around: str | None):
@@ -192,7 +214,8 @@ class Scenario:
             radius = units.radius_from_density(mass, float(spec["density"]))
         else:
             radius = 0.0
-        body = Body(spec["name"], mass, radius=radius, fixed=bool(spec.get("fixed", False)), color=spec.get("color"))
+        body = Body(spec["name"], mass, radius=radius, fixed=bool(spec.get("fixed", False)), color=spec.get("color"),
+                    display_px=spec.get("display_px"))
         orbit = spec.get("orbit")
         if orbit is None:
             body.position = [_quantity(c, units.LENGTH_UNITS) for c in spec.get("position", [0.0, 0.0])]

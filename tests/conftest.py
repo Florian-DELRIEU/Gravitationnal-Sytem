@@ -1,3 +1,7 @@
+import os
+
+os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")  # GUI tests run without a display
+
 import numpy as np
 import pytest
 

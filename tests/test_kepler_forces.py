@@ -48,6 +48,23 @@ def test_hyperbolic_elements():
     assert el["e"] > 1 and el["a"] < 0 and np.isnan(el["period"]) and np.isinf(el["apoapsis"])
 
 
+def test_radial_fall_is_bound_not_parabolic():
+    """Radial fall from rest: e = 1 but the energy is negative, so the orbit is a degenerate ellipse."""
+    el = kepler.elements_from_state([1.0, 0.0], [0.0, 0.0], 4.0)
+    assert el["e"] == pytest.approx(1.0) and el["kind"] == "elliptic"
+    assert el["a"] == pytest.approx(0.5) and el["period"] == pytest.approx(kepler.period(0.5, 4.0))
+    assert el["periapsis"] == pytest.approx(0.0, abs=1e-15) and el["apoapsis"] == pytest.approx(1.0)
+    # Same at a nonzero speed along the radius.
+    el = kepler.elements_from_state([1.0, 0.0], [0.5, 0.0], 4.0)
+    assert el["kind"] == "elliptic" and np.isfinite(el["period"])
+
+
+def test_kind_vector_and_hyperbolic():
+    r = np.array([[1.0, 0.0], [1.0, 0.0], [1.0, 0.0]])
+    v = np.array([[0.0, 1.0], [0.0, math.sqrt(2.0)], [0.0, 2.0]])  # mu = 1: ellipse, parabola, hyperbola
+    assert list(kepler.elements_from_state(r, v, 1.0)["kind"]) == ["elliptic", "parabolic", "hyperbolic"]
+
+
 def test_clockwise_orbit():
     v = kepler.orbital_velocity([1.0, 0.0], 1.0, clockwise=True)
     assert kepler.elements_from_state([1.0, 0.0], v, 1.0)["h"] < 0
