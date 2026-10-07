@@ -38,6 +38,10 @@ class GravityModel:
         with np.errstate(divide="ignore"):
             self._inv_s3 = np.where(s > 0, 1.0 / s**3, 0.0)
         self._gm = self.G * self.masses
+        self._eye = np.eye(n)
+        self._gm_off = np.tile(self._gm, (n, 1))  # G m_j in column j, zero on the diagonal (no self-force)
+        np.fill_diagonal(self._gm_off, 0.0)
+        self._s2_max = float(self._s2.max()) if n else 0.0
         self._iu, self._ju = np.triu_indices(n, 1)
         self._pair_gmm = self.G * self.masses[self._iu] * self.masses[self._ju]
         self._pair_s = s[self._iu, self._ju]
@@ -54,11 +58,22 @@ class GravityModel:
         return inv_r3
 
     def acceleration(self, pos) -> np.ndarray:
-        """Accelerations (N, 2) for positions (N, 2). Fixed bodies get zero."""
-        d = pos[None, :, :] - pos[:, None, :]  # d[i, j] = r_j - r_i
-        r2 = np.einsum("ijk,ijk->ij", d, d)
-        w = self._inv_r3(r2) * self._gm[None, :]
-        acc = np.einsum("ij,ijk->ik", w, d)
+        """Accelerations (N, 2) for positions (N, 2). Fixed bodies get zero.
+
+        Hot path of every integrator: written with as few numpy calls as possible (N is small, call overhead
+        dominates), and the homogeneous-sphere branch is skipped unless some pair can overlap.
+        """
+        x, y = pos[:, 0], pos[:, 1]
+        dx = x[None, :] - x[:, None]  # dx[i, j] = x_j - x_i
+        dy = y[None, :] - y[:, None]
+        r2 = dx * dx + dy * dy + self._eye  # 1 on the diagonal: no division by zero (its weight is 0)
+        inv = r2**-1.5
+        if self._soft and r2.min() < self._s2_max:
+            inv = np.where(r2 < self._s2, self._inv_s3, inv)
+        w = inv * self._gm_off
+        acc = np.empty_like(pos)
+        acc[:, 0] = (w * dx).sum(axis=1)
+        acc[:, 1] = (w * dy).sum(axis=1)
         if self.any_fixed:
             acc[self.fixed] = 0.0
         return acc

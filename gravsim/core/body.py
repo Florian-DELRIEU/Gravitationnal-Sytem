@@ -34,9 +34,13 @@ class Body:
     color: str | None = None
     display_px: float | None = None  # drawn diameter in pixels when the viewer uses manual sizes
 
+    def __setattr__(self, name, value):
+        # Every assignment (constructor, JSON loading, interface fields) stores a float vector, never a list.
+        if name in ("position", "velocity"):
+            value = _vec2(value)
+        object.__setattr__(self, name, value)
+
     def __post_init__(self):
-        self.position = _vec2(self.position)
-        self.velocity = _vec2(self.velocity)
         if self.mass < 0:
             raise ValueError(f"{self.name}: mass must be >= 0")
         if self.radius < 0:

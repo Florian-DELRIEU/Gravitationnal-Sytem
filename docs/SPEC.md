@@ -1,6 +1,6 @@
 # Cahier des charges — Simulateur gravitationnel 2D à N corps
 
-Statut : **v2, revue critique faite, à valider** (aucun code écrit). Projet repris de zéro.
+Statut : **v2, réalisée** (version 1.0.0 du logiciel, jalons 0 à 6 terminés). Les écarts constatés en cours de route sont notés à leur place.
 
 ## 1. Objectifs
 
@@ -214,7 +214,7 @@ L'ordre suit le risque : la partie la plus incertaine (objectif 2) est validée 
 3. **Interface de simulation** : viewer, panneau de saisie des corps (norme/angle, composantes, vitesse orbitale auto, poussées), contrôles de temps, tailles d'affichage, collisions.
 4. **Interface d'analyse** : onglets graphes, référentiels, jauge de fidélité, export, onglet spectre. *(fait : pipeline d'observation `analysis/pipeline.py`, export `analysis/export.py` ; l'onglet Spectre liste les pics sans les compter, le comptage des planètes est le jalon 5)*
 5. **Détection et validation** : prewhitening, ajustement képlérien, sélection de modèle, harmoniques et ambiguïté, campagne par injection. T10 à T13. *(fait : `analysis/detection.py`, `analysis/campaign.py`, onglet Spectre → Détection ; résultats dans docs/RESULTATS_JALON5.md)*
-6. **Finitions** : presets, scénarios JSON, performances (Numba si mesuré nécessaire), documentation d'utilisation.
+6. **Finitions** : presets, scénarios JSON, performances (Numba si mesuré nécessaire), documentation d'utilisation. *(fait : 6 nouveaux presets testés, docs/GUIDE_UTILISATEUR.md et docs/FORMAT_SCENARIO.md dont les exemples sont testés, aide F1 ; performances : −26 % par pas en numpy pur, Numba jugé non nécessaire — 0,65 s par système de campagne)*
 
 Chaque jalon se termine par un état utilisable et ses tests au vert.
 

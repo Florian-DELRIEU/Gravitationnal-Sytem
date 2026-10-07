@@ -1,0 +1,54 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Collision frontale",
+  "description": "Deux planètes de masse terrestre sur la même orbite, en sens contraires : elles se percutent de face après environ 3 mois, à près de 60 km/s. Cochez « Pause à la collision » pour s'arrêter au contact ; sans fusion, elles se traversent ensuite.",
+  "bodies": [
+    {
+      "name": "Soleil",
+      "mass": 1.0,
+      "radius": {
+        "value": 1,
+        "unit": "Rsun"
+      },
+      "color": "#ffcc33"
+    },
+    {
+      "name": "Planète A",
+      "mass": {
+        "value": 1,
+        "unit": "Mearth"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rearth"
+      },
+      "color": "#3d7dd8",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 1.0,
+        "angle_deg": 0
+      }
+    },
+    {
+      "name": "Planète B",
+      "mass": {
+        "value": 1,
+        "unit": "Mearth"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rearth"
+      },
+      "color": "#ef476f",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 1.0,
+        "angle_deg": 180,
+        "clockwise": true
+      }
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

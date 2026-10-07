@@ -1,0 +1,69 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Troyens de Jupiter (L4, L5)",
+  "description": "Jupiter et deux astéroïdes aux points de Lagrange L4 et L5, 60° devant et derrière la planète. Dans le référentiel tournant Soleil–Jupiter (onglet Vue), ils restent sur place : points stables.",
+  "bodies": [
+    {
+      "name": "Soleil",
+      "mass": 1.0,
+      "radius": {
+        "value": 1,
+        "unit": "Rsun"
+      },
+      "color": "#ffcc33"
+    },
+    {
+      "name": "Jupiter",
+      "mass": {
+        "value": 1,
+        "unit": "Mjup"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rjup"
+      },
+      "color": "#d9a066",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 5.2
+      }
+    },
+    {
+      "name": "Troyen L4",
+      "mass": 0.0,
+      "radius": {
+        "value": 100,
+        "unit": "km"
+      },
+      "color": "#c77dff",
+      "position": [
+        2.6,
+        4.5033321
+      ],
+      "velocity": [
+        -2.387349812,
+        1.378337057
+      ]
+    },
+    {
+      "name": "Troyen L5",
+      "mass": 0.0,
+      "radius": {
+        "value": 100,
+        "unit": "km"
+      },
+      "color": "#c77dff",
+      "position": [
+        2.6,
+        -4.5033321
+      ],
+      "velocity": [
+        2.387349812,
+        1.378337057
+      ]
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

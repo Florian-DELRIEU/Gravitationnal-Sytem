@@ -1,0 +1,55 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Soleil – Terre – Lune",
+  "description": "La Lune tourne autour de la Terre qui tourne autour du Soleil. Centrez la vue sur la Terre (onglet Vue → Centré sur un corps) pour voir l'orbite lunaire ; en inertiel, la Lune ondule le long de l'orbite terrestre sans jamais reculer.",
+  "bodies": [
+    {
+      "name": "Soleil",
+      "mass": 1.0,
+      "radius": {
+        "value": 1,
+        "unit": "Rsun"
+      },
+      "color": "#ffcc33"
+    },
+    {
+      "name": "Terre",
+      "mass": {
+        "value": 1,
+        "unit": "Mearth"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rearth"
+      },
+      "color": "#3d7dd8",
+      "orbit": {
+        "around": "Soleil",
+        "distance": 1.0
+      }
+    },
+    {
+      "name": "Lune",
+      "mass": {
+        "value": 1,
+        "unit": "Mmoon"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rmoon"
+      },
+      "color": "#bbbbbb",
+      "orbit": {
+        "around": "Terre",
+        "distance": {
+          "value": 384400,
+          "unit": "km"
+        },
+        "angle_deg": 90
+      }
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

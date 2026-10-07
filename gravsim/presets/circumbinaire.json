@@ -1,0 +1,52 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Planète circumbinaire (type Kepler-16)",
+  "description": "Une planète de type Saturne qui tourne autour de deux étoiles à la fois (P ≈ 229 j autour d'un couple de 41 j), comme Tatooine. Le spectre de l'étoile A est dominé par sa compagne stellaire.",
+  "bodies": [
+    {
+      "name": "Étoile A",
+      "mass": 0.69,
+      "radius": {
+        "value": 0.65,
+        "unit": "Rsun"
+      },
+      "color": "#ffb347"
+    },
+    {
+      "name": "Étoile B",
+      "mass": 0.2,
+      "radius": {
+        "value": 0.23,
+        "unit": "Rsun"
+      },
+      "color": "#ff6b6b",
+      "orbit": {
+        "around": "Étoile A",
+        "distance": 0.224
+      }
+    },
+    {
+      "name": "Planète",
+      "mass": {
+        "value": 0.333,
+        "unit": "Mjup"
+      },
+      "radius": {
+        "value": 0.75,
+        "unit": "Rjup"
+      },
+      "color": "#9bdeac",
+      "position": [
+        0.05033707865,
+        0.7048
+      ],
+      "velocity": [
+        -7.061866192,
+        2.814432593
+      ]
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

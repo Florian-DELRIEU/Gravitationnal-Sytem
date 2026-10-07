@@ -485,3 +485,23 @@ def test_autotest_mode(qapp, capsys):
     assert _autotest(qapp, w) == 0
     assert "AUTOTEST OK" in capsys.readouterr().out
     w.close()
+
+
+def test_help_dialog_and_version(window, qapp):
+    from gravsim import __version__
+
+    dialog = window.show_help()
+    qapp.processEvents()
+    text = dialog.browser.toPlainText()
+    assert "Compter les planètes" in text and "GUIDE_UTILISATEUR" in text
+    assert not dialog.grab().isNull()
+    dialog.close()
+    assert __version__ == "1.0.0"
+
+
+def test_status_and_preset_selector_follow_changes(window, qapp):
+    window.load_preset("figure_huit")
+    assert window.preset_combo.currentData() == "figure_huit"
+    window.view.frame, window.view.frame_pair = "rotating", (0, 1)
+    window.view.notify()  # paused: the status bar must still show the new frame
+    assert "tournant" in window.status_frame.text()

@@ -18,6 +18,18 @@ def test_polar_and_cartesian_velocity_agree():
     assert b.speed == pytest.approx(2.0) and b.direction_deg == pytest.approx(90.0)
 
 
+def test_vectors_are_always_arrays():
+    b = Body("x", 1.0, position=[1, 2])
+    b.velocity = [3, 4]  # as the interface and the JSON loader do
+    b.position = (5, 6)
+    assert isinstance(b.velocity, np.ndarray) and isinstance(b.position, np.ndarray)
+    assert (b.position - b.velocity).tolist() == [2.0, 2.0]
+    with pytest.raises(ValueError):
+        b.position = [1, 2, 3]
+    sc = Scenario.from_dict({"bodies": [{"name": "A", "mass": 1.0, "position": [0.5, 0], "velocity": [0, 1]}]})
+    assert isinstance(sc.bodies[0].position, np.ndarray) and isinstance(sc.bodies[0].velocity, np.ndarray)
+
+
 def test_json_round_trip(tmp_path):
     sc = Scenario(name="test")
     sc.add(Body("star", 1.0, radius=0.005, color="#ff0"))

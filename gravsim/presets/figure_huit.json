@@ -1,0 +1,60 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Chorégraphie en huit",
+  "description": "Trois étoiles égales qui se poursuivent sur une même courbe en forme de 8 (solution de Chenciner et Montgomery, 2000). Période ≈ 1,007 an. Sensible aux erreurs : un bon test de fidélité de l'intégrateur (comparez DOP853 et leapfrog avec un grand pas).",
+  "bodies": [
+    {
+      "name": "A",
+      "mass": 1.0,
+      "radius": {
+        "value": 1,
+        "unit": "Rsun"
+      },
+      "color": "#ffd166",
+      "position": [
+        0.97000436,
+        -0.24308753
+      ],
+      "velocity": [
+        2.929244144,
+        2.716634002
+      ]
+    },
+    {
+      "name": "B",
+      "mass": 1.0,
+      "radius": {
+        "value": 1,
+        "unit": "Rsun"
+      },
+      "color": "#4cc9f0",
+      "position": [
+        -0.97000436,
+        0.24308753
+      ],
+      "velocity": [
+        2.929244144,
+        2.716634002
+      ]
+    },
+    {
+      "name": "C",
+      "mass": 1.0,
+      "radius": {
+        "value": 1,
+        "unit": "Rsun"
+      },
+      "color": "#ef476f",
+      "position": [
+        0.0,
+        0.0
+      ],
+      "velocity": [
+        -5.858488287,
+        -5.433268004
+      ]
+    }
+  ],
+  "zero_momentum": true
+}

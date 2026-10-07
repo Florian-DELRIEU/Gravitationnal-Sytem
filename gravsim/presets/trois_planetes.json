@@ -1,0 +1,73 @@
+{
+  "format": "gravsim-scenario",
+  "version": 1,
+  "name": "Trois planètes",
+  "description": "Une étoile et trois géantes bien séparées (P = 36,5 j, 164 j, 1,6 an ; K ≈ 61, 56, 73 m/s) : le cas d'école de la détection. Simulez ~10 ans puis Spectre → Détection.",
+  "bodies": [
+    {
+      "name": "Étoile",
+      "mass": 1.0,
+      "radius": {
+        "value": 1,
+        "unit": "Rsun"
+      },
+      "color": "#ffd166"
+    },
+    {
+      "name": "Planète b",
+      "mass": {
+        "value": 1.0,
+        "unit": "Mjup"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rjup"
+      },
+      "color": "#4cc9f0",
+      "orbit": {
+        "around": "Étoile",
+        "distance": 0.2047364143,
+        "angle_deg": 0,
+        "e": 0.05
+      }
+    },
+    {
+      "name": "Planète c",
+      "mass": {
+        "value": 1.5,
+        "unit": "Mjup"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rjup"
+      },
+      "color": "#9bdeac",
+      "orbit": {
+        "around": "Étoile",
+        "distance": 0.5287593184,
+        "angle_deg": 100,
+        "e": 0.1
+      }
+    },
+    {
+      "name": "Planète d",
+      "mass": {
+        "value": 3.0,
+        "unit": "Mjup"
+      },
+      "radius": {
+        "value": 1,
+        "unit": "Rjup"
+      },
+      "color": "#ef476f",
+      "orbit": {
+        "around": "Étoile",
+        "distance": 1.259742797,
+        "angle_deg": 220,
+        "e": 0.08
+      }
+    }
+  ],
+  "zero_momentum": true,
+  "center": true
+}

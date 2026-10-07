@@ -146,7 +146,15 @@ class CollisionDetector:
         """
         if not self.active:
             return []
-        iu, ju, rsum = self.iu, self.ju, self.rsum
+        # Cheap screening first (called at every step): a pair can only touch during the step if its end
+        # distance minus twice the sum of the bodies' largest displacement is below contact.
+        step = np.maximum(np.hypot(v0[:, 0], v0[:, 1]), np.hypot(v1[:, 0], v1[:, 1])) * dt
+        d_end = x1[self.ju] - x1[self.iu]
+        close = np.hypot(d_end[:, 0], d_end[:, 1]) - 2.0 * (step[self.iu] + step[self.ju]) <= self.rsum
+        if not close.any():
+            return []
+        keep = np.nonzero(close)[0]
+        iu, ju, rsum = self.iu[keep], self.ju[keep], self.rsum[keep]
         p0, p1 = x0[ju] - x0[iu], x1[ju] - x1[iu]
         m0, m1 = (v0[ju] - v0[iu]) * dt, (v1[ju] - v1[iu]) * dt
         d0, d1 = np.hypot(*p0.T), np.hypot(*p1.T)

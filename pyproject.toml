@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gravsim"
-version = "0.1.0"
+version = "1.0.0"
 description = "Simulateur gravitationnel 2D à N corps, avec analyse spectrale du mouvement stellaire"
 readme = "README.md"
 requires-python = ">=3.11"

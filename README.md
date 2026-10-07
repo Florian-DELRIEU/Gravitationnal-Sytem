@@ -5,7 +5,14 @@ Simulateur gravitationnel 2D à N corps, conçu pour :
 1. **visualiser** le comportement de corps en interaction gravitationnelle ;
 2. **analyser par spectre** le mouvement réflexe d'une étoile (vitesse radiale, astrométrie) pour retrouver le nombre de planètes qui gravitent autour.
 
-Spécification complète : [docs/SPEC.md](docs/SPEC.md).
+Version 1.0.0.
+
+## Documentation
+
+- **[Guide d'utilisation](docs/GUIDE_UTILISATEUR.md)** : lancer le logiciel, construire un système, observer une étoile, compter ses planètes (aussi en raccourci dans l'application : **F1**).
+- [Format des scénarios](docs/FORMAT_SCENARIO.md) : écrire ses propres systèmes en JSON.
+- [Cahier des charges](docs/SPEC.md) : exigences, équations, architecture, tests de validation.
+- Résultats commentés : [premiers spectres](docs/RESULTATS_JALON2.md), [détection des planètes](docs/RESULTATS_JALON5.md).
 
 ## Installation
 
@@ -88,7 +95,7 @@ python scripts/etude_spectre.py resonance_2_1 --annees 3 --bruit 5 --n-obs 120 -
 
 Chaque étude simule un preset, observe l'étoile (vitesse radiale et astrométrie), compare les pics du spectre aux planètes réellement présentes et enregistre une figure dans `outputs/`. Options : `--help`. Résultats commentés : [docs/RESULTATS_JALON2.md](docs/RESULTATS_JALON2.md).
 
-Presets disponibles : `soleil_jupiter`, `terre_lune`, `binaire`, `systeme_solaire`, `jupiter_chaud`, `resonance_2_1`, `excentrique`, `soleil_fixe_comete`.
+Presets disponibles (14, décrits dans le [guide](docs/GUIDE_UTILISATEUR.md#12-les-presets)) : `soleil_jupiter`, `systeme_solaire`, `jupiter_chaud`, `trois_planetes`, `resonance_2_1`, `excentrique`, `troyens`, `figure_huit`, `soleil_terre_lune`, `terre_lune`, `binaire`, `circumbinaire`, `collision_frontale`, `soleil_fixe_comete`.
 
 ## Structure
 
@@ -111,4 +118,4 @@ docs/
 - [x] Jalon 3 : interface de simulation
 - [x] Jalon 4 : interface d'analyse
 - [x] Jalon 5 : détection de planètes et validation
-- [ ] Jalon 6 : finitions
+- [x] Jalon 6 : finitions (presets, guide d'utilisation, aide intégrée, performances, version 1.0)

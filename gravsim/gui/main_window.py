@@ -18,7 +18,9 @@ from ..core.scenario import Scenario, list_presets, load_preset
 from ..analysis import export
 from .analysis_tabs import AnalysisPage
 from .body_panel import BodyEditor, BodyListPanel, ImpulsePanel
+from .. import __version__
 from .controller import SimulationController
+from .help_dialog import HelpDialog
 from .spectral_tab import SpectrumPage
 from .time_controls import IntegrationPanel, TimeControls
 from .view_panel import InfoPanel, ViewPanel
@@ -99,6 +101,7 @@ class MainWindow(QMainWindow):
         ctrl.collisionOccurred.connect(self._on_collision)
         ctrl.reset.connect(lambda: self.banner_row.setVisible(False))
         ctrl.changed.connect(self._update_status)
+        self.view.changed.connect(self._update_status)  # the frame name, even while paused
         ctrl.scenarioReplaced.connect(self._update_title)
         self.viewer.bodyClicked.connect(ctrl.select)
         self._update_title()
@@ -187,6 +190,10 @@ class MainWindow(QMainWindow):
             view_menu.addAction(dock.toggleViewAction())
 
         help_menu = bar.addMenu("&Aide")
+        guide = QAction("Guide rapide", self)
+        guide.setShortcut(QKeySequence.StandardKey.HelpContents)
+        guide.triggered.connect(self.show_help)
+        help_menu.addAction(guide)
         about = QAction("À propos", self)
         about.triggered.connect(self._about)
         help_menu.addAction(about)
@@ -274,6 +281,9 @@ class MainWindow(QMainWindow):
     # --- files ------------------------------------------------------------------------
     def load_preset(self, stem: str) -> None:
         self.ctrl.set_scenario(load_preset(stem))
+        index = self.preset_combo.findData(stem)
+        if index >= 0:
+            self.preset_combo.setCurrentIndex(index)
         self.ctrl.log(f"Preset chargé : {self.ctrl.scenario.name}")
 
     def open_scenario(self) -> None:
@@ -321,11 +331,21 @@ class MainWindow(QMainWindow):
         extra = f" et {events_path.name}" if events_path else ""
         self.ctrl.log(f"Analyse exportée : {main_path}{extra}")
 
+    def show_help(self) -> HelpDialog:
+        dialog = HelpDialog(self)
+        dialog.show()
+        self._help = dialog  # keep a reference while it is open
+        return dialog
+
     def _about(self) -> None:
         QMessageBox.about(
             self, "À propos",
-            "<b>Simulateur gravitationnel 2D à N corps</b><br>Unités internes : UA, M☉, an (G = 4π²).<br><br>"
-            "Raccourcis : <b>Espace</b> lecture/pause · <b>S</b> pas · <b>R</b> réinitialiser · <b>L</b> direct.<br>"
+            f"<b>Simulateur gravitationnel 2D à N corps</b> — version {__version__}<br>"
+            "Unités internes : UA, M☉, an (G = 4π²).<br><br>"
+            "Simulation N corps (DOP853, Yoshida 4, leapfrog), analyse, spectres et détection aveugle des planètes "
+            "par le mouvement réflexe de leur étoile.<br><br>"
+            "Raccourcis : <b>Espace</b> lecture/pause · <b>S</b> pas · <b>R</b> réinitialiser · <b>L</b> direct · "
+            "<b>F1</b> guide rapide.<br>"
             "Clic sur un corps pour le sélectionner ; molette pour zoomer, glisser pour déplacer.")
 
 
