@@ -75,16 +75,16 @@ class Trajectory:
     def vel(self) -> np.ndarray:
         return self._vel[: self._len]
 
-    def window(self, start: int, stop: int, events: bool = True) -> "Trajectory":
-        """Read-only view on samples ``start:stop`` (no copy of the arrays)."""
+    def window(self, start: int, stop: int, events: bool = True, step: int = 1) -> "Trajectory":
+        """Read-only view on samples ``start:stop:step`` (no copy of the arrays)."""
         start, stop = max(0, start), min(self._len, stop)
-        if stop <= start:
+        if stop <= start or step < 1:
             raise ValueError("empty window")
         w = Trajectory(self.names, self.masses, self.radii, self.fixed, self.G, colors=self.colors, info=self.info)
-        w._cap = w._len = stop - start
-        w._t, w._pos, w._vel = self._t[start:stop], self._pos[start:stop], self._vel[start:stop]
+        w._t, w._pos, w._vel = self._t[start:stop:step], self._pos[start:stop:step], self._vel[start:stop:step]
+        w._cap = w._len = len(w._t)
         if events:
-            t0, t1 = self._t[start], self._t[stop - 1]
+            t0, t1 = w._t[0], w._t[-1]
             w.events = [e for e in self.events if t0 <= e.t <= t1]
         return w
 

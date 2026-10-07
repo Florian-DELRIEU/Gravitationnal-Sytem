@@ -104,6 +104,9 @@ def pair_analysis(traj: Trajectory, a, b) -> PairAnalysis:
                         np.sqrt(2 * mu / d), el["kind"], el)
 
 
+RADIAL_ECCENTRICITY = 1.0 - 1e-6  # above this, K = ... / sqrt(1 - e^2) is meaningless
+
+
 @dataclass
 class ReflexSignature:
     """Expected imprint of one companion on the star's motion (two-body formulas, initial elements)."""
@@ -133,8 +136,8 @@ def reflex_signatures(traj: Trajectory, star, sin_i: float = 1.0) -> list[Reflex
         mu = pair_mu(traj, k, s)
         el = kepler.elements_from_state(traj.pos[0, k] - traj.pos[0, s], traj.vel[0, k] - traj.vel[0, s], mu)
         e, a, P = float(el["e"]), float(el["a"]), float(el["period"])
-        if not np.isfinite(P):
-            continue
+        if not np.isfinite(P) or e >= RADIAL_ECCENTRICITY:
+            continue  # unbound, or a radial fall: not a planet with a Keplerian reflex signal
         m, M = traj.masses[k], traj.masses[s]
         K = (2 * np.pi * traj.G / P) ** (1 / 3) * m * sin_i / (M + m) ** (2 / 3) / np.sqrt(1 - e * e)
         out.append(ReflexSignature(name, P, a, e, float(au_per_yr_to_m_s(K)), a * m / (M + m),

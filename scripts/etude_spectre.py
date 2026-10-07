@@ -23,44 +23,11 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 
 from gravsim.analysis import diagnostics, frames, observer, orbits, spectral  # noqa: E402
+from gravsim.analysis.spectral import label_peaks  # noqa: E402
 from gravsim.core.scenario import load_preset  # noqa: E402
 from gravsim.core.simulation import Simulation  # noqa: E402
 
 DEFAULT_SET = ["soleil_jupiter", "jupiter_chaud", "resonance_2_1", "excentrique", "systeme_solaire"]
-
-
-def label_peaks(peaks, truths, baseline: float, windowed: bool) -> list[str]:
-    """Name each peak: planet, harmonic, window side lobe, yearly alias, or unknown.
-
-    The matching tolerance is 0.75 / T (below the resolution 1 / T). Side lobes of the
-    Hann window lie within ~3.5 / T of a much stronger peak; with seasonal gaps the
-    spectral window also creates aliases at +-1 and +-2 cycles/yr.
-    """
-    tol = 0.75 / baseline
-    labels = []
-    for pk in peaks:
-        f = abs(pk.frequency)
-        matches = []
-        for tr in truths:
-            for n in range(1, 7):
-                if abs(f - n * tr.frequency) < tol:
-                    matches.append(tr.name if n == 1 else f"harmonique {n}f de {tr.name}")
-        if len(matches) > 1:
-            label = " / ".join(matches) + "  (AMBIGU)"
-        else:
-            label = matches[0] if matches else "?"
-        if label == "?":
-            for big in peaks:
-                ratio = pk.amplitude / big.amplitude
-                df = abs(f - abs(big.frequency))
-                if windowed and ratio < 0.05 and df < 3.5 / baseline:
-                    label = "lobe secondaire de la fenêtre"
-                    break
-                if ratio < 0.8 and min(abs(df - 1.0), abs(df - 2.0)) < tol:
-                    label = "alias annuel (trous saisonniers)"
-                    break
-        labels.append(label)
-    return labels
 
 
 def study(preset: str, years: float | None, star: str | None, integrator: str, sampling: float | None,

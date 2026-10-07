@@ -10,16 +10,19 @@ from pathlib import Path
 
 from PySide6.QtCore import QTimer, Qt
 from PySide6.QtGui import QAction, QColor, QKeySequence, QShortcut, QTextCharFormat
-from PySide6.QtWidgets import (QApplication, QComboBox, QDockWidget, QFileDialog, QGroupBox, QHBoxLayout, QLabel,
-                               QMainWindow, QMessageBox, QPlainTextEdit, QPushButton, QTabWidget, QVBoxLayout,
-                               QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDockWidget, QFileDialog, QGroupBox, QHBoxLayout, QInputDialog,
+                               QLabel, QMainWindow, QMessageBox, QPlainTextEdit, QPushButton, QTabWidget,
+                               QVBoxLayout, QWidget)
 
 from ..core.scenario import Scenario, list_presets, load_preset
+from ..analysis import export
+from .analysis_tabs import AnalysisPage
 from .body_panel import BodyEditor, BodyListPanel, ImpulsePanel
 from .controller import SimulationController
+from .spectral_tab import SpectrumPage
 from .time_controls import IntegrationPanel, TimeControls
 from .view_panel import InfoPanel, ViewPanel
-from .viewer import SimViewer
+from .viewer import SimViewer, frame_spec
 from .widgets import ViewSettings, format_time
 
 TICK_MS = 25
@@ -75,13 +78,22 @@ class MainWindow(QMainWindow):
         lay.addWidget(self.banner_row)
         lay.addWidget(self.viewer, 1)
         lay.addWidget(self.controls)
-        self.setCentralWidget(central)
+        self.analysis = AnalysisPage(self.ctrl, self.view)
+        self.spectrum = SpectrumPage(self.ctrl)
+        self.pages = QTabWidget()
+        self.pages.addTab(central, "Simulation")
+        self.pages.addTab(self.analysis, "Analyse")
+        self.pages.addTab(self.spectrum, "Spectre")
+        self.setCentralWidget(self.pages)
+        self._dock_memory: dict[QDockWidget, bool] = {}
+        self._previous_page = 0
 
         self._build_docks()
         self._build_menus()
         self._build_status()
         self._build_shortcuts()
 
+        self.pages.currentChanged.connect(self._on_page_changed)
         ctrl = self.ctrl
         ctrl.eventLogged.connect(self._log)
         ctrl.collisionOccurred.connect(self._on_collision)
@@ -151,7 +163,8 @@ class MainWindow(QMainWindow):
         file_menu = bar.addMenu("&Fichier")
         for text, slot, shortcut in (("Ouvrir un scénario…", self.open_scenario, QKeySequence.StandardKey.Open),
                                      ("Enregistrer le scénario…", self.save_scenario, QKeySequence.StandardKey.Save),
-                                     ("Exporter la trajectoire (.npz)…", self.export_trajectory, None)):
+                                     ("Exporter la trajectoire (.npz)…", self.export_trajectory, None),
+                                     ("Exporter l'analyse (.csv)…", self.export_analysis, None)):
             act = QAction(text, self)
             if shortcut:
                 act.setShortcut(shortcut)
@@ -199,6 +212,23 @@ class MainWindow(QMainWindow):
         now = time.perf_counter()
         dt, self._last_tick = now - self._last_tick, now
         self.ctrl.tick(min(dt, 0.1))
+
+    def _on_page_changed(self, index: int) -> None:
+        """Give the analysis pages the room: the side panels only matter on the simulation page.
+
+        The Vue panel stays available on "Analyse" (it chooses the reference frame); "Spectre" has its own controls.
+        """
+        docks = (self.left_dock, self.right_dock, self.bottom_dock)
+        if self._previous_page == 0 and index != 0:
+            self._dock_memory = {d: not d.isHidden() for d in docks}
+        self._previous_page = index
+        if index == 0:
+            for dock, visible in self._dock_memory.items():
+                dock.setVisible(visible)
+            return
+        self.left_dock.hide()
+        self.bottom_dock.hide()
+        self.right_dock.setVisible(self._dock_memory.get(self.right_dock, True) if index == 1 else False)
 
     def _log(self, text: str, level: str) -> None:
         fmt = QTextCharFormat()
@@ -272,6 +302,25 @@ class MainWindow(QMainWindow):
             traj.save_npz(path)
             self.ctrl.log(f"Trajectoire exportée : {path} ({len(traj)} échantillons)")
 
+    def export_analysis(self) -> None:
+        """Table of positions, velocities, energies, distances and drifts in the frame chosen in the Vue tab."""
+        traj = self.ctrl.traj
+        if traj is None:
+            return
+        step = 1
+        if len(traj) > 200_000:
+            step, ok = QInputDialog.getInt(self, "Export CSV", f"{len(traj):,} échantillons : en garder un sur…".replace(",", " "),
+                                           max(1, len(traj) // 100_000), 1, 10_000)
+            if not ok:
+                return
+        path, _ = QFileDialog.getSaveFileName(self, "Exporter l'analyse", "analyse.csv", "CSV (*.csv)")
+        if not path:
+            return
+        spec = frame_spec(self.view, self.ctrl.scenario)
+        main_path, events_path = export.export_csv(traj, path, frame=spec, step=step)
+        extra = f" et {events_path.name}" if events_path else ""
+        self.ctrl.log(f"Analyse exportée : {main_path}{extra}")
+
     def _about(self) -> None:
         QMessageBox.about(
             self, "À propos",
@@ -303,6 +352,39 @@ def _autotest(app: QApplication, window: MainWindow) -> int:
         drift = ctrl.energy_drift()
         if ctrl.sim is None or ctrl.sim.t < 1.0 or drift is None or abs(drift) > 1e-6:
             problems.append(f"{integrator}: simulation incorrecte (dérive {drift})")
+    # Analysis, spectrum and export: these pull in scipy.signal / scipy.optimize, which a frozen build must bundle.
+    try:
+        import tempfile
+        from pathlib import Path
+
+        from ..analysis.pipeline import ObservationSettings, run_observation
+
+        ctrl.set_scenario(load_preset("soleil_jupiter"))
+        ctrl.budget = 60.0
+        ctrl.advance_to(72.0)
+        result = run_observation(ctrl.traj, ObservationSettings("Soleil"))
+        if not result.labels or result.labels[0] != "Jupiter":
+            problems.append(f"spectre : pic principal mal identifié ({result.labels[:1]})")
+        window.show()
+        for page in (1, 2):
+            window.pages.setCurrentIndex(page)
+            if page == 1:
+                for tab in range(window.analysis.tabs.count()):
+                    window.analysis.tabs.setCurrentIndex(tab)
+                    window.analysis.refresh(force=True)
+                    if "Erreur" in window.analysis.header.text():
+                        problems.append(f"analyse : {window.analysis.header.text()}")
+            else:
+                window.spectrum.compute()
+            app.processEvents()
+            if window.grab().isNull():
+                problems.append(f"rendu de la page {page} impossible")
+        with tempfile.TemporaryDirectory() as tmp:
+            export.export_csv(ctrl.traj, Path(tmp) / "analyse.csv")
+            if not (Path(tmp) / "analyse.csv").exists():
+                problems.append("export CSV absent")
+    except Exception as exc:
+        problems.append(f"analyse/spectre/export : {type(exc).__name__}: {exc}")
     window.show()
     app.processEvents()
     if window.grab().isNull():

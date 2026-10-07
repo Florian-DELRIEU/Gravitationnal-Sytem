@@ -212,7 +212,7 @@ L'ordre suit le risque : la partie la plus incertaine (objectif 2) est validée 
 1. **Cœur + tests** : corps, forces, intégrateurs, événements (poussées, collisions continues), bilan d'énergie. T1 à T7.
 2. **Analyse et spectre sans interface** : diagnostics, référentiels, orbites, observateur, FFT, Lomb-Scargle ; scripts produisant des graphes matplotlib sur les presets. T8, T9. *Point d'étape : on regarde ensemble les premiers spectres.*
 3. **Interface de simulation** : viewer, panneau de saisie des corps (norme/angle, composantes, vitesse orbitale auto, poussées), contrôles de temps, tailles d'affichage, collisions.
-4. **Interface d'analyse** : onglets graphes, référentiels, jauge de fidélité, export, onglet spectre.
+4. **Interface d'analyse** : onglets graphes, référentiels, jauge de fidélité, export, onglet spectre. *(fait : pipeline d'observation `analysis/pipeline.py`, export `analysis/export.py` ; l'onglet Spectre liste les pics sans les compter, le comptage des planètes est le jalon 5)*
 5. **Détection et validation** : prewhitening, ajustement képlérien, sélection de modèle, harmoniques et ambiguïté, campagne par injection. T10 à T13.
 6. **Finitions** : presets, scénarios JSON, performances (Numba si mesuré nécessaire), documentation d'utilisation.
 

@@ -23,6 +23,20 @@ def _rotate(vec: np.ndarray, angle: float) -> np.ndarray:
     return np.stack([c * vec[..., 0] + s * vec[..., 1], -s * vec[..., 0] + c * vec[..., 1]], axis=-1)
 
 
+def frame_spec(view: ViewSettings, scenario):
+    """Frame selected in the view settings, as a spec for ``frames.view`` (falls back to inertial if invalid)."""
+    names = scenario.names
+    n = len(names)
+    if view.frame == "barycentric" and scenario.total_mass() > 0:
+        return "barycentric"
+    if view.frame == "body" and 0 <= view.frame_body < n:
+        return ("body", names[view.frame_body])
+    a, b = view.frame_pair
+    if view.frame == "rotating" and 0 <= a < n and 0 <= b < n and a != b:
+        return ("rotating", names[a], names[b])
+    return "inertial"
+
+
 class SimViewer(pg.PlotWidget):
     bodyClicked = Signal(int)
 
@@ -118,16 +132,7 @@ class SimViewer(pg.PlotWidget):
 
     # --- drawing ----------------------------------------------------------------
     def _frame_spec(self):
-        v, names = self.view, self.ctrl.scenario.names
-        n = len(names)
-        if v.frame == "barycentric" and self.ctrl.scenario.total_mass() > 0:
-            return "barycentric"
-        if v.frame == "body" and 0 <= v.frame_body < n:
-            return ("body", names[v.frame_body])
-        a, b = v.frame_pair
-        if v.frame == "rotating" and 0 <= a < n and 0 <= b < n and a != b:
-            return ("rotating", names[a], names[b])
-        return "inertial"
+        return frame_spec(self.view, self.ctrl.scenario)
 
     def redraw(self) -> None:
         if self._in_redraw:

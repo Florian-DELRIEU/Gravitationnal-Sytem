@@ -213,3 +213,39 @@ def fit_sinusoid(t, y, frequency: float, dy=None) -> dict:
     coef, *_ = np.linalg.lstsq(A * w[:, None], np.asarray(y) * w, rcond=None)
     return {"offset": coef[0], "amplitude": float(np.hypot(coef[1], coef[2])),
             "phase": float(np.arctan2(-coef[2], coef[1])), "model": A @ coef}
+
+
+def label_peaks(peaks, truths, baseline: float, windowed: bool) -> list[str]:
+    """Name each peak: planet, harmonic, window side lobe, yearly alias, or unknown.
+
+    ``truths`` are objects with ``name`` and ``frequency`` (cycles/yr), e.g. ``orbits.ReflexSignature``.
+    The matching tolerance is 0.75 / T (below the resolution 1 / T). When several explanations fit
+    (e.g. the 2f harmonic of one planet and the fundamental of another) the label says AMBIGU instead of
+    picking one. Side lobes of the Hann window lie within ~3.5 / T of a much stronger peak; seasonal gaps
+    create aliases at +-1 and +-2 cycles/yr.
+    """
+    tol = 0.75 / baseline
+    labels = []
+    for pk in peaks:
+        f = abs(pk.frequency)
+        matches = []
+        for tr in truths:
+            for n in range(1, 7):
+                if abs(f - n * tr.frequency) < tol:
+                    matches.append(tr.name if n == 1 else f"harmonique {n}f de {tr.name}")
+        if len(matches) > 1:
+            label = " / ".join(matches) + "  (AMBIGU)"
+        else:
+            label = matches[0] if matches else "?"
+        if label == "?":
+            for big in peaks:
+                ratio = pk.amplitude / big.amplitude
+                df = abs(f - abs(big.frequency))
+                if windowed and ratio < 0.05 and df < 3.5 / baseline:
+                    label = "lobe secondaire de la fenêtre"
+                    break
+                if ratio < 0.8 and min(abs(df - 1.0), abs(df - 2.0)) < tol:
+                    label = "alias annuel (trous saisonniers)"
+                    break
+        labels.append(label)
+    return labels

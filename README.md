@@ -51,6 +51,16 @@ gravsim            # ou : python -m gravsim
 - Panneau **Intégration** : DOP853, Yoshida 4 ou leapfrog, avec le pas conseillé. La barre d'état affiche la dérive d'énergie (hors poussées).
 - Un curseur permet de remonter dans le temps sur la trajectoire déjà calculée ; la case « Pause à la collision » arrête la simulation exactement au contact.
 
+## Analyse et spectre dans l'interface
+
+La zone centrale a trois onglets : **Simulation**, **Analyse**, **Spectre**. Les panneaux latéraux s'effacent dans les deux derniers pour laisser la place aux graphes (celui des *Propriétés* reste dans « Analyse », car l'onglet *Vue* choisit le référentiel) et reviennent avec la simulation.
+
+- **Analyse** : distances entre paires (min, max, actuelle), vitesses (norme, composantes, relative à un corps, en UA/an ou km/s), positions (x(t), y(t), distance, trajectoire x–y), énergies et **jauge de fidélité** (dérive de l'énergie, du moment cinétique et de la quantité de mouvement, hors poussées), éléments orbitaux (a, périastre, apoastre, e, ω) avec le résumé de la paire (type d'orbite, masse réduite, vitesse de libération). Les collisions (rouge) et les poussées (orange) sont marquées sur tous les graphes de temps. Les courbes suivent le référentiel choisi dans l'onglet *Vue*.
+- **Spectre** : choix du corps observé, du signal (vitesse radiale avec ligne de visée et inclinaison, ou astrométrie x + iy), de l'échantillonnage (régulier + FFT fenêtrée, ou irrégulier avec trous saisonniers + Lomb-Scargle), du bruit, du spectrogramme. Le spectre porte les **planètes réelles** en repère (trait plein, harmoniques 2f et 3f en pointillés), les pics sont numérotés et identifiés dans l'onglet *Pics et planètes* (planète, harmonique, lobe de fenêtre, alias annuel, **AMBIGU** quand deux explications se valent). Des conseils s'affichent : durée trop courte, pas trop grossier, poussée dans l'intervalle, corps fixe. Le bouton *Compléter* poursuit la simulation jusqu'à 6 fois la période de la planète la plus lente.
+- **Export** : *Fichier → Exporter l'analyse (.csv)* écrit une table (positions et vitesses dans le référentiel choisi, énergies, barycentre, distances, dérives) et, s'il y en a, un fichier `_evenements.csv` (poussées, collisions, séparations).
+
+Les mêmes calculs sont disponibles sans interface : `gravsim.analysis.pipeline` (observation → spectre → pics identifiés) et `gravsim.analysis.export`.
+
 ## Tests
 
 ```bash
@@ -75,7 +85,7 @@ Presets disponibles : `soleil_jupiter`, `terre_lune`, `binaire`, `systeme_solair
 gravsim/
   core/       physique : corps, forces, intégrateurs, événements (sans Qt)
   analysis/   référentiels, orbites, diagnostics, analyse spectrale (sans Qt)
-  gui/        interface PySide6 / pyqtgraph (fenêtre, viewer, panneaux, contrôleur de lecture)
+  gui/        interface PySide6 / pyqtgraph (fenêtre, viewer, panneaux, onglets Analyse et Spectre)
   presets/    scénarios prêts à l'emploi (JSON)
 scripts/      études sans interface
 tests/
@@ -88,6 +98,6 @@ docs/
 - [x] Jalon 1 : cœur physique + tests
 - [x] Jalon 2 : analyse et spectre sans interface
 - [x] Jalon 3 : interface de simulation
-- [ ] Jalon 4 : interface d'analyse
+- [x] Jalon 4 : interface d'analyse
 - [ ] Jalon 5 : détection de planètes et validation
 - [ ] Jalon 6 : finitions
