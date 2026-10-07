@@ -130,3 +130,6 @@ dmypy.json
 
 # Sorties des scripts d etude
 outputs/
+
+# Lanceur macOS genere par scripts/creer_app.py (chemin propre a la machine)
+*.app/

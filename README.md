@@ -20,6 +20,17 @@ Le paquet `gravsim` est installé en mode éditable : les modifications du code 
 
 ## Lancer le simulateur
 
+**D'un double-clic (macOS)** : créer l'application une seule fois,
+
+```bash
+conda activate gravsim
+python scripts/creer_app.py
+```
+
+puis double-cliquer sur `Simulateur Gravitationnel.app` (la glisser dans le Dock ou dans Applications si on veut). Elle lance le Python de l'environnement `gravsim` ; si cet environnement est supprimé ou déplacé, relancer `creer_app.py`. En cas de problème, le journal est dans `~/Library/Logs/gravsim.log`.
+
+**Depuis un terminal** :
+
 ```bash
 conda activate gravsim
 gravsim            # ou : python -m gravsim
