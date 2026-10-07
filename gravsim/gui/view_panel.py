@@ -17,6 +17,8 @@ class ViewPanel(QWidget):
     FRAME_LABELS = [("inertial", "Inertiel"), ("barycentric", "Barycentrique"), ("body", "Centré sur un corps"),
                     ("rotating", "Tournant avec une paire")]
     CAMERA_LABELS = [("all", "Tout voir (automatique)"), ("free", "Libre"), ("follow", "Suivre un corps")]
+    FIELD_LABELS = [("none", "Aucun"), ("potential", "Potentiel gravitationnel"),
+                    ("effective", "Potentiel effectif (référentiel tournant)")]
 
     def __init__(self, ctrl: SimulationController, view: ViewSettings, parent=None):
         super().__init__(parent)
@@ -45,6 +47,21 @@ class ViewPanel(QWidget):
             cb.setChecked(getattr(view, attr))
             cb.toggled.connect(lambda flag, a=attr: self._set(a, flag))
 
+        self.cb_lagrange = QCheckBox("Points de Lagrange (L1 à L5)")
+        self.cb_lag_follow = QCheckBox("Suivre la paire du référentiel tournant")
+        self.lag_a, self.lag_b = QComboBox(), QComboBox()
+        self.field = self._combo(self.FIELD_LABELS)
+        self.cb_contours = QCheckBox("Lignes de niveau")
+        self.cb_critical = QCheckBox("Courbes critiques L1, L2, L3")
+        self.cb_accessible = QCheckBox("Région accessible du corps sélectionné")
+        for cb, attr in ((self.cb_lagrange, "show_lagrange"), (self.cb_lag_follow, "lagrange_follow_frame"),
+                         (self.cb_contours, "field_contours"), (self.cb_critical, "field_critical"),
+                         (self.cb_accessible, "field_accessible")):
+            cb.setChecked(getattr(view, attr))
+            cb.toggled.connect(lambda flag, a=attr: self._set(a, flag))
+        self.field_note = QLabel()
+        self.field_note.setWordWrap(True)
+
         sizes = QGroupBox("Taille des corps")
         sf = QFormLayout(sizes)
         sf.addRow("Mode", self.size_mode)
@@ -61,6 +78,17 @@ class ViewPanel(QWidget):
         spf.addRow("Paire B", self.pair_b)
         spf.addRow("Cadrage", self.camera)
         spf.addRow("Suivre", self.follow)
+        lagr = QGroupBox("Points de Lagrange et potentiel")
+        lf = QFormLayout(lagr)
+        lf.addRow(self.cb_lagrange)
+        lf.addRow(self.cb_lag_follow)
+        lf.addRow("Primaire", self.lag_a)
+        lf.addRow("Secondaire", self.lag_b)
+        lf.addRow("Fond", self.field)
+        lf.addRow(self.cb_contours)
+        lf.addRow(self.cb_critical)
+        lf.addRow(self.cb_accessible)
+        lf.addRow(self.field_note)
         draw = QGroupBox("Affichage")
         df = QFormLayout(draw)
         df.addRow("Longueur des traînées (échantillons)", self.trail)
@@ -69,6 +97,7 @@ class ViewPanel(QWidget):
         lay = QVBoxLayout(self)
         lay.addWidget(sizes)
         lay.addWidget(space)
+        lay.addWidget(lagr)
         lay.addWidget(draw)
         lay.addStretch(1)
 
@@ -76,8 +105,11 @@ class ViewPanel(QWidget):
         self.max_px.valueChanged.connect(self._on_any)
         self.min_px.valueChanged.connect(self._on_any)
         self.trail.valueChanged.connect(self._on_any)
-        for c in (self.frame, self.frame_body, self.pair_a, self.pair_b, self.camera, self.follow):
+        for c in (self.frame, self.frame_body, self.pair_a, self.pair_b, self.camera, self.follow, self.lag_a,
+                  self.lag_b, self.field):
             c.currentIndexChanged.connect(self._on_any)
+        self.cb_lag_follow.toggled.connect(self._on_any)
+        view.noteChanged.connect(self._show_note)
         ctrl.scenarioEdited.connect(self._refill_bodies)
         ctrl.scenarioReplaced.connect(self._refill_bodies)
         view.changed.connect(self._from_view)  # the viewer can switch the camera to "free"
@@ -97,13 +129,15 @@ class ViewPanel(QWidget):
     def _refill_bodies(self) -> None:
         names = self.ctrl.scenario.names
         self._loading = True
-        for combo in (self.frame_body, self.pair_a, self.pair_b, self.follow):
+        for combo in (self.frame_body, self.pair_a, self.pair_b, self.follow, self.lag_a, self.lag_b):
             keep = combo.currentIndex()
             combo.clear()
             combo.addItems(names)
             combo.setCurrentIndex(min(max(keep, 0), max(len(names) - 1, 0)))
         if len(names) > 1 and self.pair_a.currentIndex() == self.pair_b.currentIndex():
             self.pair_b.setCurrentIndex(1 if self.pair_a.currentIndex() == 0 else 0)
+        if len(names) > 1 and self.lag_a.currentIndex() == self.lag_b.currentIndex():
+            self.lag_b.setCurrentIndex(1 if self.lag_a.currentIndex() == 0 else 0)
         self._loading = False
         self._on_any()
 
@@ -119,6 +153,8 @@ class ViewPanel(QWidget):
         v.frame_pair = (max(self.pair_a.currentIndex(), 0), max(self.pair_b.currentIndex(), 0))
         v.camera = self.camera.currentData()
         v.follow_body = max(self.follow.currentIndex(), 0)
+        v.lagrange_pair = (max(self.lag_a.currentIndex(), 0), max(self.lag_b.currentIndex(), 0))
+        v.field = self.field.currentData()
         self._sync_enabled()
         v.notify()
 
@@ -131,6 +167,17 @@ class ViewPanel(QWidget):
         self.pair_a.setEnabled(v.frame == "rotating")
         self.pair_b.setEnabled(v.frame == "rotating")
         self.follow.setEnabled(v.camera == "follow")
+        followed = v.lagrange_follow_frame and v.frame == "rotating"
+        self.lag_a.setEnabled(not followed)
+        self.lag_b.setEnabled(not followed)
+        self.cb_lag_follow.setEnabled(v.frame == "rotating")
+        effective = v.field == "effective"
+        self.cb_contours.setEnabled(v.field != "none")
+        self.cb_critical.setEnabled(effective)
+        self.cb_accessible.setEnabled(effective)
+
+    def _show_note(self) -> None:
+        self.field_note.setText(self.view.field_note)
 
     def _from_view(self) -> None:
         idx = self.camera.findData(self.view.camera)

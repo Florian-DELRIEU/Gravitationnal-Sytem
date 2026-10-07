@@ -29,6 +29,9 @@ QUICK_GUIDE = """
 <li>Onglet <b>Vue</b> : taille des corps (selon la masse, manuelle, échelle réelle) ; <b>référentiel</b> inertiel,
 barycentrique, centré sur un corps ou <b>tournant avec une paire</b> (points de Lagrange immobiles) ; vecteurs,
 sphères de Hill.</li>
+<li>Groupe <b>Points de Lagrange et potentiel</b> : marqueurs L1 à L5, fond de potentiel gravitationnel ou
+<b>effectif</b> (à regarder en référentiel tournant : les troyens sont au sommet de L4 et L5), lignes de niveau,
+courbes critiques (L1 = lobe de Roche).</li>
 <li>Barre d'état : <b>ΔE/E</b> = dérive de l'énergie (erreur numérique). Vert : excellent ; rouge : réduire le pas
 (onglet Intégration) ou passer en DOP853.</li>
 </ul>

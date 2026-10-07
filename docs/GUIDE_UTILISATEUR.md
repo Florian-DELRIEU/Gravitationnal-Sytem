@@ -124,6 +124,36 @@ Preset de démonstration : *Collision frontale*.
 
 Le référentiel choisi s'applique aussi aux graphes de l'onglet *Analyse* et à l'export CSV.
 
+### Points de Lagrange et potentiel
+
+Le groupe **Points de Lagrange et potentiel** de l'onglet *Vue* superpose à la simulation :
+
+- **Points de Lagrange (L1 à L5)** d'une paire de corps (marqueurs ✕ étiquetés). La paire est celle du
+  référentiel tournant si la case *Suivre la paire du référentiel tournant* est cochée ; sinon on choisit
+  *Primaire* et *Secondaire* ; à défaut, ce sont les deux corps les plus massifs. Les positions sont celles du
+  problème à deux corps pour la séparation *instantanée* : exactes si la paire est en orbite circulaire,
+  approchées sinon (l'application le signale quand l'excentricité dépasse 0,05).
+- Un **fond** colorant le plan :
+  - *potentiel gravitationnel* Φ de tous les corps : le « paysage » de gravité (clair = puits profond, échelle
+    logarithmique, écrêtée pour que la carte reste lisible) ;
+  - *potentiel effectif* Φ_eff : gravité de tous les corps **plus** l'effet centrifuge dans le référentiel
+    tournant avec la paire. C'est le relief qu'un petit corps « ressent » dans ce repère : L1, L2, L3 y sont des
+    **cols**, L4 et L5 des **sommets**. À regarder dans le référentiel tournant (l'application le rappelle sinon).
+- des **lignes de niveau**, et les **courbes critiques** passant par L1 (rouge), L2 (orange) et L3 (jaune) ;
+  celle de L1 est le **lobe de Roche**.
+- la **région accessible** du corps sélectionné (pointillé blanc) : un corps d'énergie de Jacobi donnée ne peut pas
+  franchir la courbe de Φ_eff égale à cette valeur (exact pour une particule test et une paire circulaire).
+
+**Exercice 1 — pourquoi les troyens tiennent.** Preset *Troyens de Jupiter*, référentiel *tournant avec une paire*
+(Soleil, Jupiter), fond *potentiel effectif*, courbes critiques cochées. Les deux astéroïdes sont **au sommet** des
+collines L4 et L5, pas au fond d'un creux : ils sont stables grâce à la force de Coriolis, pas à cause d'un
+minimum de potentiel. La courbe rouge de L1 dessine le lobe de Roche de Jupiter.
+
+**Exercice 2 — l'étoile binaire.** Preset *Étoile binaire*, mêmes réglages : la courbe critique de L1 forme un
+« 8 » autour des deux étoiles ; une étoile qui déborde de son lobe déverse de la matière par L1.
+
+Le calcul de la carte est refait à la demande (jusqu'à environ 7 fois par seconde pendant la lecture).
+
 ---
 
 ## 7. Intégrateurs et fidélité (onglet *Intégration*)

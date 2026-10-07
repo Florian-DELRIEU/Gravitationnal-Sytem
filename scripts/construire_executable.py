@@ -64,6 +64,7 @@ def main() -> int:
             "--add-data", f"{ROOT / 'gravsim' / 'presets'}{os.pathsep}gravsim/presets",
             "--paths", str(ROOT),
             "--hidden-import", "gravsim.gui.main_window",
+            "--hidden-import", "contourpy",  # lignes de niveau du potentiel (module compilé)
         ]
         for mod in EXCLUDES:
             cmd += ["--exclude-module", mod]

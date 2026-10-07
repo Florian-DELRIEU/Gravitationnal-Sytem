@@ -163,6 +163,7 @@ class ViewSettings(QObject):
     """Display options shared by the viewer and its settings panel."""
 
     changed = Signal()
+    noteChanged = Signal()  # the status line of the potential/Lagrange options was rewritten by the viewer
 
     SIZE_MODES = ("mass", "manual", "real")
     FRAMES = ("inertial", "barycentric", "body", "rotating")
@@ -184,6 +185,20 @@ class ViewSettings(QObject):
         self.frame_pair = (0, 1)
         self.camera = "all"
         self.follow_body = 0
+        self.show_lagrange = False
+        self.lagrange_follow_frame = True  # use the rotating frame's pair when that frame is active
+        self.lagrange_pair = (0, 1)  # (primary, secondary) otherwise
+        self.field = "none"  # "none" | "potential" | "effective"
+        self.field_contours = True
+        self.field_critical = True  # zero-velocity curves through L1, L2, L3
+        self.field_accessible = False  # region accessible to the selected body
+        self.field_resolution = 160  # grid points along the longer side
+        self.field_note = ""  # status line written by the viewer, shown in the settings panel
 
     def notify(self) -> None:
         self.changed.emit()
+
+    def set_field_note(self, text: str) -> None:
+        if text != self.field_note:
+            self.field_note = text
+            self.noteChanged.emit()

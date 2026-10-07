@@ -56,7 +56,7 @@ gravsim            # ou : python -m gravsim
 - **Espace** lecture/pause · **S** pas · **R** réinitialiser · **L** revenir au direct. Molette pour zoomer, glisser pour déplacer, clic sur un corps pour le sélectionner.
 - Panneau **Corps** : masse, rayon, position, vitesse (norme + direction, ou composantes), corps fixe, vitesse orbitale automatique (circulaire, excentrique, libération).
 - Panneau **Poussées** : variation de vitesse signée (prograde, radiale, angle absolu), immédiate ou programmée.
-- Panneau **Vue** : taille des corps (masse, manuelle, échelle réelle), référentiel (inertiel, barycentrique, centré sur un corps, tournant avec une paire), cadrage, vecteurs vitesse et force, sphères de Hill.
+- Panneau **Vue** : taille des corps (masse, manuelle, échelle réelle), référentiel (inertiel, barycentrique, centré sur un corps, tournant avec une paire), cadrage, vecteurs vitesse et force, sphères de Hill, points de Lagrange L1–L5, carte du potentiel gravitationnel ou effectif (lignes de niveau, lobe de Roche, région accessible).
 - Panneau **Intégration** : DOP853, Yoshida 4 ou leapfrog, avec le pas conseillé. La barre d'état affiche la dérive d'énergie (hors poussées).
 - Un curseur permet de remonter dans le temps sur la trajectoire déjà calculée ; la case « Pause à la collision » arrête la simulation exactement au contact.
 

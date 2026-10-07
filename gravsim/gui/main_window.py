@@ -408,6 +408,26 @@ def _autotest(app: QApplication, window: MainWindow) -> int:
                 problems.append("export CSV absent")
     except Exception as exc:
         problems.append(f"analyse/spectre/export : {type(exc).__name__}: {exc}")
+    # Lagrange points and potential maps pull in contourpy (compiled), which a frozen build must bundle.
+    try:
+        ctrl.set_scenario(load_preset("troyens"))
+        ctrl.budget = 30.0
+        ctrl.advance_to(1.0)
+        window.show()
+        window.pages.setCurrentIndex(0)
+        window.view.frame, window.view.frame_pair, window.view.show_lagrange = "rotating", (0, 1), True
+        for field in ("potential", "effective"):
+            window.view.field, window.view.field_contours, window.view.field_critical = field, True, True
+            window.view.notify()
+            app.processEvents()
+            if window.grab().isNull():
+                problems.append(f"rendu du potentiel ({field}) impossible")
+            elif not window.viewer.field_image.isVisible():
+                problems.append(f"fond de potentiel ({field}) absent")
+        if not len(window.viewer.lagrange_points.points()) == 5:
+            problems.append("points de Lagrange absents")
+    except Exception as exc:
+        problems.append(f"potentiel/Lagrange : {type(exc).__name__}: {exc}")
     window.show()
     app.processEvents()
     if window.grab().isNull():

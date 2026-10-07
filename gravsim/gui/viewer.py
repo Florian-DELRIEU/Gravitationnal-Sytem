@@ -3,18 +3,24 @@
 from __future__ import annotations
 
 import math
+import time
 
+import contourpy
 import numpy as np
 import pyqtgraph as pg
-from PySide6.QtCore import Signal
+from PySide6.QtCore import QRectF, QTimer, Signal
 
-from ..analysis import frames
+from ..analysis import frames, potential
 from ..core.forces import GravityModel
 from .controller import SimulationController, locate
 from .widgets import ViewSettings, default_color
 
 BACKGROUND = "#0b0d14"
 _MAX_TRAIL_POINTS = 1500
+_FIELD_MIN_INTERVAL = 0.15  # s: minimum time between two recomputations of the background field while playing
+_FIELD_OPACITY = 0.75
+_N_CONTOURS = 10
+_CRITICAL_COLORS = {"L1": "#ff5c5c", "L2": "#ffb454", "L3": "#ffd166"}
 
 
 def _rotate(vec: np.ndarray, angle: float) -> np.ndarray:
@@ -35,6 +41,44 @@ def frame_spec(view: ViewSettings, scenario):
     if view.frame == "rotating" and 0 <= a < n and 0 <= b < n and a != b:
         return ("rotating", names[a], names[b])
     return "inertial"
+
+
+def lagrange_pair(view: ViewSettings, scenario) -> tuple[int, int] | None:
+    """Pair (primary, secondary) whose Lagrange points are shown: the rotating frame's pair if it is followed,
+    else the chosen pair, else the two most massive bodies. ``None`` if fewer than two bodies have mass."""
+    n = len(scenario.names)
+    masses = np.array([b.mass for b in scenario.bodies], dtype=float)
+
+    def valid(pair) -> bool:
+        a, b = pair
+        return 0 <= a < n and 0 <= b < n and a != b and masses[a] > 0 and masses[b] > 0
+
+    if view.lagrange_follow_frame and view.frame == "rotating" and valid(view.frame_pair):
+        return tuple(view.frame_pair)
+    if valid(view.lagrange_pair):
+        return tuple(view.lagrange_pair)
+    heavy = np.argsort(-masses, kind="stable")[:2]
+    if len(heavy) == 2 and masses[heavy[1]] > 0:
+        return int(heavy[0]), int(heavy[1])
+    return None
+
+
+def _unrotate(vec: np.ndarray, angle: float) -> np.ndarray:
+    """Apply R(+angle) to vectors (..., 2): inverse of ``_rotate``."""
+    return _rotate(vec, -angle)
+
+
+def _contour_lines(xs, ys, z, levels) -> tuple[np.ndarray, np.ndarray]:
+    """Contour polylines of z[ix, iy] at the given levels, joined with NaN separators."""
+    gen = contourpy.contour_generator(x=xs, y=ys, z=z.T)
+    parts_x, parts_y = [], []
+    for level in levels:
+        for line in gen.lines(float(level)):
+            parts_x += [line[:, 0], [np.nan]]
+            parts_y += [line[:, 1], [np.nan]]
+    if not parts_x:
+        return np.array([]), np.array([])
+    return np.concatenate(parts_x), np.concatenate(parts_y)
 
 
 class SimViewer(pg.PlotWidget):
@@ -73,9 +117,39 @@ class SimViewer(pg.PlotWidget):
             item.setZValue(10 + z)
             pi.addItem(item)
 
+        # background field (potential map, contours) and Lagrange points
+        self.field_image = pg.ImageItem()
+        self.field_image.setOpacity(_FIELD_OPACITY)
+        self.field_contours = pg.PlotCurveItem(pen=pg.mkPen("#ffffff55", width=1), connect="finite")
+        self.field_critical = {name: pg.PlotCurveItem(pen=pg.mkPen(color, width=1.6), connect="finite")
+                               for name, color in _CRITICAL_COLORS.items()}
+        self.field_accessible = pg.PlotCurveItem(
+            pen=pg.mkPen("#ffffff", width=1.6, style=pg.QtCore.Qt.PenStyle.DotLine), connect="finite")
+        self.lagrange_points = pg.ScatterPlotItem(symbol="x", size=12, pen=pg.mkPen("#ffffff", width=1.8), brush=None)
+        self.lagrange_labels = {name: pg.TextItem(name, color="#ffffff", anchor=(0, 1))
+                                for name in ("L1", "L2", "L3", "L4", "L5")}
+        for z, item in ((-10, self.field_image), (-5, self.field_contours), (-4, self.field_accessible),
+                        (25, self.lagrange_points)):
+            item.setZValue(z)
+            pi.addItem(item, ignoreBounds=True)
+        for item in self.field_critical.values():
+            item.setZValue(-4)
+            pi.addItem(item, ignoreBounds=True)
+        for item in self.lagrange_labels.values():
+            item.setZValue(26)
+            pi.addItem(item, ignoreBounds=True)
+        self.field_image.setVisible(False)
+        self._field_key = None
+        self._field_cmap = None
+        self._field_time = 0.0
+        self._field_retry = QTimer(self)
+        self._field_retry.setSingleShot(True)
+        self._field_retry.timeout.connect(self.redraw)
+
         ctrl.reset.connect(self._on_reset)
         ctrl.changed.connect(self.redraw)
         ctrl.appearanceChanged.connect(self.redraw)
+        ctrl.playingChanged.connect(lambda _playing: self.redraw())
         view.changed.connect(self.redraw)
         self.vb.sigRangeChanged.connect(self._on_range_changed)
         self.vb.sigRangeChangedManually.connect(self._on_manual_range)
@@ -98,6 +172,7 @@ class SimViewer(pg.PlotWidget):
         sim = self.ctrl.sim
         self._force_model = GravityModel(sim.masses, sim.G, sim.model.radii) if sim else None
         self.view.camera = self.view.camera if self.view.camera != "free" else self.view.camera
+        self._field_key = None
         self.redraw()
 
     def _color(self, k: int) -> str:
@@ -151,6 +226,19 @@ class SimViewer(pg.PlotWidget):
         for item in (self.hill, self.vel_item, self.force_item):
             item.setData([], [])
         for lab in self._labels:
+            lab.setVisible(False)
+        self._clear_field()
+        self._clear_lagrange()
+
+    def _clear_field(self) -> None:
+        self._field_key = None
+        self.field_image.setVisible(False)
+        for item in (self.field_contours, self.field_accessible, *self.field_critical.values()):
+            item.setData([], [])
+
+    def _clear_lagrange(self) -> None:
+        self.lagrange_points.setData([], [])
+        for lab in self.lagrange_labels.values():
             lab.setVisible(False)
 
     def _redraw(self) -> None:
@@ -231,7 +319,14 @@ class SimViewer(pg.PlotWidget):
             self.force_item.setData([], [])
 
         self._draw_hill(pos, inertial, masses)
-        self._frame_camera(fv, pos, px_world)
+        inertial_vel = blend(win.vel)
+        pair, points, notes = self._lagrange_state(inertial, inertial_vel, masses)
+        extra = None
+        if v.show_lagrange and points is not None:  # keep L1..L5 inside the automatic framing
+            extra = _rotate(np.array(list(points.values())) - origin, angle)
+        self._frame_camera(fv, pos, px_world, extra)
+        # after the camera, so that the field covers the final view range
+        self._draw_lagrange_and_field(inertial, inertial_vel, masses, origin, angle, pair, points, notes)
 
     def _draw_vectors(self, item: pg.PlotCurveItem, enabled: bool, pos, vec, px_world: float) -> None:
         norms = np.hypot(vec[:, 0], vec[:, 1])
@@ -275,7 +370,7 @@ class SimViewer(pg.PlotWidget):
             ys += list(pos[k, 1] + r_hill * np.sin(theta)) + [np.nan]
         self.hill.setData(np.array(xs), np.array(ys)) if xs else self.hill.setData([], [])
 
-    def _frame_camera(self, fv, pos, px_world: float) -> None:
+    def _frame_camera(self, fv, pos, px_world: float, extra=None) -> None:
         v, ctrl = self.view, self.ctrl
         if v.camera == "free":
             return
@@ -286,9 +381,163 @@ class SimViewer(pg.PlotWidget):
             hw, hh = 0.5 * (x1 - x0), 0.5 * (y1 - y0)
             self.vb.setRange(xRange=(cx - hw, cx + hw), yRange=(cy - hh, cy + hh), padding=0)
             return
-        pts = np.concatenate([fv.pos.reshape(-1, 2), pos])
+        pts = np.concatenate([fv.pos.reshape(-1, 2), pos] + ([extra] if extra is not None else []))
         lo, hi = pts.min(axis=0), pts.max(axis=0)
         span = np.maximum(hi - lo, 1e-12)
         if span.max() < 1e-9:
             lo, hi = lo - 1.0, hi + 1.0
         self.vb.setRange(xRange=(lo[0], hi[0]), yRange=(lo[1], hi[1]), padding=0.1)
+
+    # --- Lagrange points and potential field ---------------------------------------
+    def _lagrange_state(self, inertial, inertial_vel, masses):
+        """Pair, its L1..L5 (inertial frame, or None) and the status messages collected so far."""
+        v = self.view
+        pair = lagrange_pair(v, self.ctrl.scenario)
+        notes: list[str] = []
+        if not (v.show_lagrange or v.field == "effective" or v.field_accessible):
+            return pair, None, notes
+        if pair is None:
+            if v.show_lagrange or v.field == "effective":
+                notes.append("Il faut au moins deux corps massifs pour définir des points de Lagrange.")
+            return pair, None, notes
+        try:
+            return pair, potential.lagrange_points_inertial(inertial, inertial_vel, masses, *pair), notes
+        except ValueError as exc:
+            notes.append(str(exc))
+            return pair, None, notes
+
+    def _draw_lagrange_and_field(self, inertial, inertial_vel, masses, origin, angle: float, pair, points,
+                                 notes) -> None:
+        v = self.view
+        if v.show_lagrange and points is not None:
+            self._draw_lagrange(points, pair, origin, angle, inertial, inertial_vel, masses, notes)
+        else:
+            self._clear_lagrange()
+        if v.field != "none" and (v.field == "potential" or points is not None):
+            self._draw_field(inertial, inertial_vel, masses, origin, angle, pair, points, notes)
+        else:
+            self._clear_field()
+            if v.field == "effective" and points is None and not notes:
+                notes.append("Fond effectif : il faut une paire de corps massifs.")
+        v.set_field_note(" ".join(notes))
+
+    def _draw_lagrange(self, points, pair, origin, angle, inertial, inertial_vel, masses, notes) -> None:
+        names = list(points)
+        shown = _rotate(np.array([points[k] for k in names]) - origin, angle)
+        self.lagrange_points.setData(pos=shown)
+        px_world = self.vb.viewPixelSize()[0]
+        if not (px_world > 0 and math.isfinite(px_world)):
+            px_world = 1e-3
+        for k, name in enumerate(names):
+            lab = self.lagrange_labels[name]
+            lab.setVisible(True)
+            lab.setPos(shown[k, 0] + 8 * px_world, shown[k, 1] + 8 * px_world)
+        a, b = pair
+        fr = potential.pair_frame(inertial, inertial_vel, masses, a, b)
+        names_ = self.ctrl.scenario.names
+        d1 = float(np.hypot(*(points["L1"] - inertial[b])))
+        d2 = float(np.hypot(*(points["L2"] - inertial[b])))
+        text = f"Paire {names_[a]}–{names_[b]} : L1 à {d1:.4g} UA et L2 à {d2:.4g} UA de {names_[b]}."
+        # instantaneous eccentricity of the pair (two-body, reduced mass)
+        mu = self.ctrl.scenario.G * (masses[a] + masses[b])
+        dr, dv = inertial[b] - inertial[a], inertial_vel[b] - inertial_vel[a]
+        evec = ((dv @ dv) - mu / fr.separation) * dr / mu - (dr @ dv) * dv / mu
+        ecc = float(np.hypot(*evec))
+        if ecc > 0.05:
+            text += f" Orbite excentrique (e = {ecc:.2f}) : positions approchées, exactes pour une orbite circulaire."
+        notes.append(text)
+
+    def _draw_field(self, inertial, inertial_vel, masses, origin, angle, pair, points, notes) -> None:
+        v, sc = self.view, self.ctrl.scenario
+        radii = np.array([b.radius for b in sc.bodies])
+        (x0, x1), (y0, y1) = self.vb.viewRange()
+        w, h = x1 - x0, y1 - y0
+        if not (w > 0 and h > 0 and math.isfinite(w) and math.isfinite(h)):
+            return
+        sel = self.ctrl.selected
+        want_acc = bool(v.field_accessible and v.field == "effective" and 0 <= sel < len(masses))
+        key = (tuple(float(f"{q:.6g}") for q in (x0, x1, y0, y1)), self.ctrl.view_time, self._frame_spec(), v.field,
+               pair, v.field_resolution, v.field_contours, v.field_critical, want_acc, sel if want_acc else -1,
+               hash(inertial.tobytes()), hash(masses.tobytes()), hash(radii.tobytes()))
+        if key == self._field_key and self.field_image.isVisible():
+            self._field_note(v, notes, pair, want_acc)
+            return
+        now = time.monotonic()
+        if self.ctrl.playing and self._field_key is not None and now - self._field_time < _FIELD_MIN_INTERVAL:
+            if not self._field_retry.isActive():
+                self._field_retry.start(int(1000 * (_FIELD_MIN_INTERVAL - (now - self._field_time))) + 5)
+            self._field_note(v, notes, pair, want_acc)
+            return
+        self._field_retry.stop()
+
+        n = max(16, int(v.field_resolution))
+        nx, ny = (n, max(2, round(n * h / w))) if w >= h else (max(2, round(n * w / h)), n)
+        xs = x0 + (np.arange(nx) + 0.5) * (w / nx)
+        ys = y0 + (np.arange(ny) + 0.5) * (h / ny)
+        shown = np.stack(np.meshgrid(xs, ys, indexing="ij"), axis=-1)  # (nx, ny, 2), shown[ix, iy] = (x, y)
+        pts = origin + _unrotate(shown, angle)  # to the inertial frame
+        G = sc.G
+
+        crit: dict[str, float] = {}
+        acc_level = None
+        with np.errstate(all="ignore"):
+            if v.field == "potential":
+                phi = potential.gravitational_potential(pts, inertial, masses, G, radii)
+                z = np.where(phi < 0, np.log10(-np.where(phi < 0, phi, -1.0)), np.nan)
+                finite = z[np.isfinite(z)]
+                if finite.size == 0:
+                    self._clear_field()
+                    notes.append("Aucun corps massif : pas de potentiel à afficher.")
+                    return
+                lo, hi = (float(q) for q in np.percentile(finite, (2, 98)))
+                if not hi > lo:
+                    hi = lo + 1.0
+                cmap, raw = "magma", np.nan_to_num(z, nan=hi, posinf=hi, neginf=lo)
+            else:
+                frame = potential.pair_frame(inertial, inertial_vel, masses, *pair)
+                phi = potential.effective_potential(pts, inertial, masses, G, frame, radii)
+                crit = potential.critical_levels(inertial, masses, G, frame, points, radii)
+                l4 = float(potential.effective_potential(points["L4"], inertial, masses, G, frame, radii))
+                delta = l4 - crit["L1"]
+                if not (delta > 0 and math.isfinite(delta)):
+                    self._clear_field()
+                    return
+                lo, hi = crit["L1"] - 1.5 * delta, l4 + 0.1 * delta
+                cmap = "viridis"
+                big = 10 * delta
+                raw = np.clip(np.nan_to_num(phi, nan=hi, posinf=hi + big, neginf=lo - big), lo - big, hi + big)
+                if want_acc:
+                    acc_level = potential.zero_velocity_level(inertial[sel], inertial_vel[sel], inertial, masses, G,
+                                                              frame, radii)
+        img = np.clip(raw, lo, hi)
+        if cmap != self._field_cmap:
+            self.field_image.setColorMap(pg.colormap.get(cmap))
+            self._field_cmap = cmap
+        self.field_image.setImage(img, levels=(lo, hi), autoLevels=False)
+        self.field_image.setRect(QRectF(x0, y0, w, h))
+        self.field_image.setVisible(True)
+
+        if v.field_contours:
+            levels = np.linspace(lo, hi, _N_CONTOURS + 2)[1:-1]
+            self.field_contours.setData(*_contour_lines(xs, ys, img, levels))
+        else:
+            self.field_contours.setData([], [])
+        for name, item in self.field_critical.items():
+            if v.field == "effective" and v.field_critical and name in crit:
+                item.setData(*_contour_lines(xs, ys, raw, [crit[name]]))
+            else:
+                item.setData([], [])
+        if acc_level is not None and math.isfinite(acc_level):
+            self.field_accessible.setData(*_contour_lines(xs, ys, raw, [acc_level]))
+        else:
+            self.field_accessible.setData([], [])
+        self._field_key, self._field_time = key, time.monotonic()
+        self._field_note(v, notes, pair, want_acc)
+
+    def _field_note(self, v, notes, pair, want_acc) -> None:
+        if v.field == "effective" and v.frame != "rotating":
+            notes.append("Fond effectif : à regarder dans le référentiel tournant de la paire.")
+        if want_acc:
+            name = self.ctrl.scenario.names[self.ctrl.selected]
+            notes.append(f"Pointillé : région accessible de {name} (Jacobi, exact pour une particule test et une "
+                         "paire circulaire).")

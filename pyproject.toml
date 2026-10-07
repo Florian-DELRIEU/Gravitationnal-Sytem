@@ -19,6 +19,7 @@ dependencies = [
 gui = [
     "PySide6>=6.6",
     "pyqtgraph>=0.13",
+    "contourpy>=1.2",
 ]
 dev = [
     "pytest>=8",
