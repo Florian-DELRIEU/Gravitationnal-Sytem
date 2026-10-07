@@ -186,7 +186,7 @@ Principes :
 
 ## 6. Validation (tests automatisés)
 
-Les seuils sont des cibles, à calibrer au premier passage.
+Les seuils sont des cibles, calibrées au premier passage.
 
 | # | Test | Critère visé |
 |---|---|---|
@@ -199,10 +199,10 @@ Les seuils sont des cibles, à calibrer au premier passage.
 | T7 | Collision par chute radiale et contact rasant : instant détecté vs analytique | < 10⁻⁶ an ; contact rasant entre deux pas détecté |
 | T8 | Référentiel tournant : un binaire circulaire apparaît immobile | écart < 10⁻⁶ |
 | T9 | Étoile + 1 planète : pic spectral à `P`, `K` retrouvé (cas circulaire), sur `v_r` et sur `z` | `P` à moins de `1/T` ; `K` à 2 % |
-| T10 | Excentricité 0,5 : harmoniques identifiées, une seule planète comptée | nombre = 1 |
-| T11 | Étoile + 2 à 3 planètes, périodes bien séparées, sans bruit | nombre exact |
-| T12 | Couple 2:1 circulaire vs planète excentrique équivalente | ambiguïté signalée dans les deux cas |
-| T13 | Campagne par injection avec bruit | métriques de la section 3.9 |
+| T10 | Excentricité 0,5 (et 0,2, preset 0,4) : harmoniques absorbées par l'excentricité, une seule planète comptée | nombre = 1, e à 0,002, K à 0,1 % ✔ |
+| T11 | Étoile + 3 planètes, périodes bien séparées, sans bruit et avec bruit | nombre exact, P à 0,5 %, K à 3 % ✔ |
+| T12 | Couple 2:1 circulaire vs planète excentrique équivalente | sans bruit : correctement distingués ; bruit cachant les termes en e² : vrai nombre toujours parmi les réponses possibles, ambiguïté signalée dans la majorité des tirages ✔ (voir RESULTATS_JALON5.md) |
+| T13 | Campagne par injection avec bruit | 0 fausse détection, 100 % des planètes retrouvées au-delà d'un signal/bruit de 7 (test) ; 120 systèmes : 100 % au-delà de 10 ✔ |
 
 ## 7. Jalons
 
@@ -213,7 +213,7 @@ L'ordre suit le risque : la partie la plus incertaine (objectif 2) est validée 
 2. **Analyse et spectre sans interface** : diagnostics, référentiels, orbites, observateur, FFT, Lomb-Scargle ; scripts produisant des graphes matplotlib sur les presets. T8, T9. *Point d'étape : on regarde ensemble les premiers spectres.*
 3. **Interface de simulation** : viewer, panneau de saisie des corps (norme/angle, composantes, vitesse orbitale auto, poussées), contrôles de temps, tailles d'affichage, collisions.
 4. **Interface d'analyse** : onglets graphes, référentiels, jauge de fidélité, export, onglet spectre. *(fait : pipeline d'observation `analysis/pipeline.py`, export `analysis/export.py` ; l'onglet Spectre liste les pics sans les compter, le comptage des planètes est le jalon 5)*
-5. **Détection et validation** : prewhitening, ajustement képlérien, sélection de modèle, harmoniques et ambiguïté, campagne par injection. T10 à T13.
+5. **Détection et validation** : prewhitening, ajustement képlérien, sélection de modèle, harmoniques et ambiguïté, campagne par injection. T10 à T13. *(fait : `analysis/detection.py`, `analysis/campaign.py`, onglet Spectre → Détection ; résultats dans docs/RESULTATS_JALON5.md)*
 6. **Finitions** : presets, scénarios JSON, performances (Numba si mesuré nécessaire), documentation d'utilisation.
 
 Chaque jalon se termine par un état utilisable et ses tests au vert.
@@ -225,5 +225,5 @@ Chaque jalon se termine par un état utilisable et ses tests au vert.
 ## 9. Points à trancher plus tard
 
 - Densité par défaut pour déduire le rayon physique d'un corps non précisé (probablement différenciée étoile / planète via les presets).
-- Forme exacte du seuil de fausse alarme (analytique ou Monte-Carlo).
-- REBOUND (bibliothèque de référence N corps) comme oracle de test optionnel, pour comparer nos intégrateurs : à décider au jalon 1.
+- ~~Forme exacte du seuil de fausse alarme~~ : formule analytique retenue, validée par la campagne (aucune fausse détection).
+- ~~REBOUND comme oracle de test~~ : non nécessaire, les tests analytiques (Kepler, vis-viva, chute radiale, conservation) suffisent.

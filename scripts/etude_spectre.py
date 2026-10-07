@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 
 from gravsim.analysis import diagnostics, frames, observer, orbits, spectral  # noqa: E402
+from gravsim.analysis.detection import detect_observations, match_truth  # noqa: E402
 from gravsim.analysis.spectral import label_peaks  # noqa: E402
 from gravsim.core.scenario import load_preset  # noqa: E402
 from gravsim.core.simulation import Simulation  # noqa: E402
@@ -84,6 +85,24 @@ def study(preset: str, years: float | None, star: str | None, integrator: str, s
         sens = "direct" if pk.frequency > 0 else "rétrograde"
         print(f"   P = {pk.period:10.4f} ans  A = {pk.amplitude:9.3e} UA ({sens}) -> {lab}")
     print(f"fidélité : dérive d'énergie max {fid['energy']:.1e}")
+
+    # Blind detection on the radial velocities (the truth only scores the result).
+    t_det = time.perf_counter()
+    found = detect_observations(rv, star_mass=sc.body(star).mass)
+    match = match_truth(found.planets, truths, found.baseline)
+    names = {i: truths[j].name for i, j in match.matches}
+    print(f"détection aveugle ({time.perf_counter() - t_det:.1f} s) : {found.count_text()}")
+    for i, pl in enumerate(found.planets):
+        mass = f"{pl.mass_mjup:.3g} M_Jup" if pl.mass_mjup and pl.mass_mjup >= 0.1 else f"{pl.mass_mearth:.3g} M⊕"
+        print(f"   P = {pl.period:10.5g} ans  K = {pl.amplitude:8.4g} m/s  e = {pl.e:.3f}  m sin i = {mass:>12s}  "
+              f"-> {names.get(i, 'aucune planète réelle')}")
+    for amb in found.ambiguities:
+        print(f"   AMBIGU : {amb.text}")
+    missed = [truths[j].name for j in match.missed]
+    if missed:
+        print(f"   non retrouvées : {', '.join(missed)}")
+    if found.others:
+        print(f"   {len(found.others)} signal(aux) classé(s) non planétaire(s)")
 
     # --- figure ---------------------------------------------------------------------
     fig, ax = plt.subplots(2, 3, figsize=(17, 9.5))

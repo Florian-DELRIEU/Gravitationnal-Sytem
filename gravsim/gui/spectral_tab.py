@@ -16,6 +16,7 @@ from ..analysis.pipeline import ObservationSettings, SpectrumResult
 from ..core import units
 from .analysis_tabs import fill_table, make_table
 from .controller import SimulationController
+from .detection_tab import DetectionPanel
 from .plots import BACKGROUND
 from .widgets import PALETTE, NumberEdit, format_time
 
@@ -170,6 +171,8 @@ class SpectrumPage(QWidget):
         self.tabs.addTab(splitter, "Spectre")
         self.tabs.addTab(self.spectro_plot, "Spectrogramme")
         self.tabs.addTab(tables, "Pics et planètes")
+        self.detection = DetectionPanel(self)
+        self.tabs.addTab(self.detection, "Détection")
 
         lay = QHBoxLayout(self)
         lay.addWidget(scroll)

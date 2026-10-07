@@ -376,6 +376,9 @@ def _autotest(app: QApplication, window: MainWindow) -> int:
                         problems.append(f"analyse : {window.analysis.header.text()}")
             else:
                 window.spectrum.compute()
+                found = window.spectrum.detection.run()
+                if found is None or found.count != 1:
+                    problems.append(f"détection : {None if found is None else found.count_text()} au lieu d'1 planète")
             app.processEvents()
             if window.grab().isNull():
                 problems.append(f"rendu de la page {page} impossible")

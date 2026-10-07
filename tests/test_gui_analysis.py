@@ -372,3 +372,45 @@ def test_spectrum_reset_clears_status_and_recomputes_defaults(window, qapp):
     assert sp.t_start.value() == 0.0
     names = [sp.body.itemText(i) for i in range(sp.body.count())]
     assert names == ["51 Peg", "51 Peg b"] and sp.body.currentText() == "51 Peg"
+
+
+# --- detection sub-tab ------------------------------------------------------------------------------------
+def test_detection_tab_counts_and_renders(window, qapp):
+    run_to(window, 6 * P_JUP)
+    window.pages.setCurrentIndex(2)
+    sp = window.spectrum
+    sp.sampling.setCurrentIndex(1)
+    sp.n_obs.setValue(80)
+    sp.sigma.setValue(3.0)
+    sp.season.setValue(0.3)
+    sp.tabs.setCurrentIndex(3)
+    res = sp.detection.run()  # computes the observations itself when needed
+    assert res is not None and res.count == 1
+    assert sp.detection.planets_table.rowCount() == 1
+    assert sp.detection.planets_table.item(0, 9).text() == "Jupiter"
+    assert "M_Jup" in sp.detection.planets_table.item(0, 5).text()
+    assert "1 planète détectée" in sp.detection.summary.text()
+    assert sp.detection.steps_table.rowCount() == len(res.steps) >= 2
+    render(window, qapp)
+
+
+def test_detection_tab_resonance_and_errors(window, qapp):
+    window.pages.setCurrentIndex(2)
+    sp = window.spectrum
+    window.ctrl.scenario.bodies.clear()
+    window.ctrl.edit()
+    assert sp.detection.run() is None and "spectre" in sp.detection.summary.text()
+    window.ctrl.set_scenario(load_preset("resonance_2_1"))
+    assert sp.complete_simulation()
+    sp.sampling.setCurrentIndex(1)
+    sp.n_obs.setValue(150)
+    sp.sigma.setValue(5.0)
+    sp.season.setValue(0.3)
+    sp.compute()
+    res = sp.detection.run()
+    assert res.count == 2
+    names = {sp.detection.planets_table.item(r, 9).text() for r in range(2)}
+    assert names == {"GJ 876 b", "GJ 876 c"}
+    assert sp.detection.others_table.rowCount() == len(res.others) > 0
+    sp.tabs.setCurrentIndex(3)
+    render(window, qapp)

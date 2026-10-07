@@ -125,21 +125,33 @@ class ReflexSignature:
 
 
 def reflex_signatures(traj: Trajectory, star, sin_i: float = 1.0) -> list[ReflexSignature]:
-    """Ground truth for spectral studies: every bound companion of ``star``, sorted by period."""
+    """Ground truth for spectral studies: every bound companion of ``star``, sorted by period.
+
+    Elements are Jacobi elements at the first sample: each companion, taken in order of distance to the star,
+    orbits the barycentre of the star and of the companions closer to it, with mu = G (M_inner + m). Plain
+    star-centred elements would be biased by the star's reflex motion due to the inner planets (0.5 % on the
+    period of an outer planet in a typical system).
+    """
     from ..core.units import au_per_yr_to_m_s
 
     s = traj.index(star)
+    pos, vel, masses = traj.pos[0], traj.vel[0], traj.masses
+    companions = [k for k in range(traj.n_bodies)
+                  if k != s and masses[k] > 0 and not traj.fixed[k]]
+    companions.sort(key=lambda k: float(np.hypot(*(pos[k] - pos[s]))))
+    inner = [s]
     out = []
-    for k, name in enumerate(traj.names):
-        if k == s or traj.masses[k] == 0 or traj.fixed[k]:
-            continue
-        mu = pair_mu(traj, k, s)
-        el = kepler.elements_from_state(traj.pos[0, k] - traj.pos[0, s], traj.vel[0, k] - traj.vel[0, s], mu)
+    for k in companions:
+        m_in = float(masses[inner].sum())
+        r_in = (masses[inner, None] * pos[inner]).sum(axis=0) / m_in
+        v_in = (masses[inner, None] * vel[inner]).sum(axis=0) / m_in
+        m = float(masses[k])
+        el = kepler.elements_from_state(pos[k] - r_in, vel[k] - v_in, traj.G * (m_in + m))
+        inner.append(k)
         e, a, P = float(el["e"]), float(el["a"]), float(el["period"])
         if not np.isfinite(P) or e >= RADIAL_ECCENTRICITY:
             continue  # unbound, or a radial fall: not a planet with a Keplerian reflex signal
-        m, M = traj.masses[k], traj.masses[s]
-        K = (2 * np.pi * traj.G / P) ** (1 / 3) * m * sin_i / (M + m) ** (2 / 3) / np.sqrt(1 - e * e)
-        out.append(ReflexSignature(name, P, a, e, float(au_per_yr_to_m_s(K)), a * m / (M + m),
+        K = (2 * np.pi * traj.G / P) ** (1 / 3) * m * sin_i / (m_in + m) ** (2 / 3) / np.sqrt(1 - e * e)
+        out.append(ReflexSignature(traj.names[k], P, a, e, float(au_per_yr_to_m_s(K)), a * m / (m_in + m),
                                    1 if el["h"] > 0 else -1))
     return sorted(out, key=lambda r: r.period)

@@ -59,9 +59,18 @@ La zone centrale a trois onglets : **Simulation**, **Analyse**, **Spectre**. Les
 
 - **Analyse** : distances entre paires (min, max, actuelle), vitesses (norme, composantes, relative à un corps, en UA/an ou km/s), positions (x(t), y(t), distance, trajectoire x–y), énergies et **jauge de fidélité** (dérive de l'énergie, du moment cinétique et de la quantité de mouvement, hors poussées), éléments orbitaux (a, périastre, apoastre, e, ω) avec le résumé de la paire (type d'orbite, masse réduite, vitesse de libération). Les collisions (rouge) et les poussées (orange) sont marquées sur tous les graphes de temps. Les courbes suivent le référentiel choisi dans l'onglet *Vue*.
 - **Spectre** : choix du corps observé, du signal (vitesse radiale avec ligne de visée et inclinaison, ou astrométrie x + iy), de l'échantillonnage (régulier + FFT fenêtrée, ou irrégulier avec trous saisonniers + Lomb-Scargle), du bruit, du spectrogramme. Le spectre porte les **planètes réelles** en repère (trait plein, harmoniques 2f et 3f en pointillés), les pics sont numérotés et identifiés dans l'onglet *Pics et planètes* (planète, harmonique, lobe de fenêtre, alias annuel, **AMBIGU** quand deux explications se valent). Des conseils s'affichent : durée trop courte, pas trop grossier, poussée dans l'intervalle, corps fixe. Le bouton *Compléter* poursuit la simulation jusqu'à 6 fois la période de la planète la plus lente.
+- **Détection** (sous-onglet de *Spectre*) : compte les planètes **à l'aveugle** sur les observations (extraction itérative, ajustement d'orbites képlériennes, sélection de modèle par BIC), donne P, K, e, ω, m sin i et a de chacune, range à part les signaux non planétaires (interactions, harmoniques, libération) et écrit **« 1 ou 2 planètes (AMBIGU) »** quand les données ne permettent pas de trancher entre un couple résonant 2:1 et une planète excentrique. La vérité ne sert qu'à noter le résultat (colonne *Planète réelle*).
 - **Export** : *Fichier → Exporter l'analyse (.csv)* écrit une table (positions et vitesses dans le référentiel choisi, énergies, barycentre, distances, dérives) et, s'il y en a, un fichier `_evenements.csv` (poussées, collisions, séparations).
 
-Les mêmes calculs sont disponibles sans interface : `gravsim.analysis.pipeline` (observation → spectre → pics identifiés) et `gravsim.analysis.export`.
+Les mêmes calculs sont disponibles sans interface : `gravsim.analysis.pipeline` (observation → spectre → pics identifiés), `gravsim.analysis.detection` (comptage des planètes), `gravsim.analysis.export`.
+
+## Validation de la détection
+
+```bash
+python scripts/campagne_detection.py --systemes 120
+```
+
+Simule des systèmes aléatoires de vérité connue, les observe avec bruit et trous saisonniers, les soumet à la détection aveugle et mesure : fausses détections, planètes retrouvées selon le rapport signal/bruit, justesse du nombre, précision de P et K. Résultats commentés (dont le système solaire retrouvé en aveugle) : [docs/RESULTATS_JALON5.md](docs/RESULTATS_JALON5.md).
 
 ## Tests
 
@@ -101,5 +110,5 @@ docs/
 - [x] Jalon 2 : analyse et spectre sans interface
 - [x] Jalon 3 : interface de simulation
 - [x] Jalon 4 : interface d'analyse
-- [ ] Jalon 5 : détection de planètes et validation
+- [x] Jalon 5 : détection de planètes et validation
 - [ ] Jalon 6 : finitions
